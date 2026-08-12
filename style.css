@@ -1128,7 +1128,7 @@ footer a {
 
 .reveal {
 
-  opacity: 0;
+  opacity: 1;
 
   transform: translateY(20px);
 
@@ -1141,7 +1141,8 @@ footer a {
 
   opacity: 1;
 
-  transform: none;
+  transform: translateY(0);
+
 
 }
 
