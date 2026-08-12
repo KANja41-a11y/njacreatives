@@ -408,35 +408,21 @@ document.addEventListener("DOMContentLoaded", () => {
 audio.src = "music/cozy-jazz.mp3";
 
   const musicButton =
-    document.getElementById(
-      "musicButton"
-    );
-
-
-  /*
-    NANTI KALAU SUDAH PUNYA LAGU:
-
-    audio.src = "music/cozy-jazz.mp3";
-
-  */
-
-
+   document.getElementById("musicButton");
+  
   let playing = false;
-
 
   musicButton.onclick = () => {
 
+    if (playing) {
 
-    if (!audio.src) {
+    audio.pause();
 
-      alert(
-        "Masukkan lagu kamu ke folder music/ lalu tambahkan audio.src di script.js"
-      );
+  } else {
 
-      return;
+    audio.play();
 
-    }
-
+  }
 
     if (playing) {
 
@@ -448,28 +434,21 @@ audio.src = "music/cozy-jazz.mp3";
 
     }
 
-
     playing = !playing;
+    
+ musicButton
+    .querySelector(".play-icon")
+    .textContent =
+    playing ? "Ⅱ" : "▶";
 
+  musicButton
+    .querySelector("small")
+    .textContent =
+    playing
+      ? "now playing"
+      : "click to play";
 
-    musicButton
-      .querySelector(
-        ".play-icon"
-      )
-      .textContent =
-      playing ? "Ⅱ" : "▶";
-
-
-    musicButton
-      .querySelector("small")
-      .textContent =
-      playing
-        ? "now playing"
-        : "click to play";
-
-  };
-
-
+};
 
   /* ================= CUSTOM CURSOR ================= */
 
