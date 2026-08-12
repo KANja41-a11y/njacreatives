@@ -1129,21 +1129,14 @@ footer a {
 .reveal {
 
   opacity: 1;
-
-  transform: translateY(20px);
-
+  transform: translateY(0px);
   transition: .7s ease;
 
 }
 
-
 .reveal.show {
-
   opacity: 1;
-
   transform: translateY(0);
-
-
 }
 
 
