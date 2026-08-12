@@ -1,21 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   /* ================= SLIDER ================= */
 
   const slides = [
     ...document.querySelectorAll(".slide")
   ];
 
-  const dots =
-    document.getElementById("dots");
+  const dots = document.getElementById("dots");
 
   let current = 0;
 
-
   slides.forEach((_, i) => {
 
-    const dot =
-      document.createElement("span");
+    const dot = document.createElement("span");
 
     dot.className =
       "dot" + (i === 0 ? " active" : "");
@@ -31,9 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showSlide(index) {
 
+    if (!slides.length) return;
+
     current =
-      (index + slides.length)
-      % slides.length;
+      (index + slides.length) % slides.length;
 
     slides.forEach((slide, i) => {
 
@@ -45,9 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    [
-      ...dots.children
-    ].forEach((dot, i) => {
+    [...dots.children].forEach((dot, i) => {
 
       dot.classList.toggle(
         "active",
@@ -59,18 +55,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  document
-    .getElementById("next")
-    .onclick = () => {
+  const nextButton =
+    document.getElementById("next");
+
+  const prevButton =
+    document.getElementById("prev");
+
+
+  if (nextButton) {
+
+    nextButton.onclick = () => {
       showSlide(current + 1);
     };
 
+  }
 
-  document
-    .getElementById("prev")
-    .onclick = () => {
+
+  if (prevButton) {
+
+    prevButton.onclick = () => {
       showSlide(current - 1);
     };
+
+  }
 
 
   setInterval(() => {
@@ -84,85 +91,85 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ================= POPUP MENU ================= */
 
   const backdrop =
-    document.getElementById(
-      "modalBackdrop"
-    );
+    document.getElementById("modalBackdrop");
 
   const menuButton =
-    document.getElementById(
-      "menuButton"
-    );
+    document.getElementById("menuButton");
 
   const menuPopup =
-    document.getElementById(
-      "menuPopup"
-    );
+    document.getElementById("menuPopup");
 
   const contentPopup =
-    document.getElementById(
-      "contentPopup"
-    );
+    document.getElementById("contentPopup");
 
   const content =
-    document.getElementById(
-      "popupContent"
-    );
+    document.getElementById("popupContent");
 
 
-  menuButton.onclick = () => {
+  if (menuButton) {
 
-    backdrop.classList.add("open");
+    menuButton.onclick = () => {
 
-    menuPopup.style.display =
-      "block";
+      backdrop.classList.add("open");
 
-    contentPopup.classList.remove(
-      "open"
-    );
+      menuPopup.style.display = "block";
 
-  };
-
-
-  document
-    .getElementById("closePopup")
-    .onclick = () => {
-
-      backdrop.classList.remove(
-        "open"
-      );
+      contentPopup.classList.remove("open");
 
     };
 
+  }
 
-  document
-    .getElementById("closeContent")
-    .onclick = () => {
 
-      contentPopup.classList.remove(
-        "open"
-      );
+  const closePopup =
+    document.getElementById("closePopup");
+
+
+  if (closePopup) {
+
+    closePopup.onclick = () => {
+
+      backdrop.classList.remove("open");
 
     };
 
+  }
 
-  backdrop.onclick = (e) => {
 
-    if (e.target === backdrop) {
+  const closeContent =
+    document.getElementById("closeContent");
 
-      backdrop.classList.remove(
-        "open"
-      );
 
-    }
+  if (closeContent) {
 
-  };
+    closeContent.onclick = () => {
+
+      contentPopup.classList.remove("open");
+
+    };
+
+  }
+
+
+  if (backdrop) {
+
+    backdrop.onclick = (e) => {
+
+      if (e.target === backdrop) {
+
+        backdrop.classList.remove("open");
+
+      }
+
+    };
+
+  }
 
 
 
   /* ================= POPUP CONTENT ================= */
 
   const popupData = {
-
 
     home: {
 
@@ -214,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="sticky">
 
           <strong>
-            Today’s idea ✦
+            Today's idea ✦
           </strong>
 
           <br><br>
@@ -250,15 +257,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </p>
 
-
         <div class="scrapbook">
 
           <img
             src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80"
+            alt="Creative experiment"
           >
 
           <img
             src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=600&q=80"
+            alt="Art experiment"
           >
 
         </div>
@@ -278,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <img
             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
+            alt="Profile"
           >
 
           <div>
@@ -354,6 +363,9 @@ document.addEventListener("DOMContentLoaded", () => {
           ];
 
 
+        if (!item) return;
+
+
         content.innerHTML = `
 
           <h2 class="popup-content-title">
@@ -372,9 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
 
-        contentPopup.classList.add(
-          "open"
-        );
+        contentPopup.classList.add("open");
 
       };
 
@@ -384,11 +394,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= JOURNEY BUTTON ================= */
 
-  document
-    .querySelector(
+  const journeyButton =
+    document.querySelector(
       '[data-open="journey"]'
-    )
-    .onclick = () => {
+    );
+
+
+  if (journeyButton) {
+
+    journeyButton.onclick = () => {
 
       document
         .getElementById("journey")
@@ -398,6 +412,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     };
 
+  }
+
 
 
   /* ================= MUSIC ================= */
@@ -405,124 +421,141 @@ document.addEventListener("DOMContentLoaded", () => {
   const audio =
     document.getElementById("audio");
 
-audio.src = "music/cozy-jazz.mp3";
-
   const musicButton =
-   document.getElementById("musicButton");
-  
-  let playing = false;
+    document.getElementById("musicButton");
 
-  musicButton.onclick = () => {
 
-    if (playing) {
+  if (audio) {
 
-    audio.pause();
-
-  } else {
-
-    audio.play();
+    audio.src =
+      "music/cozy-jazz.mp3";
 
   }
 
-    if (playing) {
 
-      audio.pause();
+  let playing = false;
 
-    } else {
 
-      audio.play();
+  if (musicButton && audio) {
 
-    }
+    musicButton.onclick = () => {
 
-    playing = !playing;
-    
- musicButton
-    .querySelector(".play-icon")
-    .textContent =
-    playing ? "Ⅱ" : "▶";
+      if (playing) {
 
-  musicButton
-    .querySelector("small")
-    .textContent =
-    playing
-      ? "now playing"
-      : "click to play";
+        audio.pause();
 
-};
+        playing = false;
+
+      } else {
+
+        audio.play()
+          .then(() => {
+
+            playing = true;
+
+          })
+          .catch(() => {
+
+            alert(
+              "Klik tombol music untuk memulai lagu 🎵"
+            );
+
+          });
+
+      }
+
+
+      musicButton
+        .querySelector(".play-icon")
+        .textContent =
+        playing ? "Ⅱ" : "▶";
+
+
+      musicButton
+        .querySelector("small")
+        .textContent =
+        playing
+          ? "now playing"
+          : "click to play";
+
+    };
+
+  }
+
+
 
   /* ================= CUSTOM CURSOR ================= */
 
   const cursorDot =
-    document.getElementById(
-      "cursorDot"
-    );
+    document.getElementById("cursorDot");
 
   const cursorRing =
-    document.getElementById(
-      "cursorRing"
+    document.getElementById("cursorRing");
+
+
+  if (cursorDot && cursorRing) {
+
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+
+        cursorDot.style.left =
+          e.clientX + "px";
+
+        cursorDot.style.top =
+          e.clientY + "px";
+
+
+        cursorRing.style.left =
+          e.clientX + "px";
+
+        cursorRing.style.top =
+          e.clientY + "px";
+
+      }
     );
 
 
-  window.addEventListener(
-    "mousemove",
-    (e) => {
+    document
+      .querySelectorAll("a, button")
+      .forEach(element => {
 
-      cursorDot.style.left =
-        e.clientX + "px";
+        element.addEventListener(
+          "mouseenter",
+          () => {
 
-      cursorDot.style.top =
-        e.clientY + "px";
+            cursorRing.style.width =
+              "44px";
 
+            cursorRing.style.height =
+              "44px";
 
-      cursorRing.style.left =
-        e.clientX + "px";
+            cursorRing.style.borderColor =
+              "var(--purple)";
 
-      cursorRing.style.top =
-        e.clientY + "px";
-
-    }
-  );
-
-
-  document
-    .querySelectorAll("a,button")
-    .forEach(element => {
+          }
+        );
 
 
-      element.addEventListener(
-        "mouseenter",
-        () => {
+        element.addEventListener(
+          "mouseleave",
+          () => {
 
-          cursorRing.style.width =
-            "44px";
+            cursorRing.style.width =
+              "30px";
 
-          cursorRing.style.height =
-            "44px";
+            cursorRing.style.height =
+              "30px";
 
-          cursorRing.style.borderColor =
-            "var(--purple)";
+            cursorRing.style.borderColor =
+              "var(--pink)";
 
-        }
-      );
+          }
+        );
 
+      });
 
-      element.addEventListener(
-        "mouseleave",
-        () => {
-
-          cursorRing.style.width =
-            "30px";
-
-          cursorRing.style.height =
-            "30px";
-
-          cursorRing.style.borderColor =
-            "var(--pink)";
-
-        }
-      );
-
-    });
+  }
 
 
 
@@ -550,7 +583,7 @@ audio.src = "music/cozy-jazz.mp3";
       },
 
       {
-        threshold: .12
+        threshold: 0.12
       }
 
     );
@@ -571,9 +604,7 @@ audio.src = "music/cozy-jazz.mp3";
   setInterval(() => {
 
     const sparkle =
-      document.createElement(
-        "span"
-      );
+      document.createElement("span");
 
 
     sparkle.className =
@@ -581,7 +612,7 @@ audio.src = "music/cozy-jazz.mp3";
 
 
     sparkle.textContent =
-      Math.random() > .5
+      Math.random() > 0.5
         ? "✦"
         : "✧";
 
@@ -608,57 +639,70 @@ audio.src = "music/cozy-jazz.mp3";
   }, 650);
 
 
-});
 
-/* ================= LET'S TALK ================= */
+  /* ================= LET'S TALK ================= */
 
-const letsTalk =
-  document.getElementById("letsTalk");
+  const letsTalk =
+    document.getElementById("letsTalk");
 
-const helloBackdrop =
-  document.getElementById("helloBackdrop");
+  const helloBackdrop =
+    document.getElementById("helloBackdrop");
 
-const helloClose =
-  document.getElementById("helloClose");
-
-
-if (letsTalk) {
-
-  letsTalk.addEventListener("click", (e) => {
-
-    e.preventDefault();
-
-    helloBackdrop.classList.add("show");
-
-  });
-
-}
+  const helloClose =
+    document.getElementById("helloClose");
 
 
-if (helloClose) {
+  if (letsTalk && helloBackdrop) {
 
-  helloClose.addEventListener("click", () => {
+    letsTalk.addEventListener(
+      "click",
+      (e) => {
 
-    helloBackdrop.classList.remove("show");
+        e.preventDefault();
 
-  });
+        helloBackdrop.classList.add("show");
 
-}
+      }
+    );
+
+  }
 
 
-if (helloBackdrop) {
+  if (helloClose && helloBackdrop) {
 
-  helloBackdrop.addEventListener("click", (e) => {
+    helloClose.addEventListener(
+      "click",
+      () => {
 
-    if (e.target === helloBackdrop) {
+        helloBackdrop.classList.remove(
+          "show"
+        );
 
-      helloBackdrop.classList.remove("show");
+      }
+    );
 
-    }
+  }
 
-  });
 
-}
+  if (helloBackdrop) {
 
+    helloBackdrop.addEventListener(
+      "click",
+      (e) => {
+
+        if (
+          e.target === helloBackdrop
+        ) {
+
+          helloBackdrop.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+  }
 
 });
