@@ -1,5 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
+  /* ================= LET'S TALK ================= */
 
+  const letsTalk =
+    document.getElementById("letsTalk");
+
+  const helloBackdrop =
+    document.getElementById("helloBackdrop");
+
+  const helloClose =
+    document.getElementById("helloClose");
+
+
+  letsTalk.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    helloBackdrop.classList.add("show");
+
+  });
+
+
+  helloClose.addEventListener("click", () => {
+
+    helloBackdrop.classList.remove("show");
+
+  });
+
+
+  helloBackdrop.addEventListener("click", (e) => {
+
+    if (e.target === helloBackdrop) {
+
+      helloBackdrop.classList.remove("show");
+
+    }
+
+  });
+
+});
 
   /* ================= SLIDER ================= */
 
