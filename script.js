@@ -413,76 +413,53 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
   }
+  
 
+    /* ================= MUSIC ================= */
 
+const audio = document.getElementById("audio");
+const musicButton = document.getElementById("musicButton");
 
-  /* ================= MUSIC ================= */
+audio.src = "./music/cozy-jazz.mp3";
+audio.loop = true;
 
-  const audio =
-    document.getElementById("audio");
+let playing = false;
 
-  const musicButton =
-    document.getElementById("musicButton");
+musicButton.addEventListener("click", async () => {
 
+  try {
 
-  if (audio) {
+    if (!playing) {
 
-    audio.src =
-      "music/cozy-jazz.mp3";
+      await audio.play();
 
-  }
+      playing = true;
 
+      musicButton.querySelector(".play-icon").textContent = "Ⅱ";
+      musicButton.querySelector("small").textContent = "now playing";
 
-  let playing = false;
+    } else {
 
+      audio.pause();
 
-  if (musicButton && audio) {
+      playing = false;
 
-    musicButton.onclick = () => {
+      musicButton.querySelector(".play-icon").textContent = "▶";
+      musicButton.querySelector("small").textContent = "click to play";
 
-      if (playing) {
+    }
 
-        audio.pause();
+  } catch (error) {
 
-        playing = false;
+    console.error("Music error:", error);
 
-      } else {
-
-        audio.play()
-          .then(() => {
-
-            playing = true;
-
-          })
-          .catch(() => {
-
-            alert(
-              "Klik tombol music untuk memulai lagu 🎵"
-            );
-
-          });
-
-      }
-
-
-      musicButton
-        .querySelector(".play-icon")
-        .textContent =
-        playing ? "Ⅱ" : "▶";
-
-
-      musicButton
-        .querySelector("small")
-        .textContent =
-        playing
-          ? "now playing"
-          : "click to play";
-
-    };
+    alert(
+      "Lagunya belum terbaca 😭 Cek folder music dan nama file cozy-jazz.mp3"
+    );
 
   }
 
-
+});
 
   /* ================= CUSTOM CURSOR ================= */
 
