@@ -415,51 +415,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
 
-    /* ================= MUSIC ================= */
+  /* ================= MUSIC ================= */
 
 const audio = document.getElementById("audio");
 const musicButton = document.getElementById("musicButton");
 
-audio.src = "./music/cozy-jazz.mp3";
-audio.loop = true;
+if (audio && musicButton) {
 
-let playing = false;
+  audio.src = "./music/cozy-jazz.mp3";
+  audio.loop = true;
 
-musicButton.addEventListener("click", async () => {
+  const playIcon =
+    musicButton.querySelector(".play-icon");
 
-  try {
+  const musicText =
+    musicButton.querySelector("small");
 
-    if (!playing) {
+  musicButton.addEventListener("click", async () => {
 
-      await audio.play();
+    if (audio.paused) {
 
-      playing = true;
+      try {
 
-      musicButton.querySelector(".play-icon").textContent = "Ⅱ";
-      musicButton.querySelector("small").textContent = "now playing";
+        await audio.play();
+
+        playIcon.textContent = "Ⅱ";
+        musicText.textContent = "now playing";
+
+      } catch (error) {
+
+        console.error("Music tidak bisa diputar:", error);
+
+      }
 
     } else {
 
       audio.pause();
 
-      playing = false;
-
-      musicButton.querySelector(".play-icon").textContent = "▶";
-      musicButton.querySelector("small").textContent = "click to play";
+      playIcon.textContent = "▶";
+      musicText.textContent = "click to play";
 
     }
 
-  } catch (error) {
+  });
 
-    console.error("Music error:", error);
-
-    alert(
-      "Lagunya belum terbaca 😭 Cek folder music dan nama file cozy-jazz.mp3"
-    );
-
-  }
-
-});
+}
 
   /* ================= CUSTOM CURSOR ================= */
 
