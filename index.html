@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NJAcreative ✦ My Creative Journey</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SPARKLE -->
+  <div class="sparkle-layer"></div>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+
+    <a href="#home" class="brand">
+      NJAcreative <span>✦</span>
+    </a>
+
+    <button class="menu-button" id="menuButton">
+      MENU <span>✦</span>
+    </button>
+
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="hero-copy reveal">
+
+        <p class="eyebrow">
+          a little corner of my world ✿
+        </p>
+
+        <h1>
+          Creating little things,
+          <br>
+          <em>dreaming big.</em>
+        </h1>
+
+        <p class="hero-text">
+          A soft little archive of ideas, experiments, memories,
+          and everything I create along the way.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="btn primary"
+            href="https://instagram.com/kknjau"
+            target="_blank"
+          >
+            Let's talk ✦
+          </a>
+
+          <button
+            class="btn ghost"
+            data-open="journey"
+          >
+            my journey ↓
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- PHOTO SLIDER -->
+
+      <div class="hero-visual reveal">
+
+        <div class="photo-frame">
+
+          <div class="slider" id="slider">
+
+            <img
+              class="slide active"
+              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=85"
+              alt="Creative desk"
+            >
+
+            <img
+              class="slide"
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85"
+              alt="Portrait"
+            >
+
+            <img
+              class="slide"
+              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=85"
+              alt="Writing"
+            >
+
+            <img
+              class="slide"
+              src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=85"
+              alt="Art supplies"
+            >
+
+          </div>
+
+          <span class="tape tape-one"></span>
+          <span class="tape tape-two"></span>
+
+          <span class="scribble">
+            hello<br>
+            spring!
+          </span>
+
+        </div>
+
+
+        <!-- SLIDER CONTROL -->
+
+        <div class="slider-controls">
+
+          <button id="prev">
+            ←
+          </button>
+
+          <div class="dots" id="dots"></div>
+
+          <button id="next">
+            →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= JOURNEY ================= -->
+
+    <section class="journey-section" id="journey">
+
+      <div class="section-heading reveal">
+
+        <p class="eyebrow">
+          ✦ my creative journey
+        </p>
+
+        <h2>
+          Growing through
+          <em>little things.</em>
+        </h2>
+
+      </div>
+
+
+      <div class="journey-grid">
+
+        <article class="journey-card reveal">
+
+          <span>01</span>
+
+          <h3>
+            Curious
+          </h3>
+
+          <p>
+            It started with tiny ideas, random sketches,
+            and a lot of “what if?” moments.
+          </p>
+
+        </article>
+
+
+        <article class="journey-card featured reveal">
+
+          <span>02</span>
+
+          <h3>
+            Creating
+          </h3>
+
+          <p>
+            Ideas became designs, stories, photos,
+            websites, and experiments that felt like me.
+          </p>
+
+        </article>
+
+
+        <article class="journey-card reveal">
+
+          <span>03</span>
+
+          <h3>
+            Becoming
+          </h3>
+
+          <p>
+            Still learning, still trying,
+            still turning imagination into something real.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= QUOTE ================= -->
+
+    <section class="quote-section reveal">
+
+      <div class="quote-card">
+
+        <span class="flower">
+          ✿
+        </span>
+
+        <p>
+          “Create something that feels like you.”
+        </p>
+
+        <small>
+          — a note to my future self
+        </small>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      NJAcreative ✦ made with curiosity & a little sparkle
+    </p>
+
+    <a
+      href="https://instagram.com/kknjau"
+      target="_blank"
+    >
+      @kknjau ↗
+    </a>
+
+  </footer>
+
+
+  <!-- ================= MUSIC PLAYER ================= -->
+
+  <button
+    class="music-player"
+    id="musicButton"
+  >
+
+    <span class="music-icon">
+      ♫
+    </span>
+
+    <span>
+      <b>
+        cozy jazz
+      </b>
+
+      <small>
+        click to play
+      </small>
+    </span>
+
+    <span class="play-icon">
+      ▶
+    </span>
+
+  </button>
+
+
+  <audio
+    id="audio"
+    loop
+  ></audio>
+
+
+  <!-- ================= POPUP ================= -->
+
+  <div
+    class="modal-backdrop"
+    id="modalBackdrop"
+  >
+
+    <!-- MENU -->
+
+    <div
+      class="popup menu-popup"
+      id="menuPopup"
+    >
+
+      <button
+        class="close"
+        id="closePopup"
+      >
+        ×
+      </button>
+
+      <p class="popup-brand">
+        NJAcreative ✦
+      </p>
+
+      <p class="popup-subtitle">
+        welcome to my little creative world
+      </p>
+
+
+      <nav class="popup-nav">
+
+        <button data-popup="home">
+          🏠 Home
+        </button>
+
+        <button data-popup="works">
+          🎨 My Works
+        </button>
+
+        <button data-popup="notes">
+          💭 Creative Notes
+        </button>
+
+        <button data-popup="experiments">
+          🪄 Experiments
+        </button>
+
+        <button data-popup="about">
+          🌷 About Me
+        </button>
+
+        <a
+          href="https://instagram.com/kknjau"
+          target="_blank"
+        >
+          💌 Say Hello
+        </a>
+
+        <button data-popup="secret">
+          👀 Secret ✦
+        </button>
+
+      </nav>
+
+    </div>
+
+
+    <!-- CONTENT POPUP -->
+
+    <div
+      class="popup content-popup"
+      id="contentPopup"
+    >
+
+      <button
+        class="close"
+        id="closeContent"
+      >
+        ×
+      </button>
+
+      <div id="popupContent"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CUSTOM CURSOR -->
+
+  <div
+    class="cursor-dot"
+    id="cursorDot"
+  ></div>
+
+  <div
+    class="cursor-ring"
+    id="cursorRing"
+  ></div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
