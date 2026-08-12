@@ -1,45 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   
-  /* ================= LET'S TALK ================= */
-
-  const letsTalk =
-    document.getElementById("letsTalk");
-
-  const helloBackdrop =
-    document.getElementById("helloBackdrop");
-
-  const helloClose =
-    document.getElementById("helloClose");
-
-
-  letsTalk.addEventListener("click", (e) => {
-
-    e.preventDefault();
-
-    helloBackdrop.classList.add("show");
-
-  });
-
-
-  helloClose.addEventListener("click", () => {
-
-    helloBackdrop.classList.remove("show");
-
-  });
-
-
-  helloBackdrop.addEventListener("click", (e) => {
-
-    if (e.target === helloBackdrop) {
-
-      helloBackdrop.classList.remove("show");
-
-    }
-
-  });
-
-});
-
   /* ================= SLIDER ================= */
 
   const slides = [
@@ -445,6 +405,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const audio =
     document.getElementById("audio");
 
+audio.src = "music/cozy-jazz.mp3";
+
   const musicButton =
     document.getElementById(
       "musicButton"
@@ -665,6 +627,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1200);
 
   }, 650);
+
+
+});
+
+/* ================= LET'S TALK ================= */
+
+const letsTalk =
+  document.getElementById("letsTalk");
+
+const helloBackdrop =
+  document.getElementById("helloBackdrop");
+
+const helloClose =
+  document.getElementById("helloClose");
+
+
+if (letsTalk) {
+
+  letsTalk.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    helloBackdrop.classList.add("show");
+
+  });
+
+}
+
+
+if (helloClose) {
+
+  helloClose.addEventListener("click", () => {
+
+    helloBackdrop.classList.remove("show");
+
+  });
+
+}
+
+
+if (helloBackdrop) {
+
+  helloBackdrop.addEventListener("click", (e) => {
+
+    if (e.target === helloBackdrop) {
+
+      helloBackdrop.classList.remove("show");
+
+    }
+
+  });
+
+}
 
 
 });
