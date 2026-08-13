@@ -414,53 +414,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
   
-
-  /* ================= MUSIC ================= */
+  /* ================= AUTO MUSIC ================= */
 
 const audio = document.getElementById("audio");
-const musicButton = document.getElementById("musicButton");
 
-if (audio && musicButton) {
+if (audio) {
 
-  audio.src = "./music/cozy-jazz.mp3";
-  audio.loop = true;
+  audio.volume = 0.45;
 
-  const playIcon =
-    musicButton.querySelector(".play-icon");
+  const startMusic = () => {
 
-  const musicText =
-    musicButton.querySelector("small");
+    audio.play().catch(() => {});
 
-  musicButton.addEventListener("click", async () => {
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("touchstart", startMusic);
 
-    if (audio.paused) {
+  };
 
-      try {
-
-        await audio.play();
-
-        playIcon.textContent = "Ⅱ";
-        musicText.textContent = "now playing";
-
-      } catch (error) {
-
-        console.error("Music tidak bisa diputar:", error);
-
-      }
-
-    } else {
-
-      audio.pause();
-
-      playIcon.textContent = "▶";
-      musicText.textContent = "click to play";
-
-    }
-
-  });
+  document.addEventListener("click", startMusic);
+  document.addEventListener("touchstart", startMusic);
 
 }
-
   /* ================= CUSTOM CURSOR ================= */
 
   const cursorDot =
