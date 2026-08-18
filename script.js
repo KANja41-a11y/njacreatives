@@ -749,50 +749,51 @@ function dreamyGoToTop() {
 
   goingUp = true;
 
-  const startPosition =
-    window.scrollY;
+  const startPosition = window.scrollY;
+  const startTime = performance.now();
 
-  const startTime =
-    performance.now();
-
+  // Durasi naik: 1.8 detik
+  const duration = 2500;
 
   function moveToTop(currentTime) {
 
-    const elapsed =
-      currentTime - startTime;
+    const elapsed = currentTime - startTime;
 
-    const progress =
-      Math.min(
-        elapsed / TOP_DURATION,
-        1
-      );
-
+    const progress = Math.min(
+      elapsed / duration,
+      1
+    );
 
     /*
-      Dreamy easing:
+      DREAMY EASING
 
-      awal → cepat
-      tengah → meluncur
-      akhir → melambat lembut
+      0%   = pelan
+      20%  = mulai cepat
+      50%  = meluncur cepat
+      80%  = mulai melambat
+      100% = berhenti lembut
     */
 
     const ease =
-      1 -
-      Math.pow(
-        1 - progress,
-        4
-      );
+      progress < 0.5
+
+        ? 4 * progress * progress * progress
+
+        : 1 -
+          Math.pow(
+            -2 * progress + 2,
+            3
+          ) / 2;
 
 
     const position =
-      startPosition *
-      (1 - ease);
+      startPosition * (1 - ease);
 
 
-    window.scrollTo(
-      0,
-      position
-    );
+    window.scrollTo({
+      top: position,
+      behavior: "auto"
+    });
 
 
     if (progress < 1) {
@@ -803,15 +804,14 @@ function dreamyGoToTop() {
 
     } else {
 
-      window.scrollTo(
-        0,
-        0
-      );
+      window.scrollTo({
+        top: 0,
+        behavior: "auto"
+      });
 
       goingUp = false;
 
-      /* Tunggu 2 detik sebelum turun lagi */
-
+      // Tunggu 2 detik
       scheduleAutoScroll();
 
     }
@@ -824,7 +824,6 @@ function dreamyGoToTop() {
   );
 
 }
-
 
 /* ================= USER MANUAL SCROLL ================= */
 
@@ -877,3 +876,9 @@ window.addEventListener(
 /* ================= START ================= */
 
 scheduleAutoScroll();
+
+/* ================= AUTO SCROLL CONTROL ================= */
+
+html {
+  scroll-behavior: auto !important;
+}
