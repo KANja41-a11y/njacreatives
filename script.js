@@ -659,17 +659,17 @@ if (audio) {
 });
 /* ================= DREAMY AUTO SCROLL ================= */
 
-let dreamyTimer;
+let dreamyTimer = null;
 let dreamyAnimation = null;
 let dreamyRunning = false;
-let resetRunning = false;
+let goingToTop = false;
 
 const IDLE_TIME = 2000; // 2 detik
-const MIN_SPEED = 0.12;
-const MAX_SPEED = 0.55;
+const MIN_SPEED = 0.35;
+const MAX_SPEED = 1.15;
 
 
-/* ================= START AFTER IDLE ================= */
+/* ================= TIMER ================= */
 
 function startDreamyTimer() {
 
@@ -677,7 +677,7 @@ function startDreamyTimer() {
 
   dreamyTimer = setTimeout(() => {
 
-    if (!resetRunning) {
+    if (!goingToTop) {
       startDreamyScroll();
     }
 
@@ -686,11 +686,11 @@ function startDreamyTimer() {
 }
 
 
-/* ================= DREAMY SCROLL ================= */
+/* ================= START SCROLL ================= */
 
 function startDreamyScroll() {
 
-  if (dreamyRunning || resetRunning) return;
+  if (dreamyRunning || goingToTop) return;
 
   dreamyRunning = true;
 
@@ -700,6 +700,8 @@ function startDreamyScroll() {
 }
 
 
+/* ================= DREAMY MOVEMENT ================= */
+
 function dreamyStep(time) {
 
   if (!dreamyRunning) return;
@@ -707,12 +709,28 @@ function dreamyStep(time) {
   const current =
     window.scrollY;
 
-  const maxScroll =
-    document.documentElement.scrollHeight -
+  const pageHeight =
+    document.documentElement.scrollHeight;
+
+  const screenHeight =
     window.innerHeight;
 
+  const maxScroll =
+    pageHeight - screenHeight;
 
-  /* ===== SUDAH SAMPAI BAWAH ===== */
+
+  /* Kalau halaman pendek, tidak perlu scroll */
+
+  if (maxScroll <= 5) {
+
+    dreamyRunning = false;
+
+    return;
+
+  }
+
+
+  /* ================= BOTTOM ================= */
 
   if (current >= maxScroll - 3) {
 
@@ -722,21 +740,23 @@ function dreamyStep(time) {
       dreamyAnimation
     );
 
-    goBackToTop();
+    scrollBackToTop();
 
     return;
 
   }
 
 
-  /* ===== FLOATING SPEED ===== */
+  /* ================= FLOATING SPEED ================= */
 
-  const wave =
-    (Math.sin(time * 0.0013) + 1) / 2;
+  const floating =
+    (Math.sin(time * 0.0015) + 1) / 2;
+
 
   const speed =
     MIN_SPEED +
-    (MAX_SPEED - MIN_SPEED) * wave;
+    (MAX_SPEED - MIN_SPEED) *
+    floating;
 
 
   window.scrollBy(
@@ -753,52 +773,63 @@ function dreamyStep(time) {
 }
 
 
-/* ================= FAST RESET TO TOP ================= */
+/* ================= RETURN TO TOP ================= */
 
-function goBackToTop() {
+function scrollBackToTop() {
 
-  resetRunning = true;
+  goingToTop = true;
 
-  const start =
+  const startPosition =
     window.scrollY;
 
-  const duration = 650;
+  const duration = 700;
 
   const startTime =
     performance.now();
 
 
-  function resetStep(now) {
+  function animateTop(currentTime) {
+
+    const elapsed =
+      currentTime - startTime;
 
     const progress =
       Math.min(
-        (now - startTime) / duration,
+        elapsed / duration,
         1
       );
 
 
-    // easing cepat dan lembut
+    /* smooth easing */
+
     const eased =
-      1 - Math.pow(1 - progress, 3);
+      1 -
+      Math.pow(
+        1 - progress,
+        3
+      );
 
 
     window.scrollTo(
       0,
-      start * (1 - eased)
+      startPosition * (1 - eased)
     );
 
 
     if (progress < 1) {
 
       requestAnimationFrame(
-        resetStep
+        animateTop
       );
 
     } else {
 
-      window.scrollTo(0, 0);
+      window.scrollTo(
+        0,
+        0
+      );
 
-      resetRunning = false;
+      goingToTop = false;
 
       startDreamyTimer();
 
@@ -808,17 +839,22 @@ function goBackToTop() {
 
 
   requestAnimationFrame(
-    resetStep
+    animateTop
   );
 
 }
 
 
-/* ================= USER REALLY INTERACTS ================= */
+/* ================= USER ACTIVITY ================= */
 
-function userInteracted() {
+function stopDreamyScroll() {
 
-  // Hentikan auto-scroll
+  /*
+    Kalau user sedang scroll,
+    klik, touch, atau tekan keyboard,
+    auto-scroll berhenti.
+  */
+
   if (dreamyRunning) {
 
     dreamyRunning = false;
@@ -829,46 +865,52 @@ function userInteracted() {
 
   }
 
-  // Kalau sedang kembali ke atas,
-  // jangan ganggu proses reset
-  if (resetRunning) return;
 
-  // Mulai hitung 2 detik dari awal
+  if (goingToTop) return;
+
+
   startDreamyTimer();
 
 }
 
 
-/* ================= REAL USER ACTIONS ================= */
+/* ================= USER ACTIONS ================= */
 
 /*
-  Jangan pakai mousemove!
-  Karena website kamu punya custom cursor.
+  TIDAK menggunakan mousemove
+  supaya custom cursor kamu
+  tidak terus mereset timer.
 */
 
 window.addEventListener(
   "wheel",
-  userInteracted,
+  stopDreamyScroll,
   { passive: true }
 );
 
 window.addEventListener(
   "mousedown",
-  userInteracted
+  stopDreamyScroll
 );
 
 window.addEventListener(
   "touchstart",
-  userInteracted,
+  stopDreamyScroll,
+  { passive: true }
+);
+
+window.addEventListener(
+  "touchmove",
+  stopDreamyScroll,
   { passive: true }
 );
 
 window.addEventListener(
   "keydown",
-  userInteracted
+  stopDreamyScroll
 );
 
 
-/* ================= FIRST START ================= */
+/* ================= START ================= */
 
 startDreamyTimer();
