@@ -660,131 +660,220 @@ if (audio) {
 
 /* ================= DREAMY AUTO SCROLL ================= */
 
-let autoScrollTimer = null;
-let autoScrollFrame = null;
-let autoScrolling = false;
+let autoTimer = null;
+let autoFrame = null;
+let autoRunning = false;
+let goingUp = false;
 
 const AUTO_DELAY = 2000;
-const AUTO_SPEED = 0.8;
 
-function resetAutoScroll() {
+const MIN_SPEED = 0.35;
+const MAX_SPEED = 0.9;
 
-  clearTimeout(autoScrollTimer);
+const TOP_DURATION = 900;
 
-  if (autoScrolling) {
 
-    autoScrolling = false;
+/* ================= TIMER ================= */
 
-    if (autoScrollFrame) {
-      cancelAnimationFrame(autoScrollFrame);
+function scheduleAutoScroll() {
+
+  clearTimeout(autoTimer);
+
+  autoTimer = setTimeout(() => {
+
+    if (!autoRunning && !goingUp) {
+
+      autoRunning = true;
+
+      autoFrame =
+        requestAnimationFrame(dreamyScroll);
+
     }
-
-  }
-
-  autoScrollTimer = setTimeout(() => {
-
-    startAutoScroll();
 
   }, AUTO_DELAY);
 
 }
 
 
-function startAutoScroll() {
+/* ================= DREAMY DOWN SCROLL ================= */
 
-  if (autoScrolling) return;
+function dreamyScroll(time) {
 
-  autoScrolling = true;
+  if (!autoRunning || goingUp) return;
 
-  autoScrollFrame =
-    requestAnimationFrame(autoScroll);
-
-}
-
-
-function autoScroll(time) {
-
-  if (!autoScrolling) return;
-
-  const current =
-    window.scrollY;
-
-  const max =
+  const maxScroll =
     document.documentElement.scrollHeight -
     window.innerHeight;
 
+  const currentScroll =
+    window.scrollY;
 
-  /* ================= SAMPAI BAWAH ================= */
 
-  if (current >= max - 2) {
+  /* ================= BOTTOM ================= */
 
-    autoScrolling = false;
+  if (currentScroll >= maxScroll - 2) {
 
-    window.scrollTo({
-      top: 0,
-      behavior: "instant"
-    });
+    autoRunning = false;
 
-    resetAutoScroll();
+    cancelAnimationFrame(autoFrame);
+
+    dreamyGoToTop();
 
     return;
 
   }
 
 
-  /* ================= DREAMY SPEED ================= */
+  /* ================= FLOATING SPEED ================= */
 
-  const floating =
-    Math.sin(time / 700) * 0.5 + 0.5;
+  const wave =
+    (Math.sin(time * 0.0015) + 1) / 2;
 
   const speed =
-    0.35 + floating * AUTO_SPEED;
+    MIN_SPEED +
+    (MAX_SPEED - MIN_SPEED) * wave;
 
 
-  window.scrollBy(
-    0,
-    speed
-  );
+  window.scrollBy(0, speed);
 
 
-  autoScrollFrame =
-    requestAnimationFrame(
-      autoScroll
-    );
+  autoFrame =
+    requestAnimationFrame(dreamyScroll);
 
 }
 
 
-/* ================= USER ACTIVITY ================= */
+/* ================= DREAMY FAST RETURN ================= */
 
-/*
-  Mouse movement TIDAK dihitung sebagai aktivitas.
-  Jadi custom cursor tidak mengganggu auto-scroll.
-*/
+function dreamyGoToTop() {
+
+  goingUp = true;
+
+  const startPosition =
+    window.scrollY;
+
+  const startTime =
+    performance.now();
+
+
+  function moveToTop(currentTime) {
+
+    const elapsed =
+      currentTime - startTime;
+
+    const progress =
+      Math.min(
+        elapsed / TOP_DURATION,
+        1
+      );
+
+
+    /*
+      Dreamy easing:
+
+      awal → cepat
+      tengah → meluncur
+      akhir → melambat lembut
+    */
+
+    const ease =
+      1 -
+      Math.pow(
+        1 - progress,
+        4
+      );
+
+
+    const position =
+      startPosition *
+      (1 - ease);
+
+
+    window.scrollTo(
+      0,
+      position
+    );
+
+
+    if (progress < 1) {
+
+      requestAnimationFrame(
+        moveToTop
+      );
+
+    } else {
+
+      window.scrollTo(
+        0,
+        0
+      );
+
+      goingUp = false;
+
+      /* Tunggu 2 detik sebelum turun lagi */
+
+      scheduleAutoScroll();
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    moveToTop
+  );
+
+}
+
+
+/* ================= USER MANUAL SCROLL ================= */
+
+function manualScroll() {
+
+  /*
+    Kalau sedang kembali ke atas,
+    jangan ganggu animasinya.
+  */
+
+  if (goingUp) return;
+
+
+  if (autoRunning) {
+
+    autoRunning = false;
+
+    cancelAnimationFrame(
+      autoFrame
+    );
+
+  }
+
+
+  scheduleAutoScroll();
+
+}
+
+
+/* ================= USER ACTIONS ================= */
 
 window.addEventListener(
   "wheel",
-  resetAutoScroll,
+  manualScroll,
   { passive: true }
 );
 
 window.addEventListener(
-  "click",
-  resetAutoScroll
-);
-
-window.addEventListener(
-  "touchstart",
-  resetAutoScroll,
+  "touchmove",
+  manualScroll,
   { passive: true }
 );
 
 window.addEventListener(
   "keydown",
-  resetAutoScroll
+  manualScroll
 );
 
 
 /* ================= START ================= */
 
-resetAutoScroll();
+scheduleAutoScroll();
