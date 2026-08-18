@@ -657,3 +657,182 @@ if (audio) {
   }
 
 });
+/* ================= DREAMY AUTO SCROLL ================= */
+
+let autoScrollTimer = null;
+let autoScrollAnimation = null;
+let isAutoScrolling = false;
+
+const AUTO_START_DELAY = 2000; // mulai setelah 2 detik diam
+
+// Kecepatan dasar
+const MIN_SPEED = 0.15;
+const MAX_SPEED = 0.55;
+
+// Durasi kembali ke atas
+const TOP_RESET_DURATION = 700;
+
+
+/* ================= START TIMER ================= */
+
+function startAutoScrollTimer() {
+
+  clearTimeout(autoScrollTimer);
+
+  autoScrollTimer = setTimeout(() => {
+
+    startDreamyScroll();
+
+  }, AUTO_START_DELAY);
+
+}
+
+
+/* ================= DREAMY SCROLL ================= */
+
+function startDreamyScroll() {
+
+  if (isAutoScrolling) return;
+
+  isAutoScrolling = true;
+
+  autoScrollAnimation =
+    requestAnimationFrame(dreamyScrollStep);
+
+}
+
+
+function dreamyScrollStep(time) {
+
+  if (!isAutoScrolling) return;
+
+  const currentPosition = window.scrollY;
+
+  const maxPosition =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+
+  /* ================= CHECK BOTTOM ================= */
+
+  if (currentPosition >= maxPosition - 2) {
+
+    isAutoScrolling = false;
+
+    cancelAnimationFrame(
+      autoScrollAnimation
+    );
+
+    // Kembali ke paling atas dengan cepat
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+
+    // Tunggu sebentar setelah sampai atas
+    setTimeout(() => {
+
+      startAutoScrollTimer();
+
+    }, TOP_RESET_DURATION);
+
+    return;
+
+  }
+
+
+  /* ================= FLOATING SPEED ================= */
+
+  /*
+    sin() membuat kecepatannya naik-turun
+    secara lembut seperti efek floating.
+  */
+
+  const wave =
+    Math.sin(time * 0.0012);
+
+
+  /*
+    Ubah nilai -1 sampai 1
+    menjadi 0 sampai 1
+  */
+
+  const smoothWave =
+    (wave + 1) / 2;
+
+
+  /*
+    Kecepatan bergerak antara
+    MIN_SPEED dan MAX_SPEED
+  */
+
+  const speed =
+    MIN_SPEED +
+    (MAX_SPEED - MIN_SPEED) *
+    smoothWave;
+
+
+  window.scrollBy(
+    0,
+    speed
+  );
+
+
+  autoScrollAnimation =
+    requestAnimationFrame(
+      dreamyScrollStep
+    );
+
+}
+
+
+/* ================= STOP WHEN USER ACTIVE ================= */
+
+function userActivity() {
+
+  if (isAutoScrolling) {
+
+    isAutoScrolling = false;
+
+    cancelAnimationFrame(
+      autoScrollAnimation
+    );
+
+  }
+
+  clearTimeout(autoScrollTimer);
+
+  /*
+    Setelah user berhenti beraktivitas
+    selama 2 detik, mulai lagi.
+  */
+
+  startAutoScrollTimer();
+
+}
+
+
+/* ================= USER ACTIVITIES ================= */
+
+[
+  "mousemove",
+  "mousedown",
+  "wheel",
+  "touchstart",
+  "touchmove",
+  "keydown"
+].forEach(eventName => {
+
+  window.addEventListener(
+    eventName,
+    userActivity,
+    { passive: true }
+  );
+
+});
+
+
+/* ================= START ================= */
+
+startAutoScrollTimer();
