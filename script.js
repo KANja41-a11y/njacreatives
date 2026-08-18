@@ -657,106 +657,88 @@ if (audio) {
   }
 
 });
+
 /* ================= DREAMY AUTO SCROLL ================= */
 
-let dreamyTimer = null;
-let dreamyAnimation = null;
-let dreamyRunning = false;
-let goingToTop = false;
+let autoScrollTimer = null;
+let autoScrollFrame = null;
+let autoScrolling = false;
 
-const IDLE_TIME = 2000; // 2 detik
-const MIN_SPEED = 0.35;
-const MAX_SPEED = 1.15;
+const AUTO_DELAY = 2000;
+const AUTO_SPEED = 0.8;
 
+function resetAutoScroll() {
 
-/* ================= TIMER ================= */
+  clearTimeout(autoScrollTimer);
 
-function startDreamyTimer() {
+  if (autoScrolling) {
 
-  clearTimeout(dreamyTimer);
+    autoScrolling = false;
 
-  dreamyTimer = setTimeout(() => {
-
-    if (!goingToTop) {
-      startDreamyScroll();
+    if (autoScrollFrame) {
+      cancelAnimationFrame(autoScrollFrame);
     }
 
-  }, IDLE_TIME);
+  }
+
+  autoScrollTimer = setTimeout(() => {
+
+    startAutoScroll();
+
+  }, AUTO_DELAY);
 
 }
 
 
-/* ================= START SCROLL ================= */
+function startAutoScroll() {
 
-function startDreamyScroll() {
+  if (autoScrolling) return;
 
-  if (dreamyRunning || goingToTop) return;
+  autoScrolling = true;
 
-  dreamyRunning = true;
-
-  dreamyAnimation =
-    requestAnimationFrame(dreamyStep);
+  autoScrollFrame =
+    requestAnimationFrame(autoScroll);
 
 }
 
 
-/* ================= DREAMY MOVEMENT ================= */
+function autoScroll(time) {
 
-function dreamyStep(time) {
-
-  if (!dreamyRunning) return;
+  if (!autoScrolling) return;
 
   const current =
     window.scrollY;
 
-  const pageHeight =
-    document.documentElement.scrollHeight;
-
-  const screenHeight =
+  const max =
+    document.documentElement.scrollHeight -
     window.innerHeight;
 
-  const maxScroll =
-    pageHeight - screenHeight;
 
+  /* ================= SAMPAI BAWAH ================= */
 
-  /* Kalau halaman pendek, tidak perlu scroll */
+  if (current >= max - 2) {
 
-  if (maxScroll <= 5) {
+    autoScrolling = false;
 
-    dreamyRunning = false;
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
 
-    return;
-
-  }
-
-
-  /* ================= BOTTOM ================= */
-
-  if (current >= maxScroll - 3) {
-
-    dreamyRunning = false;
-
-    cancelAnimationFrame(
-      dreamyAnimation
-    );
-
-    scrollBackToTop();
+    resetAutoScroll();
 
     return;
 
   }
 
 
-  /* ================= FLOATING SPEED ================= */
+  /* ================= DREAMY SPEED ================= */
 
   const floating =
-    (Math.sin(time * 0.0015) + 1) / 2;
-
+    Math.sin(time / 700) * 0.5 + 0.5;
 
   const speed =
-    MIN_SPEED +
-    (MAX_SPEED - MIN_SPEED) *
-    floating;
+    0.35 + floating * AUTO_SPEED;
 
 
   window.scrollBy(
@@ -765,152 +747,44 @@ function dreamyStep(time) {
   );
 
 
-  dreamyAnimation =
+  autoScrollFrame =
     requestAnimationFrame(
-      dreamyStep
+      autoScroll
     );
-
-}
-
-
-/* ================= RETURN TO TOP ================= */
-
-function scrollBackToTop() {
-
-  goingToTop = true;
-
-  const startPosition =
-    window.scrollY;
-
-  const duration = 700;
-
-  const startTime =
-    performance.now();
-
-
-  function animateTop(currentTime) {
-
-    const elapsed =
-      currentTime - startTime;
-
-    const progress =
-      Math.min(
-        elapsed / duration,
-        1
-      );
-
-
-    /* smooth easing */
-
-    const eased =
-      1 -
-      Math.pow(
-        1 - progress,
-        3
-      );
-
-
-    window.scrollTo(
-      0,
-      startPosition * (1 - eased)
-    );
-
-
-    if (progress < 1) {
-
-      requestAnimationFrame(
-        animateTop
-      );
-
-    } else {
-
-      window.scrollTo(
-        0,
-        0
-      );
-
-      goingToTop = false;
-
-      startDreamyTimer();
-
-    }
-
-  }
-
-
-  requestAnimationFrame(
-    animateTop
-  );
 
 }
 
 
 /* ================= USER ACTIVITY ================= */
 
-function stopDreamyScroll() {
-
-  /*
-    Kalau user sedang scroll,
-    klik, touch, atau tekan keyboard,
-    auto-scroll berhenti.
-  */
-
-  if (dreamyRunning) {
-
-    dreamyRunning = false;
-
-    cancelAnimationFrame(
-      dreamyAnimation
-    );
-
-  }
-
-
-  if (goingToTop) return;
-
-
-  startDreamyTimer();
-
-}
-
-
-/* ================= USER ACTIONS ================= */
-
 /*
-  TIDAK menggunakan mousemove
-  supaya custom cursor kamu
-  tidak terus mereset timer.
+  Mouse movement TIDAK dihitung sebagai aktivitas.
+  Jadi custom cursor tidak mengganggu auto-scroll.
 */
 
 window.addEventListener(
   "wheel",
-  stopDreamyScroll,
+  resetAutoScroll,
   { passive: true }
 );
 
 window.addEventListener(
-  "mousedown",
-  stopDreamyScroll
+  "click",
+  resetAutoScroll
 );
 
 window.addEventListener(
   "touchstart",
-  stopDreamyScroll,
-  { passive: true }
-);
-
-window.addEventListener(
-  "touchmove",
-  stopDreamyScroll,
+  resetAutoScroll,
   { passive: true }
 );
 
 window.addEventListener(
   "keydown",
-  stopDreamyScroll
+  resetAutoScroll
 );
 
 
 /* ================= START ================= */
 
-startDreamyTimer();
+resetAutoScroll();
