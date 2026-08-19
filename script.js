@@ -2,29 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= SLIDER ================= */
 
-  const slides = [
-    ...document.querySelectorAll(".slide")
-  ];
-
+  const slides = [...document.querySelectorAll(".slide")];
   const dots = document.getElementById("dots");
 
   let current = 0;
-
-  slides.forEach((_, i) => {
-
-    const dot = document.createElement("span");
-
-    dot.className =
-      "dot" + (i === 0 ? " active" : "");
-
-    dot.onclick = () => {
-      showSlide(i);
-    };
-
-    dots.appendChild(dot);
-
-  });
-
 
   function showSlide(index) {
 
@@ -34,58 +15,51 @@ document.addEventListener("DOMContentLoaded", () => {
       (index + slides.length) % slides.length;
 
     slides.forEach((slide, i) => {
-
       slide.classList.toggle(
         "active",
         i === current
       );
-
     });
 
-
     [...dots.children].forEach((dot, i) => {
-
       dot.classList.toggle(
         "active",
         i === current
       );
+    });
+  }
 
+  slides.forEach((_, i) => {
+
+    const dot = document.createElement("span");
+
+    dot.className =
+      "dot" + (i === 0 ? " active" : "");
+
+    dot.addEventListener("click", () => {
+      showSlide(i);
+      resetActivity();
     });
 
-  }
+    dots.appendChild(dot);
 
+  });
 
-  const nextButton =
-    document.getElementById("next");
-
-  const prevButton =
-    document.getElementById("prev");
-
-
-  if (nextButton) {
-
-    nextButton.onclick = () => {
+  document.getElementById("next")
+    ?.addEventListener("click", () => {
       showSlide(current + 1);
-    };
+      resetActivity();
+    });
 
-  }
-
-
-  if (prevButton) {
-
-    prevButton.onclick = () => {
+  document.getElementById("prev")
+    ?.addEventListener("click", () => {
       showSlide(current - 1);
-    };
-
-  }
-
+      resetActivity();
+    });
 
   setInterval(() => {
-
     showSlide(current + 1);
-
   }, 5000);
-
 
 
   /* ================= POPUP MENU ================= */
@@ -105,66 +79,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const content =
     document.getElementById("popupContent");
 
+  menuButton?.addEventListener("click", () => {
 
-  if (menuButton) {
+    backdrop.classList.add("open");
 
-    menuButton.onclick = () => {
+    menuPopup.style.display = "block";
 
-      backdrop.classList.add("open");
+    contentPopup.classList.remove("open");
 
-      menuPopup.style.display = "block";
+    stopAutoScroll();
 
-      contentPopup.classList.remove("open");
-
-    };
-
-  }
+  });
 
 
-  const closePopup =
-    document.getElementById("closePopup");
-
-
-  if (closePopup) {
-
-    closePopup.onclick = () => {
+  document.getElementById("closePopup")
+    ?.addEventListener("click", () => {
 
       backdrop.classList.remove("open");
 
-    };
+      resetActivity();
 
-  }
-
-
-  const closeContent =
-    document.getElementById("closeContent");
+    });
 
 
-  if (closeContent) {
-
-    closeContent.onclick = () => {
+  document.getElementById("closeContent")
+    ?.addEventListener("click", () => {
 
       contentPopup.classList.remove("open");
 
-    };
+      resetActivity();
 
-  }
+    });
 
 
-  if (backdrop) {
+  backdrop?.addEventListener("click", (e) => {
 
-    backdrop.onclick = (e) => {
+    if (e.target === backdrop) {
 
-      if (e.target === backdrop) {
+      backdrop.classList.remove("open");
 
-        backdrop.classList.remove("open");
+      resetActivity();
 
-      }
+    }
 
-    };
-
-  }
-
+  });
 
 
   /* ================= POPUP CONTENT ================= */
@@ -172,21 +130,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const popupData = {
 
     home: {
-
       title: "Welcome home ✦",
-
       text:
         "A tiny corner for my ideas, memories, and creative chaos. Stay awhile ♡"
-
     },
 
-
     works: {
-
       title: "My Works 🎨",
-
       html: `
-
         <div class="works-list">
 
           <div class="work-pill">
@@ -206,18 +157,12 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
         </div>
-
       `
-
     },
 
-
     notes: {
-
       title: "Creative Notes 💭",
-
       html: `
-
         <div class="sticky">
 
           <strong>
@@ -233,22 +178,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <br><br>
 
-          — little reminder
-          from NJA
+          — little reminder from NJA
 
         </div>
-
       `
-
     },
 
-
     experiments: {
-
       title: "Little Experiments 🪄",
-
       html: `
-
         <p class="popup-content-text">
 
           A scrapbook of random ideas,
@@ -261,27 +199,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <img
             src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80"
-            alt="Creative experiment"
+            alt="Art"
           >
 
           <img
             src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=600&q=80"
-            alt="Art experiment"
+            alt="Painting"
           >
 
         </div>
-
       `
-
     },
 
-
     about: {
-
       title: "About Me 🌷",
-
       html: `
-
         <div class="profile">
 
           <img
@@ -303,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
 
-
         <div class="funfacts">
 
           ☁️ loves turning ideas into visuals
@@ -315,18 +246,12 @@ document.addEventListener("DOMContentLoaded", () => {
           ✦ learning, creating, becoming
 
         </div>
-
       `
-
     },
 
-
     secret: {
-
       title: "pssst... 👀",
-
       html: `
-
         <div class="sticky">
 
           <strong>
@@ -343,9 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ♡
 
         </div>
-
       `
-
     }
 
   };
@@ -355,23 +278,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll("[data-popup]")
     .forEach(button => {
 
-      button.onclick = () => {
+      button.addEventListener("click", () => {
 
         const item =
-          popupData[
-            button.dataset.popup
-          ];
-
+          popupData[button.dataset.popup];
 
         if (!item) return;
 
-
         content.innerHTML = `
-
           <h2 class="popup-content-title">
-
             ${item.title}
-
           </h2>
 
           ${
@@ -380,215 +296,110 @@ document.addEventListener("DOMContentLoaded", () => {
               ${item.text}
             </p>`
           }
-
         `;
-
 
         contentPopup.classList.add("open");
 
-      };
+      });
 
     });
-
 
 
   /* ================= JOURNEY BUTTON ================= */
 
-  const journeyButton =
-    document.querySelector(
-      '[data-open="journey"]'
-    );
-
-
-  if (journeyButton) {
-
-    journeyButton.onclick = () => {
+  document
+    .querySelector('[data-open="journey"]')
+    ?.addEventListener("click", () => {
 
       document
         .getElementById("journey")
-        .scrollIntoView({
+        ?.scrollIntoView({
           behavior: "smooth"
         });
 
-    };
-
-  }
-  
-  /* ================= AUTO MUSIC ================= */
-
-const audio = document.getElementById("audio");
-
-if (audio) {
-
-  audio.volume = 0.45;
-
-  const startMusic = () => {
-
-    audio.play().catch(() => {});
-
-    document.removeEventListener("click", startMusic);
-    document.removeEventListener("touchstart", startMusic);
-
-  };
-
-  document.addEventListener("click", startMusic);
-  document.addEventListener("touchstart", startMusic);
-
-}
-  /* ================= CUSTOM CURSOR ================= */
-
-  const cursorDot =
-    document.getElementById("cursorDot");
-
-  const cursorRing =
-    document.getElementById("cursorRing");
-
-
-  if (cursorDot && cursorRing) {
-
-    window.addEventListener(
-      "mousemove",
-      (e) => {
-
-        cursorDot.style.left =
-          e.clientX + "px";
-
-        cursorDot.style.top =
-          e.clientY + "px";
-
-
-        cursorRing.style.left =
-          e.clientX + "px";
-
-        cursorRing.style.top =
-          e.clientY + "px";
-
-      }
-    );
-
-
-    document
-      .querySelectorAll("a, button")
-      .forEach(element => {
-
-        element.addEventListener(
-          "mouseenter",
-          () => {
-
-            cursorRing.style.width =
-              "44px";
-
-            cursorRing.style.height =
-              "44px";
-
-            cursorRing.style.borderColor =
-              "var(--purple)";
-
-          }
-        );
-
-
-        element.addEventListener(
-          "mouseleave",
-          () => {
-
-            cursorRing.style.width =
-              "30px";
-
-            cursorRing.style.height =
-              "30px";
-
-            cursorRing.style.borderColor =
-              "var(--pink)";
-
-          }
-        );
-
-      });
-
-  }
-
-
-
-  /* ================= SCROLL REVEAL ================= */
-
-  const observer =
-    new IntersectionObserver(
-
-      entries => {
-
-        entries.forEach(entry => {
-
-          if (
-            entry.isIntersecting
-          ) {
-
-            entry.target
-              .classList
-              .add("show");
-
-          }
-
-        });
-
-      },
-
-      {
-        threshold: 0.12
-      }
-
-    );
-
-
-  document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
-
-      observer.observe(element);
+      resetActivity();
 
     });
 
 
+  /* ================= MUSIC ================= */
 
-  /* ================= SPARKLE ================= */
+  const audio =
+    document.getElementById("audio");
 
-  setInterval(() => {
+  /*
+    Lagu berada di:
 
-    const sparkle =
-      document.createElement("span");
+    music/
+      cozy-jazz.mp3
 
+    Browser modern biasanya memblokir
+    autoplay dengan suara sebelum user
+    berinteraksi.
 
-    sparkle.className =
-      "sparkle";
+    Jadi kita coba autoplay.
+    Kalau browser memblokir, musik akan
+    dimulai setelah user melakukan klik/touch.
+  */
 
+  audio.volume = 0.45;
+  audio.loop = true;
 
-    sparkle.textContent =
-      Math.random() > 0.5
-        ? "✦"
-        : "✧";
+  let musicStarted = false;
 
+  async function startMusic() {
 
-    sparkle.style.left =
-      Math.random() * 100 + "vw";
+    if (musicStarted) return;
 
+    try {
 
-    sparkle.style.top =
-      Math.random() * 100 + "vh";
+      await audio.play();
 
+      musicStarted = true;
 
-    document.body.appendChild(
-      sparkle
-    );
+    } catch (error) {
 
+      console.log(
+        "Autoplay menunggu interaksi user."
+      );
 
-    setTimeout(() => {
+    }
 
-      sparkle.remove();
+  }
 
-    }, 1200);
+  startMusic();
 
-  }, 650);
+  const unlockMusic = () => {
 
+    startMusic();
+
+    if (musicStarted) {
+
+      window.removeEventListener(
+        "click",
+        unlockMusic
+      );
+
+      window.removeEventListener(
+        "touchstart",
+        unlockMusic
+      );
+
+    }
+
+  };
+
+  window.addEventListener(
+    "click",
+    unlockMusic,
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchstart",
+    unlockMusic,
+    { passive: true }
+  );
 
 
   /* ================= LET'S TALK ================= */
@@ -602,283 +413,362 @@ if (audio) {
   const helloClose =
     document.getElementById("helloClose");
 
+  letsTalk?.addEventListener("click", (e) => {
 
-  if (letsTalk && helloBackdrop) {
+    e.preventDefault();
 
-    letsTalk.addEventListener(
-      "click",
-      (e) => {
+    helloBackdrop.classList.add("show");
 
-        e.preventDefault();
+    stopAutoScroll();
 
-        helloBackdrop.classList.add("show");
+  });
 
-      }
-    );
+  helloClose?.addEventListener("click", () => {
 
-  }
+    helloBackdrop.classList.remove("show");
 
+    resetActivity();
 
-  if (helloClose && helloBackdrop) {
+  });
 
-    helloClose.addEventListener(
-      "click",
-      () => {
+  helloBackdrop?.addEventListener("click", (e) => {
 
-        helloBackdrop.classList.remove(
-          "show"
-        );
+    if (e.target === helloBackdrop) {
 
-      }
-    );
+      helloBackdrop.classList.remove("show");
 
-  }
-
-
-  if (helloBackdrop) {
-
-    helloBackdrop.addEventListener(
-      "click",
-      (e) => {
-
-        if (
-          e.target === helloBackdrop
-        ) {
-
-          helloBackdrop.classList.remove(
-            "show"
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-});
-
-/* ================= DREAMY AUTO SCROLL ================= */
-
-let autoTimer = null;
-let autoFrame = null;
-let autoRunning = false;
-let goingUp = false;
-
-const AUTO_DELAY = 2000;
-
-const MIN_SPEED = 0.35;
-const MAX_SPEED = 0.9;
-
-const TOP_DURATION = 900;
-
-
-/* ================= TIMER ================= */
-
-function scheduleAutoScroll() {
-
-  clearTimeout(autoTimer);
-
-  autoTimer = setTimeout(() => {
-
-    if (!autoRunning && !goingUp) {
-
-      autoRunning = true;
-
-      autoFrame =
-        requestAnimationFrame(dreamyScroll);
+      resetActivity();
 
     }
 
-  }, AUTO_DELAY);
-
-}
+  });
 
 
-/* ================= DREAMY DOWN SCROLL ================= */
+  /* ================= CUSTOM CURSOR ================= */
 
-function dreamyScroll(time) {
+  const cursorDot =
+    document.getElementById("cursorDot");
 
-  if (!autoRunning || goingUp) return;
+  const cursorRing =
+    document.getElementById("cursorRing");
 
-  const maxScroll =
-    document.documentElement.scrollHeight -
-    window.innerHeight;
+  window.addEventListener(
+    "mousemove",
+    (e) => {
 
-  const currentScroll =
-    window.scrollY;
+      cursorDot.style.left =
+        e.clientX + "px";
 
+      cursorDot.style.top =
+        e.clientY + "px";
 
-  /* ================= BOTTOM ================= */
+      cursorRing.style.left =
+        e.clientX + "px";
 
-  if (currentScroll >= maxScroll - 2) {
+      cursorRing.style.top =
+        e.clientY + "px";
 
-    autoRunning = false;
-
-    cancelAnimationFrame(autoFrame);
-
-    dreamyGoToTop();
-
-    return;
-
-  }
-
-
-  /* ================= FLOATING SPEED ================= */
-
-  const wave =
-    (Math.sin(time * 0.0015) + 1) / 2;
-
-  const speed =
-    MIN_SPEED +
-    (MAX_SPEED - MIN_SPEED) * wave;
+    }
+  );
 
 
-  window.scrollBy(0, speed);
+  document
+    .querySelectorAll("a, button")
+    .forEach(element => {
 
+      element.addEventListener(
+        "mouseenter",
+        () => {
 
-  autoFrame =
-    requestAnimationFrame(dreamyScroll);
+          cursorRing.style.width =
+            "44px";
 
-}
+          cursorRing.style.height =
+            "44px";
 
+          cursorRing.style.borderColor =
+            "var(--purple)";
 
-/* ================= DREAMY FAST RETURN ================= */
+        }
+      );
 
-function dreamyGoToTop() {
+      element.addEventListener(
+        "mouseleave",
+        () => {
 
-  goingUp = true;
+          cursorRing.style.width =
+            "30px";
 
-  const startPosition = window.scrollY;
-  const startTime = performance.now();
+          cursorRing.style.height =
+            "30px";
 
-  // Durasi naik: 1.8 detik
-  const duration = 2500;
+          cursorRing.style.borderColor =
+            "var(--pink)";
 
-  function moveToTop(currentTime) {
+        }
+      );
 
-    const elapsed = currentTime - startTime;
-
-    const progress = Math.min(
-      elapsed / duration,
-      1
-    );
-
-    /*
-      DREAMY EASING
-
-      0%   = pelan
-      20%  = mulai cepat
-      50%  = meluncur cepat
-      80%  = mulai melambat
-      100% = berhenti lembut
-    */
-
-    const ease =
-      progress < 0.5
-
-        ? 4 * progress * progress * progress
-
-        : 1 -
-          Math.pow(
-            -2 * progress + 2,
-            3
-          ) / 2;
-
-
-    const position =
-      startPosition * (1 - ease);
-
-
-    window.scrollTo({
-      top: position,
-      behavior: "auto"
     });
 
 
-    if (progress < 1) {
+  /* ================= SCROLL REVEAL ================= */
 
-      requestAnimationFrame(
-        moveToTop
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target
+              .classList
+              .add("show");
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+  document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+      observer.observe(element);
+
+    });
+
+
+  /* ================= SPARKLES ================= */
+
+  setInterval(() => {
+
+    const sparkle =
+      document.createElement("span");
+
+    sparkle.className = "sparkle";
+
+    sparkle.textContent =
+      Math.random() > .5
+        ? "✦"
+        : "✧";
+
+    sparkle.style.left =
+      Math.random() * 100 + "vw";
+
+    sparkle.style.top =
+      Math.random() * 100 + "vh";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+
+      sparkle.remove();
+
+    }, 1200);
+
+  }, 650);
+
+
+  /* ==================================================
+     DREAMY AUTO SCROLL
+     ================================================== */
+
+  let autoScrollTimer = null;
+  let autoScrollFrame = null;
+
+  let lastActivity =
+    Date.now();
+
+  let isAutoScrolling = false;
+  let isResetting = false;
+
+  const IDLE_TIME = 2000;
+
+  /*
+    Kecepatan dasar.
+    Angka kecil = lebih pelan.
+  */
+  const BASE_SPEED = 0.55;
+
+
+  function stopAutoScroll() {
+
+    isAutoScrolling = false;
+
+    if (autoScrollFrame) {
+
+      cancelAnimationFrame(
+        autoScrollFrame
       );
 
-    } else {
-
-      window.scrollTo({
-        top: 0,
-        behavior: "auto"
-      });
-
-      goingUp = false;
-
-      // Tunggu 2 detik
-      scheduleAutoScroll();
+      autoScrollFrame = null;
 
     }
 
   }
 
 
-  requestAnimationFrame(
-    moveToTop
-  );
+  function dreamyScroll() {
 
-}
+    if (!isAutoScrolling) return;
 
-/* ================= USER MANUAL SCROLL ================= */
+    const maxScroll =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
 
-function manualScroll() {
+    const currentScroll =
+      window.scrollY;
 
-  /*
-    Kalau sedang kembali ke atas,
-    jangan ganggu animasinya.
-  */
+    /*
+      Kalau sudah sampai bawah,
+      naik cepat dengan efek smooth.
+    */
 
-  if (goingUp) return;
+    if (
+      currentScroll >= maxScroll - 3
+      && !isResetting
+    ) {
+
+      isResetting = true;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      setTimeout(() => {
+
+        isResetting = false;
+
+        if (
+          Date.now() - lastActivity
+          >= IDLE_TIME
+        ) {
+
+          isAutoScrolling = true;
+
+          autoScrollFrame =
+            requestAnimationFrame(
+              dreamyScroll
+            );
+
+        }
+
+      }, 1000);
+
+      return;
+    }
 
 
-  if (autoRunning) {
+    /*
+      Floating / dreamy movement.
+    */
 
-    autoRunning = false;
+    const wave =
+      Math.sin(Date.now() / 900) * 0.12;
 
-    cancelAnimationFrame(
-      autoFrame
+    const speed =
+      BASE_SPEED + wave;
+
+    window.scrollBy(
+      0,
+      Math.max(0.15, speed)
     );
+
+
+    autoScrollFrame =
+      requestAnimationFrame(
+        dreamyScroll
+      );
 
   }
 
 
-  scheduleAutoScroll();
+  function startAutoScroll() {
 
-}
+    if (
+      isAutoScrolling ||
+      isResetting
+    ) return;
+
+    if (
+      document.querySelector(
+        ".modal-backdrop.open"
+      ) ||
+      document.querySelector(
+        ".hello-backdrop.show"
+      )
+    ) return;
+
+    isAutoScrolling = true;
+
+    autoScrollFrame =
+      requestAnimationFrame(
+        dreamyScroll
+      );
+
+  }
 
 
-/* ================= USER ACTIONS ================= */
+  function resetActivity() {
 
-window.addEventListener(
-  "wheel",
-  manualScroll,
-  { passive: true }
-);
+    lastActivity =
+      Date.now();
 
-window.addEventListener(
-  "touchmove",
-  manualScroll,
-  { passive: true }
-);
+    stopAutoScroll();
 
-window.addEventListener(
-  "keydown",
-  manualScroll
-);
+    clearTimeout(
+      autoScrollTimer
+    );
+
+    autoScrollTimer =
+      setTimeout(() => {
+
+        startAutoScroll();
+
+      }, IDLE_TIME);
+
+  }
 
 
-/* ================= START ================= */
+  /*
+    User interaction:
+    mouse, touch, keyboard, wheel.
+  */
 
-scheduleAutoScroll();
+  [
+    "mousemove",
+    "mousedown",
+    "wheel",
+    "touchstart",
+    "touchmove",
+    "keydown"
+  ].forEach(eventName => {
 
-/* ================= AUTO SCROLL CONTROL ================= */
+    window.addEventListener(
+      eventName,
+      resetActivity,
+      {
+        passive: true
+      }
+    );
 
-html {
-  scroll-behavior: auto !important;
-}
+  });
+
+
+  /*
+    Mulai menghitung 2 detik
+    sejak halaman dibuka.
+  */
+
+  resetActivity();
+
+
+});
