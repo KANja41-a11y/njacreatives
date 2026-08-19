@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>NJAcreative ✦ My Creative Journey</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- SPARKLE -->
+  <!-- dreamy background -->
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
   <div class="sparkle-layer"></div>
 
-
-  <!-- ================= NAVBAR ================= -->
-
+  <!-- NAVBAR -->
   <header class="nav">
 
     <a href="#home" class="brand">
@@ -38,8 +35,7 @@
   </header>
 
 
-  <!-- ================= HERO ================= -->
-
+  <!-- HERO -->
   <main id="home">
 
     <section class="hero">
@@ -57,8 +53,8 @@
         </h1>
 
         <p class="hero-text">
-          A soft little archive of ideas, experiments,
-          memories, and everything I create along the way.
+          A soft little archive of ideas, experiments, memories,
+          and everything I create along the way.
         </p>
 
         <div class="hero-actions">
@@ -83,11 +79,15 @@
       </div>
 
 
-      <!-- ================= PHOTO SLIDER ================= -->
-
+      <!-- HERO VISUAL -->
       <div class="hero-visual reveal">
 
+        <div class="photo-decoration flower-one">✿</div>
+        <div class="photo-decoration star-one">✦</div>
+
         <div class="photo-frame">
+
+          <div class="soft-glow"></div>
 
           <div class="slider" id="slider">
 
@@ -127,20 +127,22 @@
 
         </div>
 
+        <div class="floating-note">
+          little things<br>
+          become stories ♡
+        </div>
 
-        <!-- SLIDER CONTROLS -->
+        <div class="floating-flower">
+          ✿
+        </div>
 
         <div class="slider-controls">
 
-          <button id="prev">
-            ←
-          </button>
+          <button id="prev">←</button>
 
           <div class="dots" id="dots"></div>
 
-          <button id="next">
-            →
-          </button>
+          <button id="next">→</button>
 
         </div>
 
@@ -149,12 +151,8 @@
     </section>
 
 
-    <!-- ================= JOURNEY ================= -->
-
-    <section
-      class="journey-section"
-      id="journey"
-    >
+    <!-- JOURNEY -->
+    <section class="journey-section" id="journey">
 
       <div class="section-heading reveal">
 
@@ -176,9 +174,7 @@
 
           <span>01</span>
 
-          <h3>
-            Curious
-          </h3>
+          <h3>Curious</h3>
 
           <p>
             It started with tiny ideas, random sketches,
@@ -192,9 +188,7 @@
 
           <span>02</span>
 
-          <h3>
-            Creating
-          </h3>
+          <h3>Creating</h3>
 
           <p>
             Ideas became designs, stories, photos,
@@ -208,9 +202,7 @@
 
           <span>03</span>
 
-          <h3>
-            Becoming
-          </h3>
+          <h3>Becoming</h3>
 
           <p>
             Still learning, still trying,
@@ -224,15 +216,12 @@
     </section>
 
 
-    <!-- ================= QUOTE ================= -->
-
+    <!-- QUOTE -->
     <section class="quote-section reveal">
 
       <div class="quote-card">
 
-        <span class="flower">
-          ✿
-        </span>
+        <span class="flower">✿</span>
 
         <p>
           “Create something that feels like you.”
@@ -249,8 +238,7 @@
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
-
+  <!-- FOOTER -->
   <footer>
 
     <p>
@@ -267,23 +255,21 @@
 
   </footer>
 
- <!-- ================= BACKGROUND MUSIC ================= -->
 
-<audio
-  id="audio"
-  src="./music/cozy-jazz.mp3"
-  loop
-  preload="auto">
-</audio>
+  <!-- MUSIC -->
+  <audio
+    id="audio"
+    src="music/cozy-jazz.mp3"
+    loop
+    preload="auto"
+  ></audio>
 
-  <!-- ================= MENU POPUP ================= -->
 
+  <!-- MENU POPUP -->
   <div
     class="modal-backdrop"
     id="modalBackdrop"
   >
-
-    <!-- MENU -->
 
     <div
       class="popup menu-popup"
@@ -304,7 +290,6 @@
       <p class="popup-subtitle">
         welcome to my little creative world
       </p>
-
 
       <nav class="popup-nav">
 
@@ -346,7 +331,6 @@
 
 
     <!-- CONTENT POPUP -->
-
     <div
       class="popup content-popup"
       id="contentPopup"
@@ -366,21 +350,7 @@
   </div>
 
 
-  <!-- ================= CUSTOM CURSOR ================= -->
-
-  <div
-    class="cursor-dot"
-    id="cursorDot"
-  ></div>
-
-  <div
-    class="cursor-ring"
-    id="cursorRing"
-  ></div>
-
-
-  <!-- ================= LET'S TALK POPUP ================= -->
-
+  <!-- LET'S TALK -->
   <div
     class="hello-backdrop"
     id="helloBackdrop"
@@ -395,28 +365,23 @@
         ×
       </button>
 
-
       <div class="hello-sparkle">
         ✦
       </div>
 
-
       <p class="hello-small">
         a tiny hello from you ♡
       </p>
-
 
       <h2>
         Send me a little
         <em>hello</em> 💌
       </h2>
 
-
       <p class="hello-description">
         Got an idea, project, or just want to say hi?
         I'd love to hear from you!
       </p>
-
 
       <div class="message-box">
 
@@ -431,7 +396,6 @@
 
       </div>
 
-
       <a
         class="instagram-button"
         href="https://instagram.com/kknjau"
@@ -440,7 +404,6 @@
       >
         Open Instagram ↗
       </a>
-
 
       <p class="hello-footer">
         @kknjau ✦ let's create something lovely
@@ -451,7 +414,10 @@
   </div>
 
 
-  <!-- ================= JAVASCRIPT ================= -->
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
 
   <script src="script.js"></script>
 
