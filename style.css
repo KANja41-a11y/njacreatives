@@ -944,3 +944,35 @@ footer a {
     display: none;
   }
 }
+/* =========================
+   KECILKAN MENU POPUP
+========================= */
+
+.menu-popup {
+  width: min(340px, calc(100vw - 40px)) !important;
+  padding: 28px 22px 22px !important;
+  border-radius: 26px !important;
+}
+
+.menu-popup .popup-brand {
+  font-size: 1.45rem;
+  text-align: center;
+}
+
+.menu-popup .popup-subtitle {
+  font-size: .85rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.menu-popup .popup-nav {
+  gap: 7px;
+}
+
+.menu-popup .popup-nav button,
+.menu-popup .popup-nav a {
+  min-height: 46px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: .92rem;
+}
