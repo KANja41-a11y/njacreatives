@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let current = 0;
 
   function showSlide(index) {
+
     if (!slides.length) return;
 
     current = (index + slides.length) % slides.length;
@@ -27,11 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   if (dots) {
+
     slides.forEach((_, i) => {
+
       const dot = document.createElement("span");
 
-      dot.className = "dot" + (i === 0 ? " active" : "");
+      dot.className =
+        "dot" + (i === 0 ? " active" : "");
 
       dot.addEventListener("click", () => {
         showSlide(i);
@@ -39,102 +44,172 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       dots.appendChild(dot);
+
     });
+
   }
 
+
   nextButton?.addEventListener("click", () => {
+
     showSlide(current + 1);
+
     resetActivity();
+
   });
+
 
   prevButton?.addEventListener("click", () => {
+
     showSlide(current - 1);
+
     resetActivity();
+
   });
 
+
+  /* AUTO SLIDER */
+
   setInterval(() => {
+
     showSlide(current + 1);
+
   }, 5000);
 
 
+
   /* =====================================================
-     POPUP MENU
+     MENU + CONTENT POPUP
   ===================================================== */
 
-  const backdrop = document.getElementById("modalBackdrop");
-  const menuButton = document.getElementById("menuButton");
-  const menuPopup = document.getElementById("menuPopup");
-  const contentPopup = document.getElementById("contentPopup");
+  const backdrop =
+    document.getElementById("modalBackdrop");
 
-  const closePopup = document.getElementById("closePopup");
-  const closeContent = document.getElementById("closeContent");
-  const popupContent = document.getElementById("popupContent");
+  const menuButton =
+    document.getElementById("menuButton");
 
+  const menuPopup =
+    document.getElementById("menuPopup");
+
+  const contentPopup =
+    document.getElementById("contentPopup");
+
+  const closePopup =
+    document.getElementById("closePopup");
+
+  const closeContent =
+    document.getElementById("closeContent");
+
+  const popupContent =
+    document.getElementById("popupContent");
+
+
+  /* =====================================================
+     OPEN MENU
+  ===================================================== */
 
   function openMenu() {
-    if (!backdrop || !menuPopup) return;
+
+    if (!backdrop) return;
 
     backdrop.classList.add("open");
 
-    menuPopup.style.display = "block";
+    /*
+      MENU SELALU TETAP TERLIHAT
+    */
 
-    if (contentPopup) {
-      contentPopup.classList.remove("open");
+    if (menuPopup) {
+      menuPopup.style.display = "block";
     }
 
     resetActivity();
+
   }
 
 
+  /* =====================================================
+     CLOSE SEMUA
+  ===================================================== */
+
   function closeAllPopups() {
+
     if (!backdrop) return;
 
     backdrop.classList.remove("open");
 
-    if (menuPopup) {
-      menuPopup.style.display = "none";
+    if (contentPopup) {
+      contentPopup.classList.remove("open");
     }
+
+    if (menuPopup) {
+      menuPopup.style.display = "block";
+    }
+
+    resetActivity();
+
+  }
+
+
+  /* =====================================================
+     OPEN MENU BUTTON
+  ===================================================== */
+
+  menuButton?.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    openMenu();
+
+  });
+
+
+  /* =====================================================
+     X PADA MENU
+  ===================================================== */
+
+  closePopup?.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    closeAllPopups();
+
+  });
+
+
+  /* =====================================================
+     X PADA CONTENT
+     
+     INI CUMA MENUTUP CONTENT.
+     MENU TETAP ADA.
+  ===================================================== */
+
+  closeContent?.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
 
     if (contentPopup) {
       contentPopup.classList.remove("open");
     }
 
     resetActivity();
-  }
 
-
-  menuButton?.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    openMenu();
   });
 
-
-  closePopup?.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    closeAllPopups();
-  });
-
-
-  closeContent?.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    closeAllPopups();
-  });
 
 
   /* =====================================================
-     POPUP CONTENT
+     POPUP CONTENT DATA
   ===================================================== */
 
   const popupData = {
 
     home: {
+
       title: "Welcome Home ✦",
+
       html: `
         <p class="popup-content-text">
           A tiny corner for my ideas, memories,
@@ -142,11 +217,14 @@ document.addEventListener("DOMContentLoaded", () => {
           that make me happy. ♡
         </p>
       `
+
     },
 
 
     works: {
+
       title: "My Works 🎨",
+
       html: `
         <div class="works-list">
 
@@ -168,11 +246,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
       `
+
     },
 
 
     notes: {
+
       title: "Creative Notes 💭",
+
       html: `
         <div class="sticky">
 
@@ -193,17 +274,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
       `
+
     },
 
 
     experiments: {
+
       title: "Little Experiments 🪄",
 
       html: `
+
         <p class="popup-content-text">
+
           A scrapbook of random ideas,
           visual experiments, and things
           I created just because I was curious. ♡
+
         </p>
 
         <div class="scrapbook">
@@ -219,18 +305,27 @@ document.addEventListener("DOMContentLoaded", () => {
           >
 
         </div>
+
       `
+
     },
 
 
+    /* =================================================
+       ABOUT ME
+       GANTI FOTO DI SINI
+       ================================================= */
+
     about: {
+
       title: "About Me 🌷",
 
       html: `
+
         <div class="profile">
 
           <img
-            src="images/hero-main.jpg"
+            src="images/about-me.jpg"
             alt="NJA"
           >
 
@@ -262,14 +357,18 @@ document.addEventListener("DOMContentLoaded", () => {
           ✦ always dreaming up something new
 
         </div>
+
       `
+
     },
 
 
     secret: {
+
       title: "Pssst... 👀",
 
       html: `
+
         <div class="sticky">
 
           <strong>
@@ -288,68 +387,95 @@ document.addEventListener("DOMContentLoaded", () => {
           ♡
 
         </div>
+
       `
+
     }
 
   };
 
 
-  /*
-     INI BAGIAN PALING PENTING.
-     Saat menu diklik:
-     MENU HILANG
-     CONTENT POPUP MUNCUL
-  */
 
-  document.querySelectorAll("[data-popup]").forEach(button => {
+  /* =====================================================
+     MENU ITEMS
+     
+     PENTING:
+     TIDAK ADA LAGI:
+     menuPopup.style.display = "none"
+     
+     Jadi menu tetap di kiri.
+  ===================================================== */
 
-    button.addEventListener("click", (e) => {
+  document
+    .querySelectorAll("[data-popup]")
+    .forEach(button => {
 
-      e.preventDefault();
-      e.stopPropagation();
+      button.addEventListener("click", (e) => {
 
-      const key = button.dataset.popup;
-      const item = popupData[key];
+        e.preventDefault();
+        e.stopPropagation();
 
-      if (!item || !popupContent || !contentPopup) return;
+        const key =
+          button.dataset.popup;
 
+        const item =
+          popupData[key];
 
-      popupContent.innerHTML = `
-        <h2 class="popup-content-title">
-          ${item.title}
-        </h2>
-
-        ${item.html}
-      `;
-
-
-      // sembunyikan menu
-      if (menuPopup) {
-        menuPopup.style.display = "none";
-      }
+        if (
+          !item ||
+          !popupContent ||
+          !contentPopup
+        ) {
+          return;
+        }
 
 
-      // tampilkan isi
-      contentPopup.classList.add("open");
+        /* MASUKKAN CONTENT */
 
-      resetActivity();
+        popupContent.innerHTML = `
+
+          <h2 class="popup-content-title">
+            ${item.title}
+          </h2>
+
+          ${item.html}
+
+        `;
+
+
+        /* =================================================
+           MENU TETAP TERBUKA
+           CONTENT MUNCUL DI SEBELAHNYA
+           ================================================= */
+
+        if (menuPopup) {
+          menuPopup.style.display = "block";
+        }
+
+        contentPopup.classList.add("open");
+
+        resetActivity();
+
+      });
 
     });
 
-  });
 
 
   /* =====================================================
-     CLICK OUTSIDE POPUP
+     CLICK OUTSIDE
   ===================================================== */
 
   backdrop?.addEventListener("click", (e) => {
 
     if (e.target === backdrop) {
+
       closeAllPopups();
+
     }
 
   });
+
 
 
   /* =====================================================
@@ -357,7 +483,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ===================================================== */
 
   const journeyButton =
-    document.querySelector('[data-open="journey"]');
+    document.querySelector(
+      '[data-open="journey"]'
+    );
+
 
   journeyButton?.addEventListener("click", () => {
 
@@ -372,13 +501,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+
   /* =====================================================
      LET'S TALK
   ===================================================== */
 
-  const letsTalk = document.getElementById("letsTalk");
-  const helloBackdrop = document.getElementById("helloBackdrop");
-  const helloClose = document.getElementById("helloClose");
+  const letsTalk =
+    document.getElementById("letsTalk");
+
+  const helloBackdrop =
+    document.getElementById("helloBackdrop");
+
+  const helloClose =
+    document.getElementById("helloClose");
+
 
   letsTalk?.addEventListener("click", (e) => {
 
@@ -403,38 +539,47 @@ document.addEventListener("DOMContentLoaded", () => {
   helloBackdrop?.addEventListener("click", (e) => {
 
     if (e.target === helloBackdrop) {
+
       helloBackdrop.classList.remove("show");
+
     }
 
   });
+
 
 
   /* =====================================================
      MUSIC
   ===================================================== */
 
-  const audio = document.getElementById("audio");
+  const audio =
+    document.getElementById("audio");
+
 
   if (audio) {
 
     audio.volume = 0.45;
     audio.loop = true;
 
+
     function startMusic() {
 
       audio.play().catch(() => {
-        // Browser menunggu interaksi user.
+        // Browser membutuhkan interaksi user.
       });
 
     }
 
+
     startMusic();
+
 
     document.addEventListener(
       "click",
       startMusic,
       { once: true }
     );
+
 
     document.addEventListener(
       "touchstart",
@@ -445,41 +590,69 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
   /* =====================================================
-     AUTO SCROLL DREAMY
+     AUTO SCROLL
   ===================================================== */
 
   let inactivityTimer;
+
   let autoScrollActive = false;
+
   let autoScrollFrame;
 
   const AUTO_DELAY = 2000;
+
 
   function resetActivity() {
 
     autoScrollActive = false;
 
+
     if (autoScrollFrame) {
-      cancelAnimationFrame(autoScrollFrame);
+
+      cancelAnimationFrame(
+        autoScrollFrame
+      );
+
     }
 
-    clearTimeout(inactivityTimer);
+
+    clearTimeout(
+      inactivityTimer
+    );
+
 
     inactivityTimer = setTimeout(() => {
+
       startAutoScroll();
+
     }, AUTO_DELAY);
 
   }
 
 
+
   function startAutoScroll() {
 
     if (
-      document.querySelector(".modal-backdrop.open") ||
-      document.querySelector(".hello-backdrop.show")
+
+      document.querySelector(
+        ".modal-backdrop.open"
+      )
+
+      ||
+
+      document.querySelector(
+        ".hello-backdrop.show"
+      )
+
     ) {
+
       return;
+
     }
+
 
     autoScrollActive = true;
 
@@ -488,63 +661,106 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+
   function dreamyScroll() {
 
     if (!autoScrollActive) return;
 
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
 
-    const currentScroll = window.scrollY;
+    /* Jangan auto-scroll saat popup terbuka */
 
+    if (
 
-    if (currentScroll >= maxScroll - 5) {
+      document.querySelector(
+        ".modal-backdrop.open"
+      )
+
+      ||
+
+      document.querySelector(
+        ".hello-backdrop.show"
+      )
+
+    ) {
 
       autoScrollActive = false;
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-      setTimeout(() => {
-
-        if (!autoScrollActive) {
-          autoScrollActive = true;
-          dreamyScroll();
-        }
-
-      }, 1000);
 
       return;
 
     }
 
 
-    // efek floating / dreamy
+    const maxScroll =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
+
+
+    const currentScroll =
+      window.scrollY;
+
+
+    if (currentScroll >= maxScroll - 5) {
+
+      autoScrollActive = false;
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+
+      setTimeout(() => {
+
+        if (!autoScrollActive) {
+
+          autoScrollActive = true;
+
+          dreamyScroll();
+
+        }
+
+      }, 1000);
+
+
+      return;
+
+    }
+
+
     const speed =
       0.35 +
       Math.sin(Date.now() / 900) * 0.12;
 
 
-    window.scrollBy(0, speed);
+    window.scrollBy(
+      0,
+      speed
+    );
+
 
     autoScrollFrame =
-      requestAnimationFrame(dreamyScroll);
+      requestAnimationFrame(
+        dreamyScroll
+      );
 
   }
 
 
-  /* USER ACTIVITY */
+
+  /* =====================================================
+     USER ACTIVITY
+  ===================================================== */
 
   [
+
     "mousemove",
     "mousedown",
     "keydown",
     "touchstart",
     "wheel",
     "scroll"
+
   ].forEach(event => {
 
     window.addEventListener(
@@ -555,16 +771,21 @@ document.addEventListener("DOMContentLoaded", () => {
           event === "scroll" &&
           autoScrollActive
         ) {
+
           return;
+
         }
 
         resetActivity();
 
       },
-      { passive: true }
+      {
+        passive: true
+      }
     );
 
   });
+
 
 
   /* =====================================================
@@ -572,25 +793,43 @@ document.addEventListener("DOMContentLoaded", () => {
   ===================================================== */
 
   const cursorDot =
-    document.getElementById("cursorDot");
+    document.getElementById(
+      "cursorDot"
+    );
 
   const cursorRing =
-    document.getElementById("cursorRing");
+    document.getElementById(
+      "cursorRing"
+    );
 
 
-  if (cursorDot && cursorRing) {
+  if (
+    cursorDot &&
+    cursorRing
+  ) {
 
-    window.addEventListener("mousemove", (e) => {
+    window.addEventListener(
+      "mousemove",
+      (e) => {
 
-      cursorDot.style.left = e.clientX + "px";
-      cursorDot.style.top = e.clientY + "px";
+        cursorDot.style.left =
+          e.clientX + "px";
 
-      cursorRing.style.left = e.clientX + "px";
-      cursorRing.style.top = e.clientY + "px";
+        cursorDot.style.top =
+          e.clientY + "px";
 
-    });
+
+        cursorRing.style.left =
+          e.clientX + "px";
+
+        cursorRing.style.top =
+          e.clientY + "px";
+
+      }
+    );
 
   }
+
 
 
   /* =====================================================
@@ -603,9 +842,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         entries.forEach(entry => {
 
-          if (entry.isIntersecting) {
+          if (
+            entry.isIntersecting
+          ) {
 
-            entry.target.classList.add("show");
+            entry.target.classList.add(
+              "show"
+            );
 
           }
 
@@ -625,6 +868,7 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(element);
 
     });
+
 
 
   /* =====================================================
