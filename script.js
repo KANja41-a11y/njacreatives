@@ -204,43 +204,42 @@ if (backdrop) {
       `
     },
 
-    about: {
-      title: "About Me 🌷",
-      html: `
-        <div class="profile">
+   about: {
+  title: "About Me 🌷",
 
-          <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80"
-            alt="Profile"
-          >
+  html: `
+    <div class="profile">
 
-          <div>
+      <img
+        src="images/about-me.jpg"
+        alt="NJA"
+      >
 
-            <strong>
-              NJA ✦
-            </strong>
+      <div>
+        <strong>
+          NJA ✦
+        </strong>
 
-            <p class="popup-content-text">
-              creative dreamer & maker
-            </p>
+        <p class="popup-content-text">
+          creative dreamer & maker
+        </p>
+      </div>
 
-          </div>
+    </div>
 
-        </div>
+    <div class="funfacts">
 
-        <div class="funfacts">
+      ✦ loves turning ideas into visuals
+      <br>
 
-          ☁️ loves turning ideas into visuals
-          <br>
+      ✦ collects tiny inspirations
+      <br>
 
-          🎀 collects tiny inspirations
-          <br>
+      ✦ learning, creating, becoming
 
-          ✦ learning, creating, becoming
-
-        </div>
-      `
-    },
+    </div>
+  `
+},
 
     secret: {
       title: "pssst... 👀",
