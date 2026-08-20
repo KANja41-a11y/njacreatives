@@ -820,3 +820,47 @@ footer a {
   }
 
 }
+/* ================= POPUP CLOSE FIX ================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.content-popup,
+.menu-popup {
+  position: relative;
+  z-index: 10001;
+}
+
+.popup .close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 32px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 10010;
+  pointer-events: auto;
+
+  color: #8b6fc4;
+
+  transition:
+    transform .25s ease,
+    color .25s ease;
+}
+
+.popup .close:hover {
+  transform: rotate(90deg) scale(1.1);
+  color: #5d467f;
+}
