@@ -820,97 +820,62 @@ footer a {
   }
 
 }
-/* ================= POPUP CLOSE FIX ================= */
+/* ===============================
+   FIX POPUP & MENU CLICK
+================================ */
 
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-}
-
-.content-popup,
-.menu-popup {
-  position: relative;
-  z-index: 10001;
-}
-
-.popup .close {
-  position: absolute;
-  top: 24px;
-  right: 28px;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  background: transparent;
-
-  font-size: 32px;
-  line-height: 1;
-
-  cursor: pointer;
-
-  z-index: 10010;
-  pointer-events: auto;
-
-  color: #8b6fc4;
-
-  transition:
-    transform .25s ease,
-    color .25s ease;
-}
-
-.popup .close:hover {
-  transform: rotate(90deg) scale(1.1);
-  color: #5d467f;
-}
-/* ================= MENU BUTTON FIX ================= */
-
-.nav {
-  position: relative;
-  z-index: 1000;
-}
-
-.menu-button {
-  display: flex;
+  z-index: 9990;
+  display: none;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  padding: 20px;
+}
 
-  border: none;
+.modal-backdrop.show {
+  display: flex;
+}
+
+/* Menu harus berada paling depan */
+.menu-popup {
+  position: relative;
+  z-index: 10000;
+  pointer-events: auto;
+}
+
+/* Isi popup */
+.content-popup {
+  position: relative;
+  z-index: 10001;
+  pointer-events: auto;
+}
+
+/* Semua tombol menu bisa diklik */
+.popup-nav {
+  position: relative;
+  z-index: 10002;
+}
+
+.popup-nav button,
+.popup-nav a {
+  position: relative;
+  z-index: 10003;
+  pointer-events: auto;
   cursor: pointer;
-
-  padding: 12px 22px;
-
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.65);
-  color: #5c467d;
-
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-
-  box-shadow:
-    0 8px 25px rgba(120, 90, 160, 0.12);
-
-  backdrop-filter: blur(12px);
-
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
 }
 
-.menu-button:hover {
-  transform: translateY(-2px);
-
-  background: rgba(255, 255, 255, 0.9);
-
-  box-shadow:
-    0 12px 30px rgba(120, 90, 160, 0.18);
+/* Tombol close juga harus bisa diklik */
+.close {
+  position: relative;
+  z-index: 10010;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.menu-button span {
-  color: #9272c9;
+/* Jangan biarkan popup yang sedang tersembunyi menangkap klik */
+.content-popup:not(.active),
+.menu-popup:not(.active) {
+  pointer-events: none;
 }
