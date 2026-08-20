@@ -976,24 +976,27 @@ footer a {
   border-radius: 15px;
   font-size: .92rem;
 }
-/* ===============================
-   STORE
-================================ */
+
+/* =========================================
+   ✦ NJAcreative LITTLE STORE
+========================================= */
 
 .store-section {
-  padding: 110px 7% 130px;
+  position: relative;
+  padding: 120px 7% 140px;
+  overflow: hidden;
 }
 
 .store-heading {
-  max-width: 650px;
-  margin-bottom: 55px;
+  max-width: 680px;
+  margin-bottom: 58px;
 }
 
 .store-heading h2 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 500;
+  font-size: clamp(2.7rem, 5vw, 4.6rem);
   line-height: 1.05;
+  font-weight: 500;
 }
 
 .store-heading h2 em {
@@ -1005,65 +1008,130 @@ footer a {
   max-width: 500px;
   margin-top: 20px;
   color: #756b7c;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
+/* DEKORASI */
 
-/* PRODUCT GRID */
+.store-section::before {
+  content: "✿";
+  position: absolute;
+  top: 100px;
+  right: 8%;
+  color: var(--pink);
+  font-size: 2.4rem;
+}
+
+.store-section::after {
+  content: "✦";
+  position: absolute;
+  top: 180px;
+  right: 15%;
+  color: var(--purple);
+  font-size: 1.4rem;
+}
+
+/* GRID */
 
 .store-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 30px;
+  align-items: start;
 }
-
 
 /* CARD */
 
 .store-card {
-  background: rgba(255,255,255,.68);
-  border: 1px solid rgba(139,114,184,.10);
-  border-radius: 26px;
-  overflow: hidden;
+  position: relative;
+  padding: 12px 12px 20px;
+  background: #fffdf9;
+  border-radius: 8px 8px 22px 22px;
 
   box-shadow:
-    0 15px 40px rgba(70,50,80,.07);
+    0 18px 40px rgba(70,50,80,.09),
+    0 3px 8px rgba(70,50,80,.06);
 
   transition:
     transform .35s ease,
     box-shadow .35s ease;
 }
 
-.store-card:hover {
-  transform: translateY(-8px) rotate(-.5deg);
-
-  box-shadow:
-    0 25px 55px rgba(70,50,80,.12);
+.store-card:nth-child(1) {
+  transform: rotate(-2deg);
 }
 
+.store-card:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+
+.store-card:nth-child(3) {
+  transform: rotate(-1deg);
+}
+
+.store-card:hover {
+  transform: translateY(-10px) rotate(0deg);
+
+  box-shadow:
+    0 28px 55px rgba(70,50,80,.14);
+}
+
+/* TAPE */
+
+.store-card::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+
+  width: 85px;
+  height: 27px;
+
+  transform: translateX(-50%) rotate(-2deg);
+
+  background: rgba(247,220,205,.78);
+  z-index: 5;
+}
+
+.store-card:nth-child(2)::before {
+  background: rgba(218,235,238,.78);
+  transform: translateX(-50%) rotate(5deg);
+}
+
+.store-card:nth-child(3)::before {
+  background: rgba(231,216,242,.78);
+  transform: translateX(-50%) rotate(-6deg);
+}
 
 /* IMAGE */
 
 .store-image {
   position: relative;
+  width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #eee5f3;
+
+  border-radius: 5px 5px 16px 16px;
+
+  background: linear-gradient(
+    145deg,
+    #eee2f4,
+    #e4f0f3
+  );
 }
 
 .store-image img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
 
-  transition:
-    transform .5s ease;
+  transition: transform .6s ease;
 }
 
 .store-card:hover .store-image img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
-
 
 /* TAG */
 
@@ -1074,25 +1142,29 @@ footer a {
 
   padding: 7px 12px;
 
-  background: rgba(255,250,244,.88);
-  backdrop-filter: blur(8px);
+  background: #fff3ad;
+  color: #77643b;
 
-  border-radius: 999px;
+  border-radius: 6px;
 
-  color: var(--purple);
-  font-size: .75rem;
+  font-family: "Playfair Display", serif;
+  font-size: .78rem;
+
+  transform: rotate(-5deg);
+
+  box-shadow:
+    0 5px 12px rgba(80,60,40,.08);
 }
-
 
 /* INFO */
 
 .store-info {
-  padding: 22px;
+  padding: 20px 8px 3px;
 }
 
 .store-info h3 {
   font-family: "Playfair Display", serif;
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
@@ -1100,10 +1172,9 @@ footer a {
   margin: 8px 0 20px;
 
   color: #827689;
-  font-size: .88rem;
-  line-height: 1.6;
+  font-size: .86rem;
+  line-height: 1.7;
 }
-
 
 /* PRICE + BUY */
 
@@ -1111,14 +1182,18 @@ footer a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .store-bottom strong {
   color: var(--purple-dark);
-  font-size: .95rem;
+  font-size: .92rem;
 }
 
 .store-buy {
+  display: inline-flex;
+  align-items: center;
+
   padding: 9px 15px;
 
   border-radius: 999px;
@@ -1126,49 +1201,69 @@ footer a {
   background: var(--purple);
   color: white;
 
-  font-size: .82rem;
-
-  box-shadow:
-    0 8px 20px rgba(139,114,184,.2);
+  font-size: .78rem;
 
   transition: .25s ease;
 }
 
 .store-buy:hover {
   transform: translateY(-2px);
+  background: var(--purple-dark);
 }
 
-
-/* FOOTER TEXT */
+/* NOTE */
 
 .store-footer {
-  margin-top: 45px;
+  width: fit-content;
+  margin: 55px auto 0;
 
-  text-align: center;
+  padding: 13px 20px;
 
-  color: #8b7c90;
+  color: #817687;
 
   font-family: "Playfair Display", serif;
   font-style: italic;
   font-size: .9rem;
-}
 
+  background: rgba(255,242,184,.5);
+
+  transform: rotate(-2deg);
+  border-radius: 5px;
+}
 
 /* MOBILE */
 
 @media (max-width: 850px) {
 
+  .store-section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
   .store-grid {
     grid-template-columns: 1fr;
-    max-width: 450px;
+    max-width: 380px;
     margin: auto;
+    gap: 40px;
   }
 
-  .store-heading {
-    margin-bottom: 35px;
+  .store-section::after {
+    display: none;
   }
-
 }
+
+@media (max-width: 500px) {
+
+  .store-section {
+    padding-top: 90px;
+    padding-bottom: 100px;
+  }
+
+  .store-grid {
+    max-width: 330px;
+  }
+}
+
 /* =========================================
    ✦ NJAcreative LITTLE STORE — SCRAPBOOK
 ========================================= */
