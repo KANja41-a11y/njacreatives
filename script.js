@@ -69,6 +69,8 @@ const menuButton = document.getElementById("menuButton");
 const menuPopup = document.getElementById("menuPopup");
 const contentPopup = document.getElementById("contentPopup");
 
+  const content = document.getElementById("popupContent");
+
 const closePopup = document.getElementById("closePopup");
 const closeContent = document.getElementById("closeContent");
 
