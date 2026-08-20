@@ -1241,3 +1241,129 @@ footer a {
   }
 
 }
+/* ===============================
+   MY SONGS
+================================ */
+
+.songs-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 13px 15px;
+
+  background: rgba(239, 228, 247, 0.72);
+
+  border-radius: 18px;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.song-item:hover {
+  transform: translateY(-2px);
+  background: rgba(230, 216, 242, .95);
+
+  box-shadow:
+    0 8px 20px rgba(120, 90, 150, .10);
+}
+
+.song-play {
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--purple);
+  color: white;
+
+  font-size: .85rem;
+
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.song-play:hover {
+  transform: scale(1.08);
+  background: var(--purple-dark);
+}
+
+.song-info {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.song-info strong {
+  font-size: .95rem;
+  color: var(--text);
+}
+
+.song-info small {
+  color: #8b7c90;
+  font-size: .75rem;
+}
+
+.song-note {
+  color: var(--purple);
+  font-size: 1.15rem;
+}
+
+.song-audio {
+  display: none;
+}
+
+.songs-message {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+
+  color: #8b7c90;
+  font-size: .9rem;
+}
+
+.song-item.playing {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(238, 224, 248, .95),
+      rgba(225, 242, 246, .9)
+    );
+
+  box-shadow:
+    0 8px 25px rgba(120, 90, 150, .10);
+}
+
+.song-item.playing .song-note {
+  animation: musicFloat .8s ease-in-out infinite alternate;
+}
+
+@keyframes musicFloat {
+  from {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  to {
+    transform: translateY(-4px) rotate(5deg);
+  }
+}
