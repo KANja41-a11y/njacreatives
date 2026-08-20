@@ -73,50 +73,94 @@ const closePopup = document.getElementById("closePopup");
 const closeContent = document.getElementById("closeContent");
 
 
-// OPEN MENU
-if (menuButton) {
-  menuButton.addEventListener("click", () => {
+/* OPEN MENU */
+
+if (menuButton && backdrop && menuPopup) {
+
+  menuButton.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    stopAutoScroll();
+
     backdrop.classList.add("open");
+
     menuPopup.style.display = "block";
-    contentPopup.classList.remove("open");
-  });
-}
 
-
-// CLOSE MENU
-if (closePopup) {
-  closePopup.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    backdrop.classList.remove("open");
-    contentPopup.classList.remove("open");
-  });
-}
-
-
-// CLOSE CONTENT POPUP
-if (closeContent) {
-  closeContent.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    contentPopup.classList.remove("open");
-    backdrop.classList.remove("open");
-  });
-}
-
-
-// CLOSE WHEN CLICKING OUTSIDE
-if (backdrop) {
-  backdrop.addEventListener("click", (e) => {
-
-    if (e.target === backdrop) {
-      backdrop.classList.remove("open");
+    if (contentPopup) {
       contentPopup.classList.remove("open");
     }
 
   });
+
+}
+
+
+/* CLOSE MENU */
+
+if (closePopup) {
+
+  closePopup.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    backdrop.classList.remove("open");
+
+    if (contentPopup) {
+      contentPopup.classList.remove("open");
+    }
+
+    resetActivity();
+
+  });
+
+}
+
+
+/* CLOSE CONTENT */
+
+if (closeContent) {
+
+  closeContent.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (contentPopup) {
+      contentPopup.classList.remove("open");
+    }
+
+    backdrop.classList.remove("open");
+
+    resetActivity();
+
+  });
+
+}
+
+
+/* CLICK OUTSIDE POPUP */
+
+if (backdrop) {
+
+  backdrop.addEventListener("click", (e) => {
+
+    if (e.target === backdrop) {
+
+      backdrop.classList.remove("open");
+
+      if (contentPopup) {
+        contentPopup.classList.remove("open");
+      }
+
+      resetActivity();
+
+    }
+
+  });
+
 }
   /* ================= POPUP CONTENT ================= */
 
