@@ -1,665 +1,442 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===============================
-     ELEMENTS
-  =============================== */
+  /* =====================================================
+     SLIDER
+  ===================================================== */
 
+  const slides = [...document.querySelectorAll(".slide")];
+  const dots = document.getElementById("dots");
+  const nextButton = document.getElementById("next");
+  const prevButton = document.getElementById("prev");
+
+  let current = 0;
+
+  function showSlide(index) {
+    if (!slides.length) return;
+
+    current = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === current);
+    });
+
+    if (dots) {
+      [...dots.children].forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
+      });
+    }
+  }
+
+  if (dots) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement("span");
+
+      dot.className = "dot" + (i === 0 ? " active" : "");
+
+      dot.addEventListener("click", () => {
+        showSlide(i);
+        resetActivity();
+      });
+
+      dots.appendChild(dot);
+    });
+  }
+
+  nextButton?.addEventListener("click", () => {
+    showSlide(current + 1);
+    resetActivity();
+  });
+
+  prevButton?.addEventListener("click", () => {
+    showSlide(current - 1);
+    resetActivity();
+  });
+
+  setInterval(() => {
+    showSlide(current + 1);
+  }, 5000);
+
+
+  /* =====================================================
+     POPUP MENU
+  ===================================================== */
+
+  const backdrop = document.getElementById("modalBackdrop");
   const menuButton = document.getElementById("menuButton");
-  const modalBackdrop = document.getElementById("modalBackdrop");
   const menuPopup = document.getElementById("menuPopup");
   const contentPopup = document.getElementById("contentPopup");
-  const popupContent = document.getElementById("popupContent");
 
   const closePopup = document.getElementById("closePopup");
   const closeContent = document.getElementById("closeContent");
+  const popupContent = document.getElementById("popupContent");
 
-  const helloBackdrop = document.getElementById("helloBackdrop");
-  const helloClose = document.getElementById("helloClose");
-  const letsTalk = document.getElementById("letsTalk");
-
-
-  /* ===============================
-     MENU
-  =============================== */
 
   function openMenu() {
-    if (!modalBackdrop) return;
+    if (!backdrop || !menuPopup) return;
 
-    modalBackdrop.classList.add("show");
+    backdrop.classList.add("open");
+
+    menuPopup.style.display = "block";
+
+    if (contentPopup) {
+      contentPopup.classList.remove("open");
+    }
+
+    resetActivity();
+  }
+
+
+  function closeAllPopups() {
+    if (!backdrop) return;
+
+    backdrop.classList.remove("open");
 
     if (menuPopup) {
-      menuPopup.classList.add("active");
+      menuPopup.style.display = "none";
     }
 
     if (contentPopup) {
-      contentPopup.classList.remove("active");
-    }
-  }
-
-  function closeMenu() {
-    if (!modalBackdrop) return;
-
-    modalBackdrop.classList.remove("show");
-
-    if (menuPopup) {
-      menuPopup.classList.remove("active");
+      contentPopup.classList.remove("open");
     }
 
-    if (contentPopup) {
-      contentPopup.classList.remove("active");
-    }
+    resetActivity();
   }
 
 
-  if (menuButton) {
-    menuButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openMenu();
-    });
-  }
+  menuButton?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    openMenu();
+  });
 
 
-  if (closePopup) {
-    closePopup.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeMenu();
-    });
-  }
+  closePopup?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    closeAllPopups();
+  });
 
 
-  if (closeContent) {
-    closeContent.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+  closeContent?.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      if (contentPopup) {
-        contentPopup.classList.remove("active");
-      }
-
-      if (menuPopup) {
-        menuPopup.classList.add("active");
-      }
-    });
-  }
+    closeAllPopups();
+  });
 
 
-  /* ===============================
+  /* =====================================================
      POPUP CONTENT
-  =============================== */
+  ===================================================== */
 
   const popupData = {
 
     home: {
-      title: "Home 🏠",
-      text: `
-        <p>
-          Welcome to my little creative world ♡
-        </p>
-
-        <p>
-          A soft place where ideas, memories,
-          and little creations become stories.
+      title: "Welcome Home ✦",
+      html: `
+        <p class="popup-content-text">
+          A tiny corner for my ideas, memories,
+          creative chaos, and little things
+          that make me happy. ♡
         </p>
       `
     },
+
 
     works: {
       title: "My Works 🎨",
-      text: `
-        <p>
-          A collection of things I've created
-          along my creative journey.
-        </p>
+      html: `
+        <div class="works-list">
 
-        <div class="popup-gallery">
+          <div class="work-pill">
+            🎨 Graphic Design
+          </div>
 
-          <img src="images/works-art.jpg" alt="My artwork">
+          <div class="work-pill">
+            📸 Photography
+          </div>
 
-          <img src="images/experiments-cake.jpg" alt="Creative experiment">
+          <div class="work-pill">
+            🎬 Video & Creative Content
+          </div>
 
-        </div>
-      `
-    },
-
-    notes: {
-      title: "Creative Notes ☁️",
-      text: `
-        <p>
-          Little thoughts, ideas, inspirations,
-          and random things that make me want to create.
-        </p>
-
-        <img
-          class="popup-large-image"
-          src="images/notes-vintage.jpg"
-          alt="Creative notes"
-        >
-      `
-    },
-
-    experiments: {
-      title: "Experiments 🪄",
-      text: `
-        <p>
-          Sometimes I just want to try something new.
-          No perfect plan — just curiosity.
-        </p>
-
-        <img
-          class="popup-large-image"
-          src="images/experiments-cake.jpg"
-          alt="Creative experiment"
-        >
-      `
-    },
-
-    about: {
-      title: "About Me 🌷",
-      text: `
-        <div class="about-popup">
-
-          <img
-            class="about-photo"
-            src="images/hero-main.jpg"
-            alt="NJA"
-          >
-
-          <div>
-            <h3>NJA ✦</h3>
-
-            <p>
-              creative dreamer & maker
-            </p>
-
-            <p>
-              ☁️ loves turning ideas into visuals
-            </p>
-
-            <p>
-              ✦ always learning something new
-            </p>
-
-            <p>
-              ♡ creating little things with big dreams
-            </p>
+          <div class="work-pill">
+            💻 Web Design
           </div>
 
         </div>
       `
     },
 
-    secret: {
-      title: "Secret ✦",
-      text: `
-        <p>
-          You found the little secret 👀♡
+
+    notes: {
+      title: "Creative Notes 💭",
+      html: `
+        <div class="sticky">
+
+          <strong>
+            Today's little thought ✦
+          </strong>
+
+          <br><br>
+
+          <em>
+            Create something
+            that feels like you.
+          </em>
+
+          <br><br>
+
+          — little reminder from NJA ♡
+
+        </div>
+      `
+    },
+
+
+    experiments: {
+      title: "Little Experiments 🪄",
+
+      html: `
+        <p class="popup-content-text">
+          A scrapbook of random ideas,
+          visual experiments, and things
+          I created just because I was curious. ♡
         </p>
 
-        <p>
-          Keep creating. Keep dreaming.
-          Your little ideas matter.
-        </p>
+        <div class="scrapbook">
+
+          <img
+            src="images/works-art.jpg"
+            alt="Creative experiment"
+          >
+
+          <img
+            src="images/experiments-cake.jpg"
+            alt="Creative experiment"
+          >
+
+        </div>
+      `
+    },
+
+
+    about: {
+      title: "About Me 🌷",
+
+      html: `
+        <div class="profile">
+
+          <img
+            src="images/hero-main.jpg"
+            alt="NJA"
+          >
+
+          <div>
+
+            <strong>
+              NJA ✦
+            </strong>
+
+            <p class="popup-content-text">
+              creative dreamer & maker
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="funfacts">
+
+          ✦ loves turning ideas into visuals
+          <br>
+
+          ✦ collects tiny inspirations
+          <br>
+
+          ✦ learning, creating, becoming
+          <br>
+
+          ✦ always dreaming up something new
+
+        </div>
+      `
+    },
+
+
+    secret: {
+      title: "Pssst... 👀",
+
+      html: `
+        <div class="sticky">
+
+          <strong>
+            Secret message ✦
+          </strong>
+
+          <br><br>
+
+          “You don't need to have it
+          all figured out.
+
+          Just make the next little thing.”
+
+          <br><br>
+
+          ♡
+
+        </div>
       `
     }
 
   };
 
 
-  /* ===============================
-     MENU ITEMS
-  =============================== */
+  /*
+     INI BAGIAN PALING PENTING.
+     Saat menu diklik:
+     MENU HILANG
+     CONTENT POPUP MUNCUL
+  */
 
-  const popupButtons = document.querySelectorAll(
-    ".popup-nav [data-popup]"
-  );
-
-
-  popupButtons.forEach((button) => {
+  document.querySelectorAll("[data-popup]").forEach(button => {
 
     button.addEventListener("click", (e) => {
 
       e.preventDefault();
       e.stopPropagation();
 
-      const type = button.dataset.popup;
+      const key = button.dataset.popup;
+      const item = popupData[key];
 
-      console.log("Popup clicked:", type);
-
-      /* Home langsung ke home */
-      if (type === "home") {
-
-        closeMenu();
-
-        setTimeout(() => {
-          document.getElementById("home")?.scrollIntoView({
-            behavior: "smooth"
-          });
-        }, 100);
-
-        return;
-      }
-
-
-      const data = popupData[type];
-
-      if (!data || !popupContent) {
-        console.log("Popup tidak ditemukan:", type);
-        return;
-      }
+      if (!item || !popupContent || !contentPopup) return;
 
 
       popupContent.innerHTML = `
-        <div class="popup-inner">
+        <h2 class="popup-content-title">
+          ${item.title}
+        </h2>
 
-          <p class="popup-eyebrow">
-            NJAcreative ✦
-          </p>
-
-          <h2>
-            ${data.title}
-          </h2>
-
-          <div class="popup-body">
-            ${data.text}
-          </div>
-
-        </div>
+        ${item.html}
       `;
 
 
-      /* Sembunyikan menu */
+      // sembunyikan menu
       if (menuPopup) {
-        menuPopup.classList.remove("active");
+        menuPopup.style.display = "none";
       }
 
 
-      /* Tampilkan content */
-      if (contentPopup) {
-        contentPopup.classList.add("active");
-      }
+      // tampilkan isi
+      contentPopup.classList.add("open");
+
+      resetActivity();
 
     });
 
   });
 
 
-  /* ===============================
-     CLICK OUTSIDE
-  =============================== */
+  /* =====================================================
+     CLICK OUTSIDE POPUP
+  ===================================================== */
 
-  if (modalBackdrop) {
+  backdrop?.addEventListener("click", (e) => {
 
-    modalBackdrop.addEventListener("click", (e) => {
-
-      if (e.target === modalBackdrop) {
-        closeMenu();
-      }
-
-    });
-
-  }
-
-
-  /* ===============================
-     ESC
-  =============================== */
-
-  document.addEventListener("keydown", (e) => {
-
-    if (e.key === "Escape") {
-      closeMenu();
-
-      if (helloBackdrop) {
-        helloBackdrop.classList.remove("show");
-      }
+    if (e.target === backdrop) {
+      closeAllPopups();
     }
 
   });
 
 
-  /* ===============================
-     LET'S TALK
-  =============================== */
+  /* =====================================================
+     JOURNEY BUTTON
+  ===================================================== */
 
-  if (letsTalk) {
+  const journeyButton =
+    document.querySelector('[data-open="journey"]');
 
-    letsTalk.addEventListener("click", (e) => {
+  journeyButton?.addEventListener("click", () => {
 
-      e.preventDefault();
-
-      if (helloBackdrop) {
-        helloBackdrop.classList.add("show");
-      }
-
-    });
-
-  }
-
-
-  if (helloClose) {
-
-    helloClose.addEventListener("click", () => {
-
-      if (helloBackdrop) {
-        helloBackdrop.classList.remove("show");
-      }
-
-    });
-
-  }
-
-
-  if (helloBackdrop) {
-
-    helloBackdrop.addEventListener("click", (e) => {
-
-      if (e.target === helloBackdrop) {
-        helloBackdrop.classList.remove("show");
-      }
-
-    });
-
-  }
-
-
-  /* ===============================
-     SLIDER
-  =============================== */
-
-  const slides = document.querySelectorAll(".slide");
-  const next = document.getElementById("next");
-  const prev = document.getElementById("prev");
-  const dots = document.getElementById("dots");
-
-  let currentSlide = 0;
-
-  if (slides.length && dots) {
-
-    slides.forEach((_, index) => {
-
-      const dot = document.createElement("span");
-
-      dot.className = "slider-dot";
-
-      if (index === 0) {
-        dot.classList.add("active");
-      }
-
-      dot.addEventListener("click", () => {
-        showSlide(index);
-      });
-
-      dots.appendChild(dot);
-
-    });
-
-  }
-
-
-  function showSlide(index) {
-
-    if (!slides.length) return;
-
-    currentSlide =
-      (index + slides.length) % slides.length;
-
-
-    slides.forEach((slide, i) => {
-
-      slide.classList.toggle(
-        "active",
-        i === currentSlide
-      );
-
-    });
-
-
-    const allDots =
-      document.querySelectorAll(".slider-dot");
-
-
-    allDots.forEach((dot, i) => {
-
-      dot.classList.toggle(
-        "active",
-        i === currentSlide
-      );
-
-    });
-
-  }
-
-
-  if (next) {
-
-    next.addEventListener("click", () => {
-      showSlide(currentSlide + 1);
-    });
-
-  }
-
-
-  if (prev) {
-
-    prev.addEventListener("click", () => {
-      showSlide(currentSlide - 1);
-    });
-
-  }
-
-
-  /* ===============================
-     AUTO SLIDER
-  =============================== */
-
-  setInterval(() => {
-
-    if (slides.length) {
-      showSlide(currentSlide + 1);
-    }
-
-  }, 5000);
-
-
-  /* ===============================
-     REVEAL
-  =============================== */
-
-  const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-  const observer =
-    new IntersectionObserver(
-      (entries) => {
-
-        entries.forEach((entry) => {
-
-          if (entry.isIntersecting) {
-
-            entry.target.classList.add("visible");
-
-          }
-
-        });
-
-      },
-      {
-        threshold: 0.15
-      }
-    );
-
-
-  revealElements.forEach((element) => {
-    observer.observe(element);
-  });
-
-
-  /* ===============================
-     AUTO SCROLL DREAMY
-  =============================== */
-
-  let lastActivity = Date.now();
-  let autoScrolling = false;
-  let scrollFrame;
-
-
-  function userActivity() {
-
-    lastActivity = Date.now();
-
-    if (autoScrolling) {
-      autoScrolling = false;
-
-      cancelAnimationFrame(scrollFrame);
-    }
-
-  }
-
-
-  [
-    "mousemove",
-    "mousedown",
-    "touchstart",
-    "touchmove",
-    "wheel",
-    "keydown",
-    "scroll"
-  ].forEach((eventName) => {
-
-    window.addEventListener(
-      eventName,
-      userActivity,
-      { passive: true }
-    );
-
-  });
-
-
-  function dreamyScroll() {
-
-    if (!autoScrolling) return;
-
-
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-
-    if (window.scrollY >= maxScroll - 5) {
-
-      autoScrolling = false;
-
-      window.scrollTo({
-        top: 0,
+    document
+      .getElementById("journey")
+      ?.scrollIntoView({
         behavior: "smooth"
       });
 
+    resetActivity();
 
-      setTimeout(() => {
+  });
 
-        if (Date.now() - lastActivity >= 2000) {
 
-          autoScrolling = true;
-          scrollFrame = requestAnimationFrame(
-            dreamyScroll
-          );
+  /* =====================================================
+     LET'S TALK
+  ===================================================== */
 
-        }
+  const letsTalk = document.getElementById("letsTalk");
+  const helloBackdrop = document.getElementById("helloBackdrop");
+  const helloClose = document.getElementById("helloClose");
 
-      }, 1200);
+  letsTalk?.addEventListener("click", (e) => {
 
-      return;
+    e.preventDefault();
 
+    helloBackdrop?.classList.add("show");
+
+    resetActivity();
+
+  });
+
+
+  helloClose?.addEventListener("click", () => {
+
+    helloBackdrop?.classList.remove("show");
+
+    resetActivity();
+
+  });
+
+
+  helloBackdrop?.addEventListener("click", (e) => {
+
+    if (e.target === helloBackdrop) {
+      helloBackdrop.classList.remove("show");
     }
 
-
-    window.scrollBy({
-      top: 0.35,
-      behavior: "auto"
-    });
+  });
 
 
-    scrollFrame =
-      requestAnimationFrame(dreamyScroll);
-
-  }
-
-
-  setInterval(() => {
-
-    if (
-      !autoScrolling &&
-      Date.now() - lastActivity >= 2000
-    ) {
-
-      autoScrolling = true;
-
-      scrollFrame =
-        requestAnimationFrame(dreamyScroll);
-
-    }
-
-  }, 500);
-
-
-  /* ===============================
+  /* =====================================================
      MUSIC
-  =============================== */
+  ===================================================== */
 
-  const audio =
-    document.getElementById("audio");
-
+  const audio = document.getElementById("audio");
 
   if (audio) {
 
+    audio.volume = 0.45;
     audio.loop = true;
-    audio.preload = "auto";
 
-    /*
-      Browser biasanya memblokir autoplay
-      dengan suara sebelum user berinteraksi.
+    function startMusic() {
 
-      Jadi musik akan mencoba mulai setelah
-      interaksi pertama pengunjung.
-    */
+      audio.play().catch(() => {
+        // Browser menunggu interaksi user.
+      });
 
-    const startMusic = async () => {
+    }
 
-      try {
+    startMusic();
 
-        await audio.play();
-
-      } catch (error) {
-
-        console.log(
-          "Music autoplay menunggu interaksi."
-        );
-
-      }
-
-      window.removeEventListener(
-        "click",
-        startMusic
-      );
-
-      window.removeEventListener(
-        "touchstart",
-        startMusic
-      );
-
-    };
-
-
-    window.addEventListener(
+    document.addEventListener(
       "click",
       startMusic,
       { once: true }
     );
 
-    window.addEventListener(
+    document.addEventListener(
       "touchstart",
       startMusic,
       { once: true }
@@ -668,9 +445,131 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* ===============================
+  /* =====================================================
+     AUTO SCROLL DREAMY
+  ===================================================== */
+
+  let inactivityTimer;
+  let autoScrollActive = false;
+  let autoScrollFrame;
+
+  const AUTO_DELAY = 2000;
+
+  function resetActivity() {
+
+    autoScrollActive = false;
+
+    if (autoScrollFrame) {
+      cancelAnimationFrame(autoScrollFrame);
+    }
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(() => {
+      startAutoScroll();
+    }, AUTO_DELAY);
+
+  }
+
+
+  function startAutoScroll() {
+
+    if (
+      document.querySelector(".modal-backdrop.open") ||
+      document.querySelector(".hello-backdrop.show")
+    ) {
+      return;
+    }
+
+    autoScrollActive = true;
+
+    dreamyScroll();
+
+  }
+
+
+  function dreamyScroll() {
+
+    if (!autoScrollActive) return;
+
+    const maxScroll =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
+
+    const currentScroll = window.scrollY;
+
+
+    if (currentScroll >= maxScroll - 5) {
+
+      autoScrollActive = false;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      setTimeout(() => {
+
+        if (!autoScrollActive) {
+          autoScrollActive = true;
+          dreamyScroll();
+        }
+
+      }, 1000);
+
+      return;
+
+    }
+
+
+    // efek floating / dreamy
+    const speed =
+      0.35 +
+      Math.sin(Date.now() / 900) * 0.12;
+
+
+    window.scrollBy(0, speed);
+
+    autoScrollFrame =
+      requestAnimationFrame(dreamyScroll);
+
+  }
+
+
+  /* USER ACTIVITY */
+
+  [
+    "mousemove",
+    "mousedown",
+    "keydown",
+    "touchstart",
+    "wheel",
+    "scroll"
+  ].forEach(event => {
+
+    window.addEventListener(
+      event,
+      () => {
+
+        if (
+          event === "scroll" &&
+          autoScrollActive
+        ) {
+          return;
+        }
+
+        resetActivity();
+
+      },
+      { passive: true }
+    );
+
+  });
+
+
+  /* =====================================================
      CUSTOM CURSOR
-  =============================== */
+  ===================================================== */
 
   const cursorDot =
     document.getElementById("cursorDot");
@@ -679,33 +578,61 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("cursorRing");
 
 
-  document.addEventListener(
-    "mousemove",
-    (e) => {
+  if (cursorDot && cursorRing) {
 
-      if (cursorDot) {
+    window.addEventListener("mousemove", (e) => {
 
-        cursorDot.style.left =
-          `${e.clientX}px`;
+      cursorDot.style.left = e.clientX + "px";
+      cursorDot.style.top = e.clientY + "px";
 
-        cursorDot.style.top =
-          `${e.clientY}px`;
+      cursorRing.style.left = e.clientX + "px";
+      cursorRing.style.top = e.clientY + "px";
 
+    });
+
+  }
+
+
+  /* =====================================================
+     SCROLL REVEAL
+  ===================================================== */
+
+  const observer =
+    new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
       }
+    );
 
 
-      if (cursorRing) {
+  document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
 
-        cursorRing.style.left =
-          `${e.clientX}px`;
+      observer.observe(element);
 
-        cursorRing.style.top =
-          `${e.clientY}px`;
+    });
 
-      }
 
-    }
-  );
+  /* =====================================================
+     START
+  ===================================================== */
 
+  showSlide(0);
+
+  resetActivity();
 
 });
