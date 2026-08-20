@@ -976,3 +976,196 @@ footer a {
   border-radius: 15px;
   font-size: .92rem;
 }
+/* ===============================
+   STORE
+================================ */
+
+.store-section {
+  padding: 110px 7% 130px;
+}
+
+.store-heading {
+  max-width: 650px;
+  margin-bottom: 55px;
+}
+
+.store-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.store-heading h2 em {
+  color: var(--purple);
+  font-style: italic;
+}
+
+.store-intro {
+  max-width: 500px;
+  margin-top: 20px;
+  color: #756b7c;
+  line-height: 1.7;
+}
+
+
+/* PRODUCT GRID */
+
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+
+/* CARD */
+
+.store-card {
+  background: rgba(255,255,255,.68);
+  border: 1px solid rgba(139,114,184,.10);
+  border-radius: 26px;
+  overflow: hidden;
+
+  box-shadow:
+    0 15px 40px rgba(70,50,80,.07);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-8px) rotate(-.5deg);
+
+  box-shadow:
+    0 25px 55px rgba(70,50,80,.12);
+}
+
+
+/* IMAGE */
+
+.store-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #eee5f3;
+}
+
+.store-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition:
+    transform .5s ease;
+}
+
+.store-card:hover .store-image img {
+  transform: scale(1.04);
+}
+
+
+/* TAG */
+
+.store-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+
+  padding: 7px 12px;
+
+  background: rgba(255,250,244,.88);
+  backdrop-filter: blur(8px);
+
+  border-radius: 999px;
+
+  color: var(--purple);
+  font-size: .75rem;
+}
+
+
+/* INFO */
+
+.store-info {
+  padding: 22px;
+}
+
+.store-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.store-info p {
+  margin: 8px 0 20px;
+
+  color: #827689;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+
+/* PRICE + BUY */
+
+.store-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-bottom strong {
+  color: var(--purple-dark);
+  font-size: .95rem;
+}
+
+.store-buy {
+  padding: 9px 15px;
+
+  border-radius: 999px;
+
+  background: var(--purple);
+  color: white;
+
+  font-size: .82rem;
+
+  box-shadow:
+    0 8px 20px rgba(139,114,184,.2);
+
+  transition: .25s ease;
+}
+
+.store-buy:hover {
+  transform: translateY(-2px);
+}
+
+
+/* FOOTER TEXT */
+
+.store-footer {
+  margin-top: 45px;
+
+  text-align: center;
+
+  color: #8b7c90;
+
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: .9rem;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+  .store-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: auto;
+  }
+
+  .store-heading {
+    margin-bottom: 35px;
+  }
+
+}
