@@ -64,67 +64,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= POPUP MENU ================= */
 
-  const backdrop =
-    document.getElementById("modalBackdrop");
+const backdrop = document.getElementById("modalBackdrop");
+const menuButton = document.getElementById("menuButton");
+const menuPopup = document.getElementById("menuPopup");
+const contentPopup = document.getElementById("contentPopup");
 
-  const menuButton =
-    document.getElementById("menuButton");
+const closePopup = document.getElementById("closePopup");
+const closeContent = document.getElementById("closeContent");
 
-  const menuPopup =
-    document.getElementById("menuPopup");
 
-  const contentPopup =
-    document.getElementById("contentPopup");
-
-  const content =
-    document.getElementById("popupContent");
-
-  menuButton?.addEventListener("click", () => {
-
+// OPEN MENU
+if (menuButton) {
+  menuButton.addEventListener("click", () => {
     backdrop.classList.add("open");
-
     menuPopup.style.display = "block";
+    contentPopup.classList.remove("open");
+  });
+}
+
+
+// CLOSE MENU
+if (closePopup) {
+  closePopup.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    backdrop.classList.remove("open");
+    contentPopup.classList.remove("open");
+  });
+}
+
+
+// CLOSE CONTENT POPUP
+if (closeContent) {
+  closeContent.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
     contentPopup.classList.remove("open");
-
-    stopAutoScroll();
-
+    backdrop.classList.remove("open");
   });
+}
 
 
-  document.getElementById("closePopup")
-    ?.addEventListener("click", () => {
-
-      backdrop.classList.remove("open");
-
-      resetActivity();
-
-    });
-
-
-  document.getElementById("closeContent")
-    ?.addEventListener("click", () => {
-
-      contentPopup.classList.remove("open");
-
-      resetActivity();
-
-    });
-
-
-  backdrop?.addEventListener("click", (e) => {
+// CLOSE WHEN CLICKING OUTSIDE
+if (backdrop) {
+  backdrop.addEventListener("click", (e) => {
 
     if (e.target === backdrop) {
-
       backdrop.classList.remove("open");
-
-      resetActivity();
-
+      contentPopup.classList.remove("open");
     }
 
   });
-
-
+}
   /* ================= POPUP CONTENT ================= */
 
   const popupData = {
