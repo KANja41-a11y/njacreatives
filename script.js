@@ -28,15 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   if (dots) {
 
     slides.forEach((_, i) => {
 
       const dot = document.createElement("span");
 
-      dot.className =
-        "dot" + (i === 0 ? " active" : "");
+      dot.className = "dot" + (i === 0 ? " active" : "");
 
       dot.addEventListener("click", () => {
         showSlide(i);
@@ -44,92 +42,53 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       dots.appendChild(dot);
-
     });
-
   }
 
-
   nextButton?.addEventListener("click", () => {
-
     showSlide(current + 1);
-
     resetActivity();
-
   });
-
 
   prevButton?.addEventListener("click", () => {
-
     showSlide(current - 1);
-
     resetActivity();
-
   });
 
-
-  /* AUTO SLIDER */
-
   setInterval(() => {
-
     showSlide(current + 1);
-
   }, 5000);
-
 
 
   /* =====================================================
      MENU + CONTENT POPUP
   ===================================================== */
 
-  const backdrop =
-    document.getElementById("modalBackdrop");
+  const backdrop = document.getElementById("modalBackdrop");
+  const menuButton = document.getElementById("menuButton");
+  const menuPopup = document.getElementById("menuPopup");
+  const contentPopup = document.getElementById("contentPopup");
 
-  const menuButton =
-    document.getElementById("menuButton");
+  const closePopup = document.getElementById("closePopup");
+  const closeContent = document.getElementById("closeContent");
+  const popupContent = document.getElementById("popupContent");
 
-  const menuPopup =
-    document.getElementById("menuPopup");
-
-  const contentPopup =
-    document.getElementById("contentPopup");
-
-  const closePopup =
-    document.getElementById("closePopup");
-
-  const closeContent =
-    document.getElementById("closeContent");
-
-  const popupContent =
-    document.getElementById("popupContent");
-
-
-  /* =====================================================
-     OPEN MENU
-  ===================================================== */
 
   function openMenu() {
 
-    if (!backdrop) return;
+    if (!backdrop || !menuPopup) return;
 
     backdrop.classList.add("open");
 
-    /*
-      MENU SELALU TETAP TERLIHAT
-    */
+    menuPopup.style.display = "block";
 
-    if (menuPopup) {
-      menuPopup.style.display = "block";
+    if (contentPopup) {
+      contentPopup.classList.remove("open");
     }
 
     resetActivity();
-
   }
 
-
-  /* =====================================================
-     CLOSE SEMUA
-  ===================================================== */
 
   function closeAllPopups() {
 
@@ -145,14 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
       menuPopup.style.display = "block";
     }
 
-    resetActivity();
+    stopSongPlayers();
 
+    resetActivity();
   }
 
-
-  /* =====================================================
-     OPEN MENU BUTTON
-  ===================================================== */
 
   menuButton?.addEventListener("click", (e) => {
 
@@ -160,13 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation();
 
     openMenu();
-
   });
 
-
-  /* =====================================================
-     X PADA MENU
-  ===================================================== */
 
   closePopup?.addEventListener("click", (e) => {
 
@@ -174,16 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
     e.stopPropagation();
 
     closeAllPopups();
-
   });
 
 
-  /* =====================================================
-     X PADA CONTENT
-     
-     INI CUMA MENUTUP CONTENT.
-     MENU TETAP ADA.
-  ===================================================== */
+  /*
+    X CONTENT:
+    hanya menutup isi,
+    MENU TETAP TERBUKA.
+  */
 
   closeContent?.addEventListener("click", (e) => {
 
@@ -194,22 +143,20 @@ document.addEventListener("DOMContentLoaded", () => {
       contentPopup.classList.remove("open");
     }
 
-    resetActivity();
+    stopSongPlayers();
 
+    resetActivity();
   });
 
 
-
   /* =====================================================
-     POPUP CONTENT DATA
+     POPUP DATA
   ===================================================== */
 
   const popupData = {
 
     home: {
-
       title: "Welcome Home ✦",
-
       html: `
         <p class="popup-content-text">
           A tiny corner for my ideas, memories,
@@ -217,14 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
           that make me happy. ♡
         </p>
       `
-
     },
 
 
     works: {
-
       title: "My Works 🎨",
-
       html: `
         <div class="works-list">
 
@@ -246,87 +190,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
       `
-songs: {
-  title: "My Songs 🎵",
-
-  html: `
-    <div class="songs-list">
-
-      <div class="song-item">
-        <button class="song-play" data-song="song1">
-          ▶
-        </button>
-
-        <div class="song-info">
-          <strong>(name)</strong>
-          <small>my little song ♡</small>
-        </div>
-
-        <span class="song-note">♫</span>
-
-        <audio
-          class="song-audio"
-          data-audio="song1"
-          src="music/song-1.mp3"
-          preload="metadata"
-        ></audio>
-      </div>
-
-
-      <div class="song-item">
-        <button class="song-play" data-song="song2">
-          ▶
-        </button>
-
-        <div class="song-info">
-          <strong>(name)</strong>
-          <small>my little song ♡</small>
-        </div>
-
-        <span class="song-note">♫</span>
-
-        <audio
-          class="song-audio"
-          data-audio="song2"
-          src="music/song-2.mp3"
-          preload="metadata"
-        ></audio>
-      </div>
-
-
-      <div class="song-item">
-        <button class="song-play" data-song="song3">
-          ▶
-        </button>
-
-        <div class="song-info">
-          <strong>(name)</strong>
-          <small>my little song ♡</small>
-        </div>
-
-        <span class="song-note">♫</span>
-
-        <audio
-          class="song-audio"
-          data-audio="song3"
-          src="music/song-3.mp3"
-          preload="metadata"
-        ></audio>
-      </div>
-
-    </div>
-
-    <p class="songs-message">
-      everyone can make a music by self ♡
-    </p>
-  `
-  
     },
 
+
     notes: {
-
       title: "Creative Notes 💭",
-
       html: `
         <div class="sticky">
 
@@ -347,22 +215,112 @@ songs: {
 
         </div>
       `
+    },
 
+
+    songs: {
+      title: "My Songs 🎵",
+
+      html: `
+        <div class="songs-list">
+
+          <div class="song-item">
+
+            <button
+              class="song-play"
+              data-song="song1"
+              type="button"
+            >
+              ▶
+            </button>
+
+            <div class="song-info">
+              <strong>(name)</strong>
+              <small>my little song ♡</small>
+            </div>
+
+            <span class="song-note">♫</span>
+
+            <audio
+              class="song-audio"
+              data-audio="song1"
+              src="music/song-1.mp3"
+              preload="metadata"
+            ></audio>
+
+          </div>
+
+
+          <div class="song-item">
+
+            <button
+              class="song-play"
+              data-song="song2"
+              type="button"
+            >
+              ▶
+            </button>
+
+            <div class="song-info">
+              <strong>(name)</strong>
+              <small>my little song ♡</small>
+            </div>
+
+            <span class="song-note">♫</span>
+
+            <audio
+              class="song-audio"
+              data-audio="song2"
+              src="music/song-2.mp3"
+              preload="metadata"
+            ></audio>
+
+          </div>
+
+
+          <div class="song-item">
+
+            <button
+              class="song-play"
+              data-song="song3"
+              type="button"
+            >
+              ▶
+            </button>
+
+            <div class="song-info">
+              <strong>(name)</strong>
+              <small>my little song ♡</small>
+            </div>
+
+            <span class="song-note">♫</span>
+
+            <audio
+              class="song-audio"
+              data-audio="song3"
+              src="music/song-3.mp3"
+              preload="metadata"
+            ></audio>
+
+          </div>
+
+        </div>
+
+        <p class="songs-message">
+          everyone can make a music by self ♡
+        </p>
+      `
     },
 
 
     experiments: {
-
       title: "Little Experiments 🪄",
 
       html: `
-
         <p class="popup-content-text">
-
           A scrapbook of random ideas,
           visual experiments, and things
           I created just because I was curious. ♡
-
         </p>
 
         <div class="scrapbook">
@@ -378,132 +336,14 @@ songs: {
           >
 
         </div>
-
       `
-
     },
-  
-  /* ====================================================
-   MY SONGS PLAYER
-===================================================== */
 
-let currentSong = null;
-
-function setupSongPlayers() {
-
-  const songButtons =
-    document.querySelectorAll(".song-play");
-
-  const songAudios =
-    document.querySelectorAll(".song-audio");
-
-  songButtons.forEach(button => {
-
-    button.addEventListener("click", (e) => {
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      const songId = button.dataset.song;
-
-      const audio =
-        document.querySelector(
-          `.song-audio[data-audio="${songId}"]`
-        );
-
-      if (!audio) return;
-
-
-      /* klik lagu yang sedang dimainkan = PAUSE */
-
-      if (currentSong === audio && !audio.paused) {
-
-        audio.pause();
-
-        button.textContent = "▶";
-
-        button
-          .closest(".song-item")
-          ?.classList.remove("playing");
-
-        return;
-      }
-
-
-      /* hentikan semua lagu lain */
-
-      songAudios.forEach(otherAudio => {
-
-        if (otherAudio !== audio) {
-
-          otherAudio.pause();
-          otherAudio.currentTime = 0;
-
-          const otherButton =
-            document.querySelector(
-              `.song-play[data-song="${otherAudio.dataset.audio}"]`
-            );
-
-          otherButton &&
-            (otherButton.textContent = "▶");
-
-          otherAudio
-            .closest(".song-item")
-            ?.classList.remove("playing");
-        }
-
-      });
-
-
-      /* PLAY */
-
-      audio.play().then(() => {
-
-        currentSong = audio;
-
-        button.textContent = "Ⅱ";
-
-        button
-          .closest(".song-item")
-          ?.classList.add("playing");
-
-      }).catch(error => {
-
-        console.log("Song tidak bisa dimainkan:", error);
-
-      });
-
-
-      audio.onended = () => {
-
-        button.textContent = "▶";
-
-        button
-          .closest(".song-item")
-          ?.classList.remove("playing");
-
-        currentSong = null;
-
-      };
-
-    });
-
-  });
-
-}
-
-
-    /* =================================================
-       ABOUT ME
-       GANTI FOTO DI SINI
-       ================================================= */
 
     about: {
-
       title: "About Me 🌷",
 
       html: `
-
         <div class="profile">
 
           <img
@@ -539,18 +379,14 @@ function setupSongPlayers() {
           ✦ always dreaming up something new
 
         </div>
-
       `
-
     },
 
 
     secret: {
-
       title: "Pssst... 👀",
 
       html: `
-
         <div class="sticky">
 
           <strong>
@@ -569,23 +405,143 @@ function setupSongPlayers() {
           ♡
 
         </div>
-
       `
-
     }
 
   };
 
 
+  /* =====================================================
+     SONG PLAYER
+  ===================================================== */
+
+  let currentSong = null;
+
+
+  function setupSongPlayers() {
+
+    const buttons =
+      popupContent?.querySelectorAll(".song-play") || [];
+
+    const audios =
+      popupContent?.querySelectorAll(".song-audio") || [];
+
+
+    buttons.forEach(button => {
+
+      button.addEventListener("click", async (e) => {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const songId = button.dataset.song;
+
+        const audio =
+          popupContent.querySelector(
+            `.song-audio[data-audio="${songId}"]`
+          );
+
+        if (!audio) return;
+
+
+        /* PAUSE */
+
+        if (currentSong === audio && !audio.paused) {
+
+          audio.pause();
+
+          button.textContent = "▶";
+
+          button
+            .closest(".song-item")
+            ?.classList.remove("playing");
+
+          return;
+        }
+
+
+        /* STOP LAGU LAIN */
+
+        audios.forEach(otherAudio => {
+
+          if (otherAudio !== audio) {
+
+            otherAudio.pause();
+            otherAudio.currentTime = 0;
+
+            const otherButton =
+              popupContent.querySelector(
+                `.song-play[data-song="${otherAudio.dataset.audio}"]`
+              );
+
+            if (otherButton) {
+              otherButton.textContent = "▶";
+            }
+
+            otherAudio
+              .closest(".song-item")
+              ?.classList.remove("playing");
+          }
+
+        });
+
+
+        try {
+
+          await audio.play();
+
+          currentSong = audio;
+
+          button.textContent = "Ⅱ";
+
+          button
+            .closest(".song-item")
+            ?.classList.add("playing");
+
+        } catch (error) {
+
+          console.log("Lagu tidak bisa dimainkan:", error);
+
+        }
+
+
+        audio.onended = () => {
+
+          button.textContent = "▶";
+
+          button
+            .closest(".song-item")
+            ?.classList.remove("playing");
+
+          currentSong = null;
+
+        };
+
+      });
+
+    });
+  }
+
+
+  function stopSongPlayers() {
+
+    if (!popupContent) return;
+
+    popupContent
+      .querySelectorAll(".song-audio")
+      .forEach(audio => {
+
+        audio.pause();
+        audio.currentTime = 0;
+
+      });
+
+    currentSong = null;
+  }
+
 
   /* =====================================================
-     MENU ITEMS
-     
-     PENTING:
-     TIDAK ADA LAGI:
-     menuPopup.style.display = "none"
-     
-     Jadi menu tetap di kiri.
+     MENU BUTTONS
   ===================================================== */
 
   document
@@ -597,51 +553,50 @@ function setupSongPlayers() {
         e.preventDefault();
         e.stopPropagation();
 
-        const key =
-          button.dataset.popup;
+        const key = button.dataset.popup;
+        const item = popupData[key];
 
-        const item =
-          popupData[key];
-
-        if (
-          !item ||
-          !popupContent ||
-          !contentPopup
-        ) {
+        if (!item || !popupContent || !contentPopup) {
           return;
         }
 
 
-        /* MASUKKAN CONTENT */
+        /* ISI CONTENT */
 
         popupContent.innerHTML = `
-
           <h2 class="popup-content-title">
             ${item.title}
           </h2>
 
           ${item.html}
-
         `;
 
 
-        /* =================================================
-           MENU TETAP TERBUKA
-           CONTENT MUNCUL DI SEBELAHNYA
-           ================================================= */
+        /*
+          MENU TETAP ADA.
+          CONTENT MUNCUL DI SEBELAH.
+        */
 
-        if (menuPopup) {
-          menuPopup.style.display = "block";
-        }
+        menuPopup.style.display = "block";
 
         contentPopup.classList.add("open");
+
+
+        /*
+          Kalau yang dibuka My Songs,
+          pasang player setelah HTML dibuat.
+        */
+
+        if (key === "songs") {
+          setupSongPlayers();
+        }
+
 
         resetActivity();
 
       });
 
     });
-
 
 
   /* =====================================================
@@ -651,24 +606,18 @@ function setupSongPlayers() {
   backdrop?.addEventListener("click", (e) => {
 
     if (e.target === backdrop) {
-
       closeAllPopups();
-
     }
 
   });
 
 
-
   /* =====================================================
-     JOURNEY BUTTON
+     JOURNEY
   ===================================================== */
 
   const journeyButton =
-    document.querySelector(
-      '[data-open="journey"]'
-    );
-
+    document.querySelector('[data-open="journey"]');
 
   journeyButton?.addEventListener("click", () => {
 
@@ -681,7 +630,6 @@ function setupSongPlayers() {
     resetActivity();
 
   });
-
 
 
   /* =====================================================
@@ -721,47 +669,40 @@ function setupSongPlayers() {
   helloBackdrop?.addEventListener("click", (e) => {
 
     if (e.target === helloBackdrop) {
-
       helloBackdrop.classList.remove("show");
-
+      resetActivity();
     }
 
   });
 
 
-
   /* =====================================================
-     MUSIC
+     MAIN MUSIC
   ===================================================== */
 
   const audio =
     document.getElementById("audio");
-
 
   if (audio) {
 
     audio.volume = 0.45;
     audio.loop = true;
 
-
     function startMusic() {
 
       audio.play().catch(() => {
-        // Browser membutuhkan interaksi user.
+        // Browser bisa menunggu interaksi user.
       });
 
     }
 
-
     startMusic();
-
 
     document.addEventListener(
       "click",
       startMusic,
       { once: true }
     );
-
 
     document.addEventListener(
       "touchstart",
@@ -772,15 +713,12 @@ function setupSongPlayers() {
   }
 
 
-
   /* =====================================================
      AUTO SCROLL
   ===================================================== */
 
   let inactivityTimer;
-
   let autoScrollActive = false;
-
   let autoScrollFrame;
 
   const AUTO_DELAY = 2000;
@@ -790,51 +728,27 @@ function setupSongPlayers() {
 
     autoScrollActive = false;
 
-
     if (autoScrollFrame) {
-
-      cancelAnimationFrame(
-        autoScrollFrame
-      );
-
+      cancelAnimationFrame(autoScrollFrame);
     }
 
-
-    clearTimeout(
-      inactivityTimer
-    );
-
+    clearTimeout(inactivityTimer);
 
     inactivityTimer = setTimeout(() => {
-
       startAutoScroll();
-
     }, AUTO_DELAY);
 
   }
 
 
-
   function startAutoScroll() {
 
     if (
-
-      document.querySelector(
-        ".modal-backdrop.open"
-      )
-
-      ||
-
-      document.querySelector(
-        ".hello-backdrop.show"
-      )
-
+      document.querySelector(".modal-backdrop.open") ||
+      document.querySelector(".hello-backdrop.show")
     ) {
-
       return;
-
     }
-
 
     autoScrollActive = true;
 
@@ -843,39 +757,25 @@ function setupSongPlayers() {
   }
 
 
-
   function dreamyScroll() {
 
     if (!autoScrollActive) return;
 
 
-    /* Jangan auto-scroll saat popup terbuka */
-
     if (
-
-      document.querySelector(
-        ".modal-backdrop.open"
-      )
-
-      ||
-
-      document.querySelector(
-        ".hello-backdrop.show"
-      )
-
+      document.querySelector(".modal-backdrop.open") ||
+      document.querySelector(".hello-backdrop.show")
     ) {
 
       autoScrollActive = false;
 
       return;
-
     }
 
 
     const maxScroll =
       document.documentElement.scrollHeight -
       window.innerHeight;
-
 
     const currentScroll =
       window.scrollY;
@@ -885,12 +785,10 @@ function setupSongPlayers() {
 
       autoScrollActive = false;
 
-
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
-
 
       setTimeout(() => {
 
@@ -904,9 +802,7 @@ function setupSongPlayers() {
 
       }, 1000);
 
-
       return;
-
     }
 
 
@@ -914,20 +810,12 @@ function setupSongPlayers() {
       0.35 +
       Math.sin(Date.now() / 900) * 0.12;
 
-
-    window.scrollBy(
-      0,
-      speed
-    );
-
+    window.scrollBy(0, speed);
 
     autoScrollFrame =
-      requestAnimationFrame(
-        dreamyScroll
-      );
+      requestAnimationFrame(dreamyScroll);
 
   }
-
 
 
   /* =====================================================
@@ -935,39 +823,22 @@ function setupSongPlayers() {
   ===================================================== */
 
   [
-
     "mousemove",
     "mousedown",
     "keydown",
     "touchstart",
-    "wheel",
-    "scroll"
-
+    "wheel"
   ].forEach(event => {
 
     window.addEventListener(
       event,
       () => {
-
-        if (
-          event === "scroll" &&
-          autoScrollActive
-        ) {
-
-          return;
-
-        }
-
         resetActivity();
-
       },
-      {
-        passive: true
-      }
+      { passive: true }
     );
 
   });
-
 
 
   /* =====================================================
@@ -975,43 +846,31 @@ function setupSongPlayers() {
   ===================================================== */
 
   const cursorDot =
-    document.getElementById(
-      "cursorDot"
-    );
+    document.getElementById("cursorDot");
 
   const cursorRing =
-    document.getElementById(
-      "cursorRing"
-    );
+    document.getElementById("cursorRing");
 
 
-  if (
-    cursorDot &&
-    cursorRing
-  ) {
+  if (cursorDot && cursorRing) {
 
-    window.addEventListener(
-      "mousemove",
-      (e) => {
+    window.addEventListener("mousemove", (e) => {
 
-        cursorDot.style.left =
-          e.clientX + "px";
+      cursorDot.style.left =
+        e.clientX + "px";
 
-        cursorDot.style.top =
-          e.clientY + "px";
+      cursorDot.style.top =
+        e.clientY + "px";
 
+      cursorRing.style.left =
+        e.clientX + "px";
 
-        cursorRing.style.left =
-          e.clientX + "px";
+      cursorRing.style.top =
+        e.clientY + "px";
 
-        cursorRing.style.top =
-          e.clientY + "px";
-
-      }
-    );
+    });
 
   }
-
 
 
   /* =====================================================
@@ -1024,13 +883,9 @@ function setupSongPlayers() {
 
         entries.forEach(entry => {
 
-          if (
-            entry.isIntersecting
-          ) {
+          if (entry.isIntersecting) {
 
-            entry.target.classList.add(
-              "show"
-            );
+            entry.target.classList.add("show");
 
           }
 
@@ -1050,7 +905,6 @@ function setupSongPlayers() {
       observer.observe(element);
 
     });
-
 
 
   /* =====================================================
