@@ -226,199 +226,152 @@
 
     </section>
 
-/* ===============================
-   STORE
-================================ */
+    <!-- STORE -->
+<section class="store-section" id="store">
 
-.store-section {
-  padding: 110px 7% 130px;
-}
+  <div class="store-heading reveal">
 
-.store-heading {
-  max-width: 650px;
-  margin-bottom: 55px;
-}
+    <p class="eyebrow">
+      ✦ little things to take home
+    </p>
 
-.store-heading h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1.05;
-}
+    <h2>
+      My little <em>store.</em>
+    </h2>
 
-.store-heading h2 em {
-  color: var(--purple);
-  font-style: italic;
-}
+    <p class="store-intro">
+      A tiny collection of things I made, loved,
+      and wanted to share with you ♡
+    </p>
 
-.store-intro {
-  max-width: 500px;
-  margin-top: 20px;
-  color: #756b7c;
-  line-height: 1.7;
-}
+  </div>
 
 
-/* PRODUCT GRID */
+  <div class="store-grid">
 
-.store-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
+    <article class="store-card reveal">
 
+      <div class="store-image">
+        <img
+          src="images/store-1.jpg"
+          alt="NJAcreative Store Item"
+        >
 
-/* CARD */
+        <span class="store-tag">
+          new ✦
+        </span>
+      </div>
 
-.store-card {
-  background: rgba(255,255,255,.68);
-  border: 1px solid rgba(139,114,184,.10);
-  border-radius: 26px;
-  overflow: hidden;
+      <div class="store-info">
 
-  box-shadow:
-    0 15px 40px rgba(70,50,80,.07);
+        <h3>Little Thing #01</h3>
 
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
-}
+        <p>
+          A tiny creative piece made with love ♡
+        </p>
 
-.store-card:hover {
-  transform: translateY(-8px) rotate(-.5deg);
+        <div class="store-bottom">
 
-  box-shadow:
-    0 25px 55px rgba(70,50,80,.12);
-}
+          <strong>Rp 25.000</strong>
 
+          <a
+            href="https://instagram.com/kknjau"
+            target="_blank"
+            rel="noopener"
+            class="store-buy"
+          >
+            Get it ↗
+          </a>
 
-/* IMAGE */
+        </div>
 
-.store-image {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #eee5f3;
-}
+      </div>
 
-.store-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-
-  transition:
-    transform .5s ease;
-}
-
-.store-card:hover .store-image img {
-  transform: scale(1.04);
-}
+    </article>
 
 
-/* TAG */
+    <article class="store-card reveal">
 
-.store-tag {
-  position: absolute;
-  top: 14px;
-  left: 14px;
+      <div class="store-image">
+        <img
+          src="images/store-2.jpg"
+          alt="NJAcreative Store Item"
+        >
+      </div>
 
-  padding: 7px 12px;
+      <div class="store-info">
 
-  background: rgba(255,250,244,.88);
-  backdrop-filter: blur(8px);
+        <h3>Little Thing #02</h3>
 
-  border-radius: 999px;
+        <p>
+          Something cute from my little creative world ♡
+        </p>
 
-  color: var(--purple);
-  font-size: .75rem;
-}
+        <div class="store-bottom">
 
+          <strong>Rp 35.000</strong>
 
-/* INFO */
+          <a
+            href="https://instagram.com/kknjau"
+            target="_blank"
+            rel="noopener"
+            class="store-buy"
+          >
+            Get it ↗
+          </a>
 
-.store-info {
-  padding: 22px;
-}
+        </div>
 
-.store-info h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.45rem;
-  font-weight: 500;
-}
+      </div>
 
-.store-info p {
-  margin: 8px 0 20px;
-
-  color: #827689;
-  font-size: .88rem;
-  line-height: 1.6;
-}
+    </article>
 
 
-/* PRICE + BUY */
+    <article class="store-card reveal">
 
-.store-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+      <div class="store-image">
+        <img
+          src="images/store-3.jpg"
+          alt="NJAcreative Store Item"
+        >
+      </div>
 
-.store-bottom strong {
-  color: var(--purple-dark);
-  font-size: .95rem;
-}
+      <div class="store-info">
 
-.store-buy {
-  padding: 9px 15px;
+        <h3>Little Thing #03</h3>
 
-  border-radius: 999px;
+        <p>
+          Made for anyone who loves little things ♡
+        </p>
 
-  background: var(--purple);
-  color: white;
+        <div class="store-bottom">
 
-  font-size: .82rem;
+          <strong>Rp 45.000</strong>
 
-  box-shadow:
-    0 8px 20px rgba(139,114,184,.2);
+          <a
+            href="https://instagram.com/kknjau"
+            target="_blank"
+            rel="noopener"
+            class="store-buy"
+          >
+            Get it ↗
+          </a>
 
-  transition: .25s ease;
-}
+        </div>
 
-.store-buy:hover {
-  transform: translateY(-2px);
-}
+      </div>
 
+    </article>
 
-/* FOOTER TEXT */
-
-.store-footer {
-  margin-top: 45px;
-
-  text-align: center;
-
-  color: #8b7c90;
-
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-size: .9rem;
-}
+  </div>
 
 
-/* MOBILE */
+  <p class="store-footer">
+    made with love, curiosity & a little sparkle ♡
+  </p>
 
-@media (max-width: 850px) {
+</section>
 
-  .store-grid {
-    grid-template-columns: 1fr;
-    max-width: 450px;
-    margin: auto;
-  }
-
-  .store-heading {
-    margin-bottom: 35px;
-  }
-
-}
     <!-- QUOTE -->
     <section class="quote-section reveal">
 
