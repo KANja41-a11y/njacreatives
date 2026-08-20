@@ -820,9 +820,9 @@ footer a {
   }
 
 }
-/* ===============================
-   FINAL POPUP & MENU FIX
-================================ */
+/* =========================================
+   MENU + CONTENT SIDE BY SIDE
+========================================= */
 
 .modal-backdrop {
   position: fixed;
@@ -833,80 +833,232 @@ footer a {
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  padding: 30px;
 
-  background: rgba(58, 43, 57, 0.22);
-  backdrop-filter: blur(8px);
+  background: rgba(58, 43, 57, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .modal-backdrop.open {
   display: flex;
 }
 
-/* MENU */
-.menu-popup {
-  position: relative;
-  z-index: 10000;
-
-  width: min(310px, 90vw);
-
-  pointer-events: auto;
-}
-
-/* CONTENT */
+/* WRAPPER TIDAK PERLU DIBUAT */
+.menu-popup,
 .content-popup {
   position: relative;
-  z-index: 10001;
+  background: rgba(255, 250, 244, 0.97);
 
-  pointer-events: auto;
+  border-radius: 30px;
+
+  box-shadow:
+    0 30px 80px rgba(50, 30, 60, 0.18),
+    0 8px 25px rgba(70, 50, 90, 0.08);
+
+  animation: popupIn .35s ease;
+}
+
+/* ================= MENU ================= */
+
+.menu-popup {
+  width: min(430px, 90vw);
+
+  max-height: 85vh;
+  overflow-y: auto;
+
+  padding: 34px 30px 30px;
+
+  flex-shrink: 0;
+}
+
+/* ================= CONTENT ================= */
+
+.content-popup {
+  display: none;
+
+  width: min(500px, 90vw);
+  max-height: 85vh;
+  overflow-y: auto;
+
+  padding: 38px;
+
+  margin-left: 18px;
+
+  flex-shrink: 0;
 }
 
 .content-popup.open {
   display: block;
 }
 
-/* SEMUA MENU BISA DIKLIK */
+/* ================= MENU ITEMS ================= */
+
 .popup-nav {
-  position: relative;
-  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .popup-nav button,
 .popup-nav a {
-  position: relative;
-  z-index: 10003;
+  width: 100%;
+  min-height: 58px;
 
-  pointer-events: auto;
+  display: flex;
+  align-items: center;
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: rgba(239, 228, 247, 0.72);
+
+  color: #51455f;
+
+  text-align: left;
+  text-decoration: none;
+
   cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
 }
 
-/* X CLOSE */
-.close {
+.popup-nav button:hover,
+.popup-nav a:hover {
+  transform: translateX(4px);
+
+  background: rgba(230, 216, 242, .95);
+
+  box-shadow:
+    0 8px 20px rgba(120, 90, 150, .12);
+}
+
+/* ================= CLOSE ================= */
+
+.menu-popup .close,
+.content-popup .close {
   position: absolute;
-  right: 16px;
-  top: 12px;
 
-  z-index: 10010;
+  top: 13px;
+  right: 17px;
 
-  border: 0;
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
   background: transparent;
 
-  font-size: 1.5rem;
+  color: var(--purple);
 
-  color: var(--muted);
+  font-size: 1.6rem;
 
-  pointer-events: auto;
   cursor: pointer;
+
+  z-index: 10;
 }
 
-/* ketika menu dibuka */
-.menu-popup {
-  display: block;
+/* ================= CONTENT ================= */
+
+.popup-content-title {
+  font-family: "Playfair Display", serif;
+
+  font-size: 2.2rem;
+
+  margin-bottom: 20px;
+
+  color: var(--text);
 }
 
-/* popup content awalnya tersembunyi */
-.content-popup {
-  display: none;
+.popup-content-text {
+  line-height: 1.7;
+  color: #756b7c;
+}
+
+/* ================= ABOUT ME ================= */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 100px;
+  height: 100px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 4px solid rgba(139, 114, 184, .15);
+}
+
+.funfacts {
+  margin-top: 25px;
+
+  line-height: 2;
+
+  color: #756b7c;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 850px) {
+
+  .modal-backdrop {
+    align-items: center;
+
+    overflow-y: auto;
+
+    padding: 20px;
+  }
+
+  .menu-popup {
+    width: min(430px, 94vw);
+
+    max-height: 85vh;
+  }
+
+  .content-popup {
+    position: absolute;
+
+    width: min(430px, 94vw);
+
+    max-height: 85vh;
+
+    margin-left: 0;
+  }
+
+  /*
+     Di HP content muncul menggantikan
+     posisi menu supaya tidak terlalu sempit.
+  */
+
+  .modal-backdrop.content-open .menu-popup {
+    transform: translateX(-8px);
+  }
+}
+
+@media (min-width: 851px) {
+
+  .modal-backdrop.content-open {
+    flex-direction: row;
+  }
 }
 /* =========================================
    FINAL MENU POPUP — CLEAN & DREAMY
