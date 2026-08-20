@@ -864,3 +864,53 @@ footer a {
   transform: rotate(90deg) scale(1.1);
   color: #5d467f;
 }
+/* ================= MENU BUTTON FIX ================= */
+
+.nav {
+  position: relative;
+  z-index: 1000;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  cursor: pointer;
+
+  padding: 12px 22px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.65);
+  color: #5c467d;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow:
+    0 8px 25px rgba(120, 90, 160, 0.12);
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.menu-button:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 12px 30px rgba(120, 90, 160, 0.18);
+}
+
+.menu-button span {
+  color: #9272c9;
+}
