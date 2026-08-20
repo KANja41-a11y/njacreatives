@@ -246,9 +246,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
         </div>
       `
+songs: {
+  title: "My Songs 🎵",
 
+  html: `
+    <div class="songs-list">
+
+      <div class="song-item">
+        <button class="song-play" data-song="song1">
+          ▶
+        </button>
+
+        <div class="song-info">
+          <strong>(name)</strong>
+          <small>my little song ♡</small>
+        </div>
+
+        <span class="song-note">♫</span>
+
+        <audio
+          class="song-audio"
+          data-audio="song1"
+          src="music/song-1.mp3"
+          preload="metadata"
+        ></audio>
+      </div>
+
+
+      <div class="song-item">
+        <button class="song-play" data-song="song2">
+          ▶
+        </button>
+
+        <div class="song-info">
+          <strong>(name)</strong>
+          <small>my little song ♡</small>
+        </div>
+
+        <span class="song-note">♫</span>
+
+        <audio
+          class="song-audio"
+          data-audio="song2"
+          src="music/song-2.mp3"
+          preload="metadata"
+        ></audio>
+      </div>
+
+
+      <div class="song-item">
+        <button class="song-play" data-song="song3">
+          ▶
+        </button>
+
+        <div class="song-info">
+          <strong>(name)</strong>
+          <small>my little song ♡</small>
+        </div>
+
+        <span class="song-note">♫</span>
+
+        <audio
+          class="song-audio"
+          data-audio="song3"
+          src="music/song-3.mp3"
+          preload="metadata"
+        ></audio>
+      </div>
+
+    </div>
+
+    <p class="songs-message">
+      everyone can make a music by self ♡
+    </p>
+  `
+  
     },
-
 
     notes: {
 
@@ -309,6 +382,115 @@ document.addEventListener("DOMContentLoaded", () => {
       `
 
     },
+  
+  /* ====================================================
+   MY SONGS PLAYER
+===================================================== */
+
+let currentSong = null;
+
+function setupSongPlayers() {
+
+  const songButtons =
+    document.querySelectorAll(".song-play");
+
+  const songAudios =
+    document.querySelectorAll(".song-audio");
+
+  songButtons.forEach(button => {
+
+    button.addEventListener("click", (e) => {
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const songId = button.dataset.song;
+
+      const audio =
+        document.querySelector(
+          `.song-audio[data-audio="${songId}"]`
+        );
+
+      if (!audio) return;
+
+
+      /* klik lagu yang sedang dimainkan = PAUSE */
+
+      if (currentSong === audio && !audio.paused) {
+
+        audio.pause();
+
+        button.textContent = "▶";
+
+        button
+          .closest(".song-item")
+          ?.classList.remove("playing");
+
+        return;
+      }
+
+
+      /* hentikan semua lagu lain */
+
+      songAudios.forEach(otherAudio => {
+
+        if (otherAudio !== audio) {
+
+          otherAudio.pause();
+          otherAudio.currentTime = 0;
+
+          const otherButton =
+            document.querySelector(
+              `.song-play[data-song="${otherAudio.dataset.audio}"]`
+            );
+
+          otherButton &&
+            (otherButton.textContent = "▶");
+
+          otherAudio
+            .closest(".song-item")
+            ?.classList.remove("playing");
+        }
+
+      });
+
+
+      /* PLAY */
+
+      audio.play().then(() => {
+
+        currentSong = audio;
+
+        button.textContent = "Ⅱ";
+
+        button
+          .closest(".song-item")
+          ?.classList.add("playing");
+
+      }).catch(error => {
+
+        console.log("Song tidak bisa dimainkan:", error);
+
+      });
+
+
+      audio.onended = () => {
+
+        button.textContent = "▶";
+
+        button
+          .closest(".song-item")
+          ?.classList.remove("playing");
+
+        currentSong = null;
+
+      };
+
+    });
+
+  });
+
+}
 
 
     /* =================================================
