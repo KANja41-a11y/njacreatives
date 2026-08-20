@@ -210,9 +210,9 @@ if (backdrop) {
   html: `
     <div class="profile">
 
-      <img
-        src="images/about-me.jpg"
-        alt="NJA"
+    <img
+  src="images/about-me.jpg"
+  alt="NJA"
       >
 
       <div>
