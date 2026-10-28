@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cara Membuat Prompt AI yang Hasilnya Terasa “Buatan Manusia” | NJAcreative</title>
+  <meta name="description" content="Tips praktis menulis prompt AI (gambar &amp; video) agar hasilnya tidak kaku dan robotik. Fokus pada soft aesthetic, tekstur, dan perasaan manusiawi untuk kreator Indonesia 2026.">
+  <meta name="keywords" content="prompt AI, Midjourney prompt, AI art Indonesia, soft aesthetic prompt, prompt engineering, kreator AI, NJAcreative">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://njacreatives.my.id/articles/prompt-ai-terasa-manusia.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://njacreatives.my.id/articles/prompt-ai-terasa-manusia.html">
+  <meta property="og:title" content="Cara Membuat Prompt AI yang Hasilnya Terasa “Buatan Manusia”">
+  <meta property="og:description" content="Tips praktis menulis prompt AI agar hasilnya tidak kaku dan robotik. Fokus soft aesthetic &amp; perasaan manusiawi.">
+  <meta property="og:image" content="https://njacreatives.my.id/images/og-image.jpg">
+  <meta property="og:site_name" content="NJAcreative">
+  <meta property="article:published_time" content="2026-10-28">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cara Membuat Prompt AI yang Hasilnya Terasa “Buatan Manusia”">
+  <meta name="twitter:description" content="Tips praktis menulis prompt AI agar hasilnya tidak kaku dan robotik.">
+  <meta name="twitter:image" content="https://njacreatives.my.id/images/og-image.jpg">
+
+  <meta name="theme-color" content="#e8b4c8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #e8b4c8;
+      --lavender: #c9b8e8;
+      --cream: #fdf6f9;
+      --text: #3d2c3a;
+      --muted: #7a6570;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #f0dce6;
+    }
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--pink);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .brand span { opacity: 0.7; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.55rem, 4vw, 2rem);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      color: #2a1f28;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .lead {
+      font-size: 1.15rem;
+      color: #5a4550;
+      margin: 1.75rem 0 1.5rem;
+      font-style: italic;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin: 2.25rem 0 0.85rem;
+      color: #2a1f28;
+    }
+    p { margin-bottom: 1.1rem; }
+    ul, ol { margin: 0 0 1.25rem 1.4rem; }
+    li { margin-bottom: 0.45rem; }
+    .prompt-box {
+      background: #2a1f28;
+      color: #f8eef3;
+      padding: 1.1rem 1.2rem;
+      border-radius: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .note {
+      background: #f8eef3;
+      border-left: 3px solid var(--pink);
+      padding: 1rem 1.15rem;
+      margin: 1.75rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.98rem;
+    }
+    a { color: #b07a96; }
+    a:hover { color: #8a5a72; }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #f0dce6;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    footer a { text-decoration: none; }
+    .back {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--pink);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">NJAcreative <span>✦</span></a>
+      <h1>Cara Membuat Prompt AI yang Hasilnya Terasa “Buatan Manusia”</h1>
+      <p class="meta">28 Oktober 2026 · 7 menit baca · NJAcreative</p>
+    </header>
+
+    <p class="lead">
+      AI bisa menghasilkan gambar sempurna. Tapi yang kita butuhkan seringkali adalah gambar yang terasa hidup, hangat, dan sedikit imperfect.
+    </p>
+
+    <p>
+      Banyak kreator Indonesia sekarang pakai Midjourney, Flux, Seedream, Kling, atau Veo. Masalahnya: prompt generik biasanya menghasilkan visual yang “terlalu AI” — bersih, simetris, lighting sempurna, tapi dingin.
+    </p>
+    <p>
+      Artikel ini fokus ke cara menulis prompt supaya hasilnya lebih dekat ke <strong>soft aesthetic</strong>, cozy, dan terasa dibuat manusia.
+    </p>
+
+    <h2>1. Jangan hanya deskripsikan objek — deskripsikan perasaan &amp; material</h2>
+    <p>
+      Prompt lemah biasanya cuma bilang “a girl sitting in a cafe”. Prompt yang lebih baik menyebut material, tekstur, dan mood.
+    </p>
+    <p><strong>Contoh prompt yang lebih manusiawi:</strong></p>
+    <div class="prompt-box">soft morning light through sheer curtains, a young woman in oversized cream knit sweater writing in a notebook at a wooden table, slight film grain, muted pastel palette of dusty rose and sage, shallow depth of field, cozy and quiet atmosphere, imperfect natural pose, photorealistic but gentle --ar 4:5</div>
+
+    <h2>2. Tambahkan “cacat” yang disengaja</h2>
+    <p>
+      Kesempurnaan membuat sesuatu terasa jauh. Tambahkan elemen yang membuat AI “mengotor” sedikit:
+    </p>
+    <ul>
+      <li>film grain / subtle noise</li>
+      <li>slightly imperfect hands or fabric folds</li>
+      <li>soft focus on edges</li>
+      <li>paper texture / matte finish</li>
+      <li>natural window light instead of studio lighting</li>
+    </ul>
+
+    <h2>3. Struktur prompt yang konsisten</h2>
+    <p>Urutan yang biasanya bekerja baik:</p>
+    <ol>
+      <li><strong>Subject + action</strong> (siapa / apa yang terjadi)</li>
+      <li><strong>Environment &amp; light</strong> (di mana, cahaya seperti apa)</li>
+      <li><strong>Style &amp; material</strong> (soft aesthetic, lo-fi, film still, gouache, dll)</li>
+      <li><strong>Mood &amp; feeling</strong> (quiet, nostalgic, gentle, intimate)</li>
+      <li><strong>Technical</strong> (aspect ratio, camera feel, quality)</li>
+    </ol>
+
+    <div class="note">
+      <strong>Tips:</strong> Untuk gaya soft / cozy, hindari kata seperti “ultra sharp”, “8k”, “perfect symmetry”, “cinematic dramatic lighting” kecuali memang dibutuhkan. Ganti dengan “soft”, “gentle”, “muted”, “natural”, “intimate”.
+    </div>
+
+    <h2>4. Contoh prompt siap pakai (copy-paste)</h2>
+    <p><strong>A. Soft portrait aesthetic</strong></p>
+    <div class="prompt-box">portrait of a young Indonesian woman, soft natural window light, pastel pink and lavender tones, slight film grain, dreamy and quiet mood, gentle expression, shallow depth of field, lo-fi aesthetic, photorealistic but soft --ar 3:4</div>
+
+    <p><strong>B. Little things / still life</strong></p>
+    <div class="prompt-box">small ceramic cup of tea next to a handwritten note and dried flower on a linen cloth, soft morning light, muted dusty rose and cream palette, subtle paper texture, cozy and intimate, imperfect arrangement, still life photography --ar 1:1</div>
+
+    <p><strong>C. Cozy room / study vibe</strong></p>
+    <div class="prompt-box">cozy corner of a room with soft blankets, fairy lights, open notebook and a cup of coffee, rainy window in the background, warm muted tones, lo-fi aesthetic, gentle atmosphere, slight grain --ar 16:9</div>
+
+    <h2>5. Setelah generate: sentuhan terakhir tetap manusia</h2>
+    <p>
+      Prompt bagus hanya setengah jalan. Setelah AI menghasilkan gambar:
+    </p>
+    <ul>
+      <li>Crop untuk komposisi yang lebih tenang</li>
+      <li>Turunkan saturation sedikit</li>
+      <li>Tambah subtle grain atau overlay texture</li>
+      <li>Sesuaikan color grade ke arah pastel / muted</li>
+    </ul>
+    <p>
+      Langkah kecil ini yang sering membuat hasil akhir terasa “punya kamu”, bukan “punya AI”.
+    </p>
+
+    <h2>Kesimpulan</h2>
+    <p>
+      AI adalah alat. Yang membuat karya terasa manusia adalah pilihan mood, material, dan ketidaksempurnaan yang kamu sengaja sisipkan.
+    </p>
+    <p>
+      Coba satu prompt di atas, lalu ubah 2–3 kata sesuai selera kamu. Lihat perbedaannya. Semakin sering kamu melatih “rasa”, semakin mudah AI mengikuti arah yang kamu mau.
+    </p>
+    <p>
+      Creating little things, dreaming big — termasuk di dalam prompt.
+    </p>
+
+    <footer>
+      <p>Dibuat dengan rasa ingin tahu &amp; sedikit sparkle ♡</p>
+      <a class="back" href="/">← Kembali ke beranda NJAcreative</a>
+    </footer>
+  </div>
+</body>
+</html>
