@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <link rel="stylesheet" href="https://silverhawk.web.id/lock/lock.css">
+ <!-- lock.css disabled for performance
+  <link rel="stylesheet" href="https://silverhawk.web.id/lock/lock.css">
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -57,7 +59,8 @@
 
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="images/slide-1-flowers.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="style.min.css">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -97,7 +100,7 @@
 </head>
 
 <body>
-<body data-shlock-mode="ultimate" data-shlock-domain="" data-shlock-brand="NJAcreative" data-shlock-social="https://www.instagram.com/kknjau/,https://www.dailymotion.com/video/xauy8fq">
+<body>
   <!-- dreamy background -->
   <div class="ambient ambient-one"></div>
   <div class="ambient ambient-two"></div>
@@ -178,6 +181,9 @@
     class="slide active"
     src="images/slide-1-flowers.jpg"
     alt="Pink and white flowers in soft sunlight"
+    fetchpriority="high"
+    width="640"
+    height="640"
   >
 
   <!-- Slide 2: Cat -->
@@ -649,6 +655,8 @@
 
 
   <script src="script.js" defer></script>
-<script src="https://silverhawk.web.id/lock/lock.js" defer></script>
+<!-- lock.js disabled for performance
+  <script src="https://silverhawk.web.id/lock/lock.js" defer></script>
+  -->
 </body>
 </html>
