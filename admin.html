@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin · NJAcreative Little Store</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #e8b4c8;
+      --lavender: #c9b8e8;
+      --cream: #fdf6f9;
+      --text: #3d2c3a;
+      --muted: #7a6570;
+      --card: #fff;
+      --border: #f0dce6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 1.5rem 1.1rem 3rem; }
+    h1, h2 { font-family: 'Playfair Display', serif; }
+    .brand { color: var(--pink); font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .hidden { display: none !important; }
+
+    /* Login */
+    #loginScreen {
+      max-width: 380px;
+      margin: 4rem auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    #loginScreen h1 { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    #loginScreen p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      margin-bottom: 0.75rem;
+      background: #fff;
+    }
+    input:focus, textarea:focus { outline: 2px solid var(--pink); border-color: transparent; }
+    button, .btn {
+      display: inline-block;
+      padding: 0.65rem 1.2rem;
+      border: none;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      background: var(--pink);
+      color: #2a1f28;
+    }
+    button:hover, .btn:hover { filter: brightness(0.97); }
+    button.secondary { background: #f0e4ea; }
+    button.danger { background: #f5d0d0; color: #7a2a2a; }
+    .error { color: #b33; font-size: 0.9rem; margin-top: 0.5rem; }
+    .ok { color: #2a7a4a; font-size: 0.9rem; }
+
+    /* Admin header */
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .admin-header h1 { font-size: 1.45rem; }
+
+    /* Product list */
+    .product-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .product-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 0.9rem;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.75rem;
+    }
+    .product-row img {
+      width: 72px; height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #f5eef2;
+    }
+    .product-row h3 { font-size: 1.05rem; margin-bottom: 0.15rem; }
+    .product-row p { font-size: 0.88rem; color: var(--muted); }
+    .product-actions { display: flex; flex-direction: column; gap: 0.35rem; }
+    .product-actions button { padding: 0.4rem 0.75rem; font-size: 0.85rem; }
+
+    /* Form */
+    #formCard {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    #formCard h2 { font-size: 1.2rem; margin-bottom: 1rem; }
+    label { display: block; font-size: 0.88rem; color: var(--muted); margin-bottom: 0.25rem; }
+    .form-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+
+    .empty { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- LOGIN -->
+    <div id="loginScreen">
+      <div class="brand">NJAcreative ✦</div>
+      <h1>Admin Store</h1>
+      <p>Masuk untuk mengelola Little Things</p>
+      <input type="email" id="email" placeholder="Email admin" autocomplete="username">
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+      <button id="btnLogin" style="width:100%; margin-top:0.25rem;">Masuk</button>
+      <p id="loginError" class="error hidden"></p>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" class="hidden">
+      <div class="admin-header">
+        <div>
+          <div class="brand">NJAcreative ✦</div>
+          <h1>Little Things</h1>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <button class="secondary" id="btnAdd">+ Tambah produk</button>
+          <button class="secondary" id="btnLogout">Keluar</button>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div id="formCard" class="hidden">
+        <h2 id="formTitle">Tambah produk</h2>
+        <input type="hidden" id="editId">
+        <label>Nama produk</label>
+        <input type="text" id="fName" placeholder="Contoh: Flower Pin">
+        <label>Harga (angka saja, contoh: 25000)</label>
+        <input type="number" id="fPrice" placeholder="25000">
+        <label>Deskripsi singkat</label>
+        <textarea id="fDesc" rows="2" placeholder="Soft flower charm keychain ♡"></textarea>
+        <label>URL gambar (bisa dari folder images/ atau link eksternal)</label>
+        <input type="text" id="fImage" placeholder="images/product-1-flower-pin.jpg">
+        <label>Link beli (Instagram / WhatsApp / dll)</label>
+        <input type="text" id="fLink" placeholder="https://instagram.com/kknjau">
+        <div class="form-actions">
+          <button id="btnSave">Simpan</button>
+          <button class="secondary" id="btnCancel">Batal</button>
+        </div>
+        <p id="formMsg" class="ok hidden" style="margin-top:0.6rem;"></p>
+      </div>
+
+      <!-- LIST -->
+      <div id="productList" class="product-list">
+        <p class="empty">Memuat produk…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // =========================
+    // 1. GANTI CONFIG INI
+    // =========================
+    const firebaseConfig = {
+      apiKey: "GANTI_API_KEY",
+      authDomain: "GANTI_PROJECT_ID.firebaseapp.com",
+      projectId: "GANTI_PROJECT_ID",
+      storageBucket: "GANTI_PROJECT_ID.appspot.com",
+      messagingSenderId: "GANTI_SENDER_ID",
+      appId: "GANTI_APP_ID"
+    };
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      doc,
+      query,
+      orderBy,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // DOM
+    const loginScreen = document.getElementById("loginScreen");
+    const adminPanel = document.getElementById("adminPanel");
+    const loginError = document.getElementById("loginError");
+    const productList = document.getElementById("productList");
+    const formCard = document.getElementById("formCard");
+    const formTitle = document.getElementById("formTitle");
+    const formMsg = document.getElementById("formMsg");
+
+    // Auth state
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginScreen.classList.add("hidden");
+        adminPanel.classList.remove("hidden");
+        loadProducts();
+      } else {
+        loginScreen.classList.remove("hidden");
+        adminPanel.classList.add("hidden");
+      }
+    });
+
+    // Login
+    document.getElementById("btnLogin").onclick = async () => {
+      loginError.classList.add("hidden");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (e) {
+        loginError.textContent = "Login gagal. Cek email/password.";
+        loginError.classList.remove("hidden");
+      }
+    };
+
+    document.getElementById("btnLogout").onclick = () => signOut(auth);
+
+    // Form
+    document.getElementById("btnAdd").onclick = () => {
+      formTitle.textContent = "Tambah produk";
+      document.getElementById("editId").value = "";
+      document.getElementById("fName").value = "";
+      document.getElementById("fPrice").value = "";
+      document.getElementById("fDesc").value = "";
+      document.getElementById("fImage").value = "";
+      document.getElementById("fLink").value = "https://instagram.com/kknjau";
+      formMsg.classList.add("hidden");
+      formCard.classList.remove("hidden");
+    };
+
+    document.getElementById("btnCancel").onclick = () => {
+      formCard.classList.add("hidden");
+    };
+
+    document.getElementById("btnSave").onclick = async () => {
+      const id = document.getElementById("editId").value;
+      const data = {
+        name: document.getElementById("fName").value.trim(),
+        price: Number(document.getElementById("fPrice").value) || 0,
+        description: document.getElementById("fDesc").value.trim(),
+        image: document.getElementById("fImage").value.trim(),
+        link: document.getElementById("fLink").value.trim() || "https://instagram.com/kknjau",
+        updatedAt: serverTimestamp()
+      };
+      if (!data.name) {
+        alert("Nama produk wajib diisi");
+        return;
+      }
+      try {
+        if (id) {
+          await updateDoc(doc(db, "products", id), data);
+        } else {
+          data.createdAt = serverTimestamp();
+          data.order = Date.now();
+          await addDoc(collection(db, "products"), data);
+        }
+        formMsg.textContent = "Tersimpan ✓";
+        formMsg.classList.remove("hidden");
+        formCard.classList.add("hidden");
+        loadProducts();
+      } catch (e) {
+        alert("Gagal menyimpan: " + e.message);
+      }
+    };
+
+    async function loadProducts() {
+      productList.innerHTML = '<p class="empty">Memuat…</p>';
+      try {
+        const q = query(collection(db, "products"), orderBy("order", "desc"));
+        const snap = await getDocs(q);
+        if (snap.empty) {
+          productList.innerHTML = '<p class="empty">Belum ada produk. Klik “+ Tambah produk”.</p>';
+          return;
+        }
+        productList.innerHTML = "";
+        snap.forEach((d) => {
+          const p = d.data();
+          const row = document.createElement("div");
+          row.className = "product-row";
+          row.innerHTML = `
+            <img src="${p.image || ""}" alt="" onerror="this.style.opacity=0.3">
+            <div>
+              <h3>${escapeHtml(p.name)}</h3>
+              <p>Rp ${Number(p.price || 0).toLocaleString("id-ID")} · ${escapeHtml(p.description || "")}</p>
+            </div>
+            <div class="product-actions">
+              <button class="secondary btn-edit">Edit</button>
+              <button class="danger btn-del">Hapus</button>
+            </div>
+          `;
+          row.querySelector(".btn-edit").onclick = () => {
+            formTitle.textContent = "Edit produk";
+            document.getElementById("editId").value = d.id;
+            document.getElementById("fName").value = p.name || "";
+            document.getElementById("fPrice").value = p.price || "";
+            document.getElementById("fDesc").value = p.description || "";
+            document.getElementById("fImage").value = p.image || "";
+            document.getElementById("fLink").value = p.link || "";
+            formMsg.classList.add("hidden");
+            formCard.classList.remove("hidden");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
+          row.querySelector(".btn-del").onclick = async () => {
+            if (!confirm("Hapus produk ini?")) return;
+            await deleteDoc(doc(db, "products", d.id));
+            loadProducts();
+          };
+          productList.appendChild(row);
+        });
+      } catch (e) {
+        productList.innerHTML = `<p class="empty">Error: ${e.message}</p>`;
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+  </script>
+</body>
+</html>

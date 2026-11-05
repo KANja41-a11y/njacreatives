@@ -1,0 +1,9 @@
+# robots.txt for https://njacreatives.my.id/
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://njacreatives.my.id/sitemap.xml
+
+# Crawl-delay optional (be nice to small servers)
+# Crawl-delay: 1
