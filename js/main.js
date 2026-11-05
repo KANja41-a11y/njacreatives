@@ -257,9 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("Using embedded fallback data", e);
       // Fallback embedded so site still works without server
       PRODUCTS = [
-        { id: "flower-pin", name: "Flower Pin", description: "Soft flower charm keychain — tiny & pretty ♡", price: "Rp 25.000", tag: "new ✦", image: "images/product-1-flower-pin.jpg", category: "Accessories", availability: "Available", orderLink: "https://instagram.com/kknjau" },
-        { id: "flower-clay-rings", name: "Flower Clay Rings", description: "Acrylic flower clay rings — handmade soft colors ♡", price: "Rp 35.000", tag: "", image: "images/product-2-flower-rings.jpg", category: "Accessories", availability: "Available", orderLink: "https://instagram.com/kknjau" },
-        { id: "fluffy-doll", name: "Fluffy Doll", description: "Soft fluffy doll with ribbon — little companion ♡", price: "Rp 45.000", tag: "", image: "images/product-3-fluffy-doll.jpg", category: "Plush", availability: "Available", orderLink: "https://instagram.com/kknjau" },
+        { id: "keychain-flower", name: "Key Chain Flower", description: "Soft flower charm keychain — tiny & pretty ♡", price: "Rp 25.000", tag: "new ✦", image: "images/product-1-keychain-flower.jpg", category: "Accessories", availability: "Available", orderLink: "https://instagram.com/kknjau" },
+        { id: "cookies-design", name: "Cookies Menu Design", description: "Cute cookie branding — New Menu poster + flavor lineup ♡", price: "Design work", tag: "", image: "images/product-2-cookies-new-menu.jpg", category: "Graphic Design", availability: "Portfolio", orderLink: "https://instagram.com/kknjau" },
+        { id: "drinks-design", name: "Drinks Menu Design", description: "Fresh summer drinks menu & iced lemonade poster ♡", price: "Design work", tag: "", image: "images/product-3-drinks-menu.jpg", category: "Graphic Design", availability: "Portfolio", orderLink: "https://instagram.com/kknjau" },
       ];
       PROJECTS = [
         { id: "spring-carousel", title: "Spring Carousel Visuals", category: "Illustration", year: "2025", description: "Soft spring-inspired photo series featuring flowers, cozy moments, and dreamy light.", tools: ["Photography", "Lightroom"], process: "Captured everyday soft moments.", images: ["images/slide-1-flowers.jpg"], link: "", featured: true },
@@ -744,6 +744,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const notesWall = $("#notesWall");
   const messages = storageGet("nja-guestbook", []);
 
+  function escapeHtml(str) {
+    const d = document.createElement("div");
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
   function renderGuestbook() {
     if (!notesWall) return;
     if (!messages.length) {
@@ -752,20 +758,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     notesWall.innerHTML = messages
       .map(
-        (m) => `
-      <div class="sticky-note">
+        (m, i) => `
+      <div class="sticky-note" data-idx="${i}">
         <div class="note-name">${escapeHtml(m.name)}</div>
         <div class="note-msg">${escapeHtml(m.message)}</div>
         <div class="note-date">${m.date}</div>
+        <div class="note-actions">
+          <button type="button" class="note-edit" data-idx="${i}" title="Edit">✎</button>
+          <button type="button" class="note-delete" data-idx="${i}" title="Delete">✕</button>
+        </div>
       </div>`
       )
       .join("");
-  }
 
-  function escapeHtml(str) {
-    const d = document.createElement("div");
-    d.textContent = str;
-    return d.innerHTML;
+    notesWall.querySelectorAll(".note-delete").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = +btn.dataset.idx;
+        if (!confirm("Hapus note ini?")) return;
+        messages.splice(idx, 1);
+        storageSet("nja-guestbook", messages);
+        renderGuestbook();
+        toast("Note dihapus");
+      });
+    });
+
+    notesWall.querySelectorAll(".note-edit").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = +btn.dataset.idx;
+        const m = messages[idx];
+        if (!m) return;
+        const newMsg = prompt("Edit pesan:", m.message);
+        if (newMsg === null) return;
+        const trimmed = newMsg.trim();
+        if (!trimmed) {
+          toast("Pesan tidak boleh kosong");
+          return;
+        }
+        if (trimmed.length > 280) {
+          toast("Pesan terlalu panjang");
+          return;
+        }
+        messages[idx].message = trimmed;
+        messages[idx].date = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) + " · edited";
+        storageSet("nja-guestbook", messages);
+        renderGuestbook();
+        toast("Note diupdate ♡");
+      });
+    });
   }
 
   guestbookForm?.addEventListener("submit", (e) => {
@@ -780,7 +819,6 @@ document.addEventListener("DOMContentLoaded", () => {
       toast("Message too long");
       return;
     }
-    // Simple spam: block if last message < 8s ago
     const last = messages[0];
     if (last && Date.now() - (last.ts || 0) < 8000) {
       toast("Please wait a moment before sending again");

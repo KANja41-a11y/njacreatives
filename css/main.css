@@ -1611,3 +1611,29 @@ footer a:hover { text-decoration: underline; }
   .floating-ig { padding: 0.6rem; border-radius: 50%; }
   .floating-ig .ig-icon { width: 32px; height: 32px; background: transparent; }
 }
+
+/* Guestbook note actions */
+.note-actions {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  justify-content: flex-end;
+}
+.note-actions button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.06);
+  font-size: 0.75rem;
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+  transition: background 0.2s, color 0.2s;
+}
+.note-actions button:hover {
+  background: var(--strawberry);
+  color: #fff;
+}
+[data-theme="dark"] .note-actions button {
+  background: rgba(255,255,255,0.1);
+}
