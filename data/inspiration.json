@@ -1,0 +1,67 @@
+[
+  {
+    "id": "palette-spring",
+    "type": "palette",
+    "title": "Spring Soft",
+    "colors": ["#F7F0E8", "#A8C5A0", "#E8A0B0", "#F5D78E", "#F2C4A0", "#C5B4E3"],
+    "tags": ["spring", "pastel", "soft"]
+  },
+  {
+    "id": "palette-strawberry",
+    "type": "palette",
+    "title": "Strawberry Milk",
+    "colors": ["#FFF5F7", "#FFB7C5", "#FF8FA3", "#FFE4E9", "#C9E4C5"],
+    "tags": ["pink", "cute", "sweet"]
+  },
+  {
+    "id": "palette-lavender",
+    "type": "palette",
+    "title": "Lavender Dream",
+    "colors": ["#F5F0FA", "#C5B4E3", "#9B8BC7", "#E8DFF5", "#D4C4A8"],
+    "tags": ["lavender", "calm", "dreamy"]
+  },
+  {
+    "id": "type-soft",
+    "type": "typography",
+    "title": "Soft Editorial Pair",
+    "fonts": ["Playfair Display (italic)", "DM Sans"],
+    "sample": "Creating little things, dreaming big.",
+    "tags": ["editorial", "elegant", "soft"]
+  },
+  {
+    "id": "type-cute",
+    "type": "typography",
+    "title": "Cute Rounded",
+    "fonts": ["Nunito / Quicksand", "DM Sans"],
+    "sample": "hello spring! little things become stories ♡",
+    "tags": ["cute", "rounded", "friendly"]
+  },
+  {
+    "id": "mood-scrapbook",
+    "type": "mood",
+    "title": "Creative Scrapbook",
+    "description": "Paper textures, washi tape, handwritten notes, pressed flowers, soft shadows.",
+    "tags": ["scrapbook", "texture", "hand-drawn"]
+  },
+  {
+    "id": "mood-spring",
+    "type": "mood",
+    "title": "Spring Atmosphere",
+    "description": "Soft sunlight, pastel blooms, gentle breeze, floating petals, cream backgrounds.",
+    "tags": ["spring", "nature", "light"]
+  },
+  {
+    "id": "idea-1",
+    "type": "idea",
+    "title": "Floating sticker canvas",
+    "description": "Interactive page where visitors can drag cute stickers onto a soft background.",
+    "tags": ["interactive", "playful"]
+  },
+  {
+    "id": "idea-2",
+    "type": "idea",
+    "title": "Color code copy buttons",
+    "description": "Every palette swatch has a one-click copy hex feature.",
+    "tags": ["utility", "design system"]
+  }
+]

@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- lock.css disabled for performance
-  <link rel="stylesheet" href="https://silverhawk.web.id/lock/lock.css">
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO -->
-  <title>NJAcreative ✦ My Creative Journey | Creating Little Things, Dreaming Big</title>
-  <meta name="description" content="NJAcreative — a soft little archive of ideas, experiments, memories, and everything I create along the way. Creating little things, dreaming big. Portfolio, store &amp; creative journey by @kknjau.">
-  <meta name="keywords" content="NJAcreative, nja creative, creative portfolio, digital art, AI creative, Indonesian creator, little things store, kknjau, creative journey">
+  <title>NJAcreative ✦ A Playground of Ideas | Creating Little Things, Dreaming Big</title>
+  <meta name="description" content="NJAcreative — a soft little archive of ideas, experiments, memories, and everything I create along the way. Creating little things, dreaming big. Portfolio, store & creative playground by @kknjau.">
+  <meta name="keywords" content="NJAcreative, nja creative, creative portfolio, digital art, AI creative, Indonesian creator, little things store, kknjau, creative journey, playground of ideas">
   <meta name="author" content="NJAcreative / @kknjau">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="googlebot" content="index, follow">
   <link rel="canonical" href="https://njacreatives.my.id/">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://njacreatives.my.id/">
-  <meta property="og:title" content="NJAcreative ✦ My Creative Journey">
+  <meta property="og:title" content="NJAcreative ✦ A Playground of Ideas">
   <meta property="og:description" content="A soft little archive of ideas, experiments, memories, and everything I create along the way. Creating little things, dreaming big.">
   <meta property="og:image" content="https://njacreatives.my.id/images/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="NJAcreative — Creating little things, dreaming big">
   <meta property="og:site_name" content="NJAcreative">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="id_ID">
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://njacreatives.my.id/">
-  <meta name="twitter:title" content="NJAcreative ✦ My Creative Journey">
-  <meta name="twitter:description" content="A soft little archive of ideas, experiments, memories, and everything I create along the way. Creating little things, dreaming big.">
+  <meta name="twitter:title" content="NJAcreative ✦ A Playground of Ideas">
+  <meta name="twitter:description" content="A soft little archive of ideas, experiments, memories, and everything I create along the way.">
   <meta name="twitter:image" content="https://njacreatives.my.id/images/og-image.jpg">
-  <meta name="twitter:image:alt" content="NJAcreative — Creating little things, dreaming big">
 
   <!-- Theme & App -->
   <meta name="theme-color" content="#e8b4c8">
-  <meta name="msapplication-TileColor" content="#e8b4c8">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="NJAcreative">
   <link rel="manifest" href="/site.webmanifest">
 
@@ -51,18 +42,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="mask-icon" href="/images/favicon.png" color="#e8b4c8">
 
-  <!-- Preconnect -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="images/slide-1-flowers.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="css/main.css">
 
-  <!-- Structured Data (JSON-LD) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -74,589 +63,464 @@
     "description": "A soft little archive of ideas, experiments, memories, and everything I create along the way. Creating little things, dreaming big.",
     "sameAs": [
       "https://instagram.com/kknjau",
-      "https://www.fiverr.com/njacreative"
+      "https://www.fiverr.com/njacreative",
+      "https://kanja41-a11y.github.io/aboutme/"
     ],
     "jobTitle": "Creative & AI Content Creator",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "NJAcreative"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "NJAcreative",
-    "url": "https://njacreatives.my.id/",
-    "description": "My Creative Journey — Creating little things, dreaming big.",
-    "publisher": {
-      "@type": "Person",
-      "name": "NJAcreative"
-    },
-    "inLanguage": ["en", "id"]
+    "worksFor": { "@type": "Organization", "name": "NJAcreative" }
   }
   </script>
 </head>
-
 <body>
-<body>
-  <!-- dreamy background -->
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-  <div class="sparkle-layer"></div>
+  <!-- Loader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-flower">✿</div>
+    <p>loading little things…</p>
+  </div>
 
-  <!-- NAVBAR -->
+  <!-- Welcome overlay -->
+  <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-label="Welcome">
+    <div class="welcome-card">
+      <span class="welcome-flower">✿</span>
+      <p class="welcome-eyebrow">hello there</p>
+      <h2 class="welcome-title">Welcome to my<br><em>little website</em></h2>
+      <p class="welcome-text">A soft corner of ideas, experiments &amp; tiny things made with love.</p>
+      <button class="btn primary" id="welcomeEnter" type="button">Enter ✦</button>
+      <label class="welcome-skip">
+        <input type="checkbox" id="welcomeDontShow"> Don’t show again
+      </label>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+  <!-- Ambient -->
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="ambient ambient-three" aria-hidden="true"></div>
+
+  <!-- NAV -->
   <header class="nav">
+    <a href="#home" class="brand">NJAcreative <span>✦</span></a>
 
-    <a href="#home" class="brand">
-      NJAcreative <span>✦</span>
-    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#journey">Journey</a>
+      <a href="#archive">Archive</a>
+      <a href="#inspiration">Inspiration</a>
+      <a href="#playground">Playground</a>
+      <a href="#store">Store</a>
+      <a href="#contact">Let's Talk</a>
+    </nav>
 
-    <button class="menu-button" id="menuButton">
-      MENU <span>✦</span>
-    </button>
-
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Theme">☾</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">MENU ✦</button>
+    </div>
   </header>
 
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+    <a href="#home">Home</a>
+    <a href="#journey">Journey</a>
+    <a href="#archive">Archive</a>
+    <a href="#inspiration">Inspiration</a>
+    <a href="#process">Process</a>
+    <a href="#generator">Ideas</a>
+    <a href="#playground">Playground</a>
+    <a href="#store">Store</a>
+    <a href="#guestbook">Guestbook</a>
+    <a href="#contact">Let's Talk</a>
+  </div>
 
-  <!-- HERO -->
   <main id="home">
-
-    <section class="hero">
-
+    <!-- ========== HERO ========== -->
+    <section class="hero section-inner">
       <div class="hero-copy reveal">
-
-        <p class="eyebrow">
-          a little corner of my world ✿
-        </p>
-
+        <p class="eyebrow">a little corner of my world ✿</p>
         <h1>
-          Creating little things,
-          <br>
+          Creating little things,<br>
           <em>dreaming big.</em>
         </h1>
-
         <p class="hero-text">
           A soft little archive of ideas, experiments, memories,
           and everything I create along the way.
         </p>
-
         <div class="hero-actions">
-
-          <a
-            class="btn primary"
-            href="#"
-            id="letsTalk"
-          >
-            Let's talk ✦
-          </a>
-
-          <button
-            class="btn ghost"
-            data-open="journey"
-          >
-            my journey ↓
-          </button>
-
+          <a class="btn primary" href="#contact" id="letsTalk">Let's talk ✦</a>
+          <a class="btn ghost" href="#journey">my journey ↓</a>
+          <a class="btn ghost" href="#playground">Explore Studio</a>
         </div>
-
       </div>
 
-
-      <!-- HERO VISUAL -->
       <div class="hero-visual reveal">
-
         <div class="photo-decoration flower-one">✿</div>
         <div class="photo-decoration star-one">✦</div>
 
         <div class="photo-frame">
-
           <div class="soft-glow"></div>
-
-         <div class="slider" id="slider">
-
-  <!-- Slide 1: Flowers -->
-  <img
-    class="slide active"
-    src="images/slide-1-flowers.jpg"
-    alt="Pink and white flowers in soft sunlight"
-    fetchpriority="high"
-    width="640"
-    height="640"
-  >
-
-  <!-- Slide 2: Cat -->
-  <img loading="lazy" class="slide"
-    src="images/slide-2-cat.jpg"
-    alt="Cute sleepy cat"
-  >
-
-  <!-- Slide 3: Bouquet -->
-  <img loading="lazy" class="slide"
-    src="images/slide-3-bouquet.jpg"
-    alt="Soft pink flower bouquets"
-  >
-
-  <!-- Slide 4: Croissant -->
-  <img loading="lazy" class="slide"
-    src="images/slide-4-croissant.jpg"
-    alt="Cozy croissant breakfast with blueberries"
-  >
-
-</div>
-
+          <div class="slider" id="slider">
+            <img class="slide active" src="images/slide-1-flowers.jpg" alt="Pink and white flowers in soft sunlight" fetchpriority="high" width="640" height="640">
+            <img loading="lazy" class="slide" src="images/slide-2-cat.jpg" alt="Cute sleepy cat">
+            <img loading="lazy" class="slide" src="images/slide-3-bouquet.jpg" alt="Soft pink flower bouquets">
+            <img loading="lazy" class="slide" src="images/slide-4-croissant.jpg" alt="Cozy croissant breakfast with blueberries">
+          </div>
           <span class="tape tape-one"></span>
           <span class="tape tape-two"></span>
-
-          <span class="scribble">
-            hello<br>
-            spring!
-          </span>
-
+          <span class="scribble">hello<br>spring!</span>
         </div>
 
         <div class="floating-note">
-          little things<br>
-          become stories ♡
+          little things<br>become stories ♡
         </div>
-
-        <div class="floating-flower">
-          ✿
-        </div>
+        <div class="floating-flower">✿</div>
 
         <div class="slider-controls">
-
-          <button id="prev">←</button>
-
+          <button id="prev" aria-label="Previous slide">←</button>
           <div class="dots" id="dots"></div>
-
-          <button id="next">→</button>
-
+          <button id="next" aria-label="Next slide">→</button>
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- JOURNEY -->
+    <!-- ========== CREATIVE JOURNEY ========== -->
     <section class="journey-section" id="journey">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ my creative journey</p>
+          <h2>Growing through <em>little things.</em></h2>
+        </div>
 
-      <div class="section-heading reveal">
+        <div class="journey-grid">
+          <article class="journey-card reveal">
+            <span>01</span>
+            <h3>Curious</h3>
+            <p>
+              It started with tiny ideas, random sketches,
+              and a lot of “what if?” moments.
+            </p>
+            <button class="expand-btn" type="button">Read more ↓</button>
+            <div class="journey-extra">
+              Every doodle in the margin, every photo of morning light, every “maybe I can make this” — they all became the seed of something larger.
+            </div>
+          </article>
 
-        <p class="eyebrow">
-          ✦ my creative journey
-        </p>
+          <article class="journey-card featured reveal">
+            <span>02</span>
+            <h3>Creating</h3>
+            <p>
+              Ideas became designs, stories, photos,
+              websites, and experiments that felt like me.
+            </p>
+            <button class="expand-btn" type="button">Read more ↓</button>
+            <div class="journey-extra">
+              From soft product photos to digital playgrounds, each piece is a small experiment in turning imagination into something you can hold or click.
+            </div>
+          </article>
 
-        <h2>
-          Growing through
-          <em>little things.</em>
-        </h2>
-
+          <article class="journey-card reveal">
+            <span>03</span>
+            <h3>Becoming</h3>
+            <p>
+              Still learning, still trying,
+              still turning imagination into something real.
+            </p>
+            <button class="expand-btn" type="button">Read more ↓</button>
+            <div class="journey-extra">
+              This playground is part of that becoming — a place to keep creating, sharing, and growing with soft curiosity and a little sparkle.
+            </div>
+          </article>
+        </div>
       </div>
-
-
-      <div class="journey-grid">
-
-        <article class="journey-card reveal">
-
-          <span>01</span>
-
-          <h3>Curious</h3>
-
-          <p>
-            It started with tiny ideas, random sketches,
-            and a lot of “what if?” moments.
-          </p>
-
-        </article>
-
-
-        <article class="journey-card featured reveal">
-
-          <span>02</span>
-
-          <h3>Creating</h3>
-
-          <p>
-            Ideas became designs, stories, photos,
-            websites, and experiments that felt like me.
-          </p>
-
-        </article>
-
-
-        <article class="journey-card reveal">
-
-          <span>03</span>
-
-          <h3>Becoming</h3>
-
-          <p>
-            Still learning, still trying,
-            still turning imagination into something real.
-          </p>
-
-        </article>
-
-      </div>
-
     </section>
 
-    <!-- STORE -->
-<section class="store-section" id="store">
-
-  <div class="store-heading reveal">
-
-    <p class="eyebrow">
-      ✦ little things to take home
-    </p>
-
-    <h2>
-      My little <em>store.</em>
-    </h2>
-
-    <p class="store-intro">
-      A tiny collection of things I made, loved,
-      and wanted to share with you ♡
-    </p>
-
-  </div>
-
-
-  <div class="store-grid">
-
-    <article class="store-card reveal">
-
-      <div class="store-image">
-        <img loading="lazy" src="images/product-1-flower-pin.jpg"
-          alt="Flower Pin Keychain"
-        >
-
-        <span class="store-tag">
-          new ✦
-        </span>
-      </div>
-
-      <div class="store-info">
-
-        <h3>Flower Pin</h3>
-
-        <p>
-          Soft flower charm keychain — tiny &amp; pretty ♡
-        </p>
-
-        <div class="store-bottom">
-
-          <strong>Rp 25.000</strong>
-
-          <a
-            href="https://instagram.com/kknjau"
-            target="_blank"
-            rel="noopener"
-            class="store-buy"
-          >
-            Get it ↗
-          </a>
-
+    <!-- ========== CREATIVE ARCHIVE ========== -->
+    <section class="archive-section" id="archive">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ creative archive</p>
+          <h2>Projects & <em>experiments.</em></h2>
+          <p>Filter, search, and explore the little things I’ve made. Placeholders are ready for your real work.</p>
         </div>
 
-      </div>
-
-    </article>
-
-
-    <article class="store-card reveal">
-
-      <div class="store-image">
-        <img loading="lazy" src="images/product-2-flower-rings.jpg"
-          alt="Acrylic Flower Clay Rings"
-        >
-      </div>
-
-      <div class="store-info">
-
-        <h3>Flower Clay Rings</h3>
-
-        <p>
-          Acrylic flower clay rings — handmade soft colors ♡
-        </p>
-
-        <div class="store-bottom">
-
-          <strong>Rp 35.000</strong>
-
-          <a
-            href="https://instagram.com/kknjau"
-            target="_blank"
-            rel="noopener"
-            class="store-buy"
-          >
-            Get it ↗
-          </a>
-
+        <div class="archive-controls reveal">
+          <div class="search-box">
+            <input type="search" id="projectSearch" placeholder="Search projects…" aria-label="Search projects">
+          </div>
+          <div class="filter-pills">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="Graphic Design">Graphic Design</button>
+            <button class="filter-pill" data-filter="Website Projects">Website</button>
+            <button class="filter-pill" data-filter="Illustration">Illustration</button>
+            <button class="filter-pill" data-filter="Video Editing">Video</button>
+            <button class="filter-pill" data-filter="Digital Experiments">Experiments</button>
+          </div>
         </div>
 
+        <div class="projects-grid" id="projectsGrid">
+          <!-- filled by JS -->
+        </div>
       </div>
+    </section>
 
-    </article>
-
-
-    <article class="store-card reveal">
-
-      <div class="store-image">
-        <img loading="lazy" src="images/product-3-fluffy-doll.jpg"
-          alt="Fluffy Doll"
-        >
-      </div>
-
-      <div class="store-info">
-
-        <h3>Fluffy Doll</h3>
-
-        <p>
-          Soft fluffy doll with ribbon — little companion ♡
-        </p>
-
-        <div class="store-bottom">
-
-          <strong>Rp 45.000</strong>
-
-          <a
-            href="https://instagram.com/kknjau"
-            target="_blank"
-            rel="noopener"
-            class="store-buy"
-          >
-            Get it ↗
-          </a>
-
+    <!-- ========== INSPIRATION LAB ========== -->
+    <section class="inspiration-section" id="inspiration">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ inspiration lab</p>
+          <h2>Color, type & <em>mood.</em></h2>
+          <p>Click a swatch to copy its hex. Save your favorites locally.</p>
         </div>
 
+        <div class="inspo-filters reveal">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="palette">Palettes</button>
+          <button class="filter-pill" data-filter="typography">Typography</button>
+          <button class="filter-pill" data-filter="mood">Mood</button>
+          <button class="filter-pill" data-filter="idea">Ideas</button>
+        </div>
+
+        <div class="inspo-grid" id="inspoGrid">
+          <!-- filled by JS -->
+        </div>
       </div>
+    </section>
 
-    </article>
+    <!-- ========== BEHIND THE CREATION ========== -->
+    <section class="process-section" id="process">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ behind the creation</p>
+          <h2>How little things <em>become real.</em></h2>
+        </div>
 
-  </div>
+        <div class="process-steps reveal">
+          <div class="process-step">
+            <h3>Idea</h3>
+            <p>A tiny spark, a “what if?”, a soft feeling I want to capture.</p>
+          </div>
+          <div class="process-step">
+            <h3>Research</h3>
+            <p>Collect colors, references, textures, and stories that feel right.</p>
+          </div>
+          <div class="process-step">
+            <h3>Sketch</h3>
+            <p>Rough drafts, doodles, quick layouts — nothing has to be perfect yet.</p>
+          </div>
+          <div class="process-step">
+            <h3>Develop</h3>
+            <p>Refine, layer, adjust, and let the piece slowly find its voice.</p>
+          </div>
+          <div class="process-step">
+            <h3>Final</h3>
+            <p>Polish, share, and keep a little note for the next experiment.</p>
+          </div>
+        </div>
 
+        <div class="process-visual reveal">
+          <p style="font-size:0.9rem;color:var(--ink-soft);margin-bottom:0.5rem;">Before ← → After (drag the handle)</p>
+          <div class="ba-slider" id="baSlider">
+            <div class="ba-before" style="background-image:url('images/slide-1-flowers.jpg');background-color:#EDE4D8;"></div>
+            <div class="ba-after" style="background-image:url('images/slide-3-bouquet.jpg');background-color:#F7F0E8;">
+              <div style="width:200%;height:100%;background-image:url('images/slide-3-bouquet.jpg');background-size:cover;background-position:center;"></div>
+            </div>
+            <div class="ba-handle" role="slider" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <p class="store-footer">
-    made with love, curiosity & a little sparkle ♡
-  </p>
+    <!-- ========== RANDOM IDEA GENERATOR ========== -->
+    <section class="generator-section" id="generator">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ idea generator</p>
+          <h2>Need a little <em>spark?</em></h2>
+          <p>Press the button and get a playful creative prompt.</p>
+        </div>
 
-</section>
+        <div class="idea-box reveal">
+          <p class="idea-text" id="ideaText">Loading a soft idea…</p>
+          <p class="idea-challenge" id="ideaChallenge"></p>
+        </div>
 
-    <!-- QUOTE -->
-    <section class="quote-section reveal">
+        <div class="generator-actions reveal">
+          <button class="btn primary" id="generateBtn" type="button">GIVE ME AN IDEA!</button>
+          <button class="btn ghost" id="copyIdeaBtn" type="button">Copy</button>
+          <button class="btn ghost" id="saveIdeaBtn" type="button">Save ♡</button>
+          <button class="btn ghost" id="clearIdeasBtn" type="button">Clear saved</button>
+        </div>
 
-      <div class="quote-card">
+        <div class="saved-ideas reveal">
+          <h3>Saved ideas</h3>
+          <div class="saved-list" id="savedIdeasList"></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ========== CREATIVE PLAYGROUND ========== -->
+    <section class="playground-section" id="playground">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ creative playground</p>
+          <h2>Make something <em>tiny & cute.</em></h2>
+          <p>Add stickers, text, and shapes. Drag them around. Export when you’re happy.</p>
+        </div>
+
+        <div class="playground-wrap reveal">
+          <div class="playground-toolbar">
+            <div class="toolbar-group">
+              <label>Bg</label>
+              <button class="tool-btn active" data-bg="cream" type="button">Cream</button>
+              <button class="tool-btn" data-bg="sage" type="button">Sage</button>
+              <button class="tool-btn" data-bg="pink" type="button">Pink</button>
+              <button class="tool-btn" data-bg="lavender" type="button">Lavender</button>
+              <button class="tool-btn" data-bg="peach" type="button">Peach</button>
+            </div>
+            <div class="toolbar-group">
+              <button class="tool-btn" id="addSticker" type="button">+ Sticker</button>
+              <button class="tool-btn" id="addText" type="button">+ Text</button>
+              <button class="tool-btn" id="addShape" type="button">+ Shape</button>
+              <button class="tool-btn danger" id="removeEl" type="button">Remove</button>
+              <button class="tool-btn" id="resetCanvas" type="button">Reset</button>
+              <button class="tool-btn" id="exportCanvas" type="button">Export PNG</button>
+            </div>
+          </div>
+          <div class="canvas-area" id="canvasArea">
+            <div class="canvas-bg" id="canvasBg"></div>
+          </div>
+          <p class="playground-hint">Drag elements · Select then Delete/Backspace to remove · Works on touchscreens</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MY LITTLE STORE ========== -->
+    <section class="store-section" id="store">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ little things to take home</p>
+          <h2>My little <em>store.</em></h2>
+          <p>A tiny collection of things I made, loved, and wanted to share with you ♡</p>
+        </div>
+
+        <div class="store-grid" id="storeGrid">
+          <!-- filled by JS from products.json — preserves Flower Pin, Flower Clay Rings, Fluffy Doll -->
+        </div>
+
+        <p class="store-footer">made with love, curiosity & a little sparkle ♡</p>
+      </div>
+    </section>
+
+    <!-- ========== QUOTE ========== -->
+    <section class="quote-section">
+      <div class="quote-card reveal">
         <span class="flower">✿</span>
-
-        <p>
-          “Create something that feels like you.”
-        </p>
-
-        <small>
-          — a note to my future self
-        </small>
-
+        <p>“Create something that feels like you.”</p>
+        <small>— a note to my future self</small>
       </div>
-
     </section>
 
-  </main>
+    <!-- ========== LITTLE GUESTBOOK ========== -->
+    <section class="guestbook-section" id="guestbook">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">✦ little guestbook</p>
+          <h2>Leave a soft <em>note.</em></h2>
+          <p>Messages are saved in your browser (localStorage). Be kind ♡</p>
+        </div>
 
+        <form class="guestbook-form reveal" id="guestbookForm">
+          <label for="guestName">Your name</label>
+          <input type="text" id="guestName" name="name" maxlength="40" required placeholder="e.g. soft friend" autocomplete="nickname">
+
+          <label for="guestMessage">Your message</label>
+          <textarea id="guestMessage" name="message" maxlength="280" required placeholder="A little hello, idea, or encouragement…"></textarea>
+
+          <button class="btn primary" type="submit">Pin my note ✦</button>
+        </form>
+
+        <div class="notes-wall" id="notesWall">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LET'S TALK ========== -->
+    <section class="contact-section" id="contact">
+      <div class="section-inner">
+        <div class="contact-card reveal">
+          <p class="eyebrow">a tiny hello from you ♡</p>
+          <h2>Send me a little <em>hello</em> 💌</h2>
+          <p>Got an idea, project, or just want to say hi? I’d love to hear from you!</p>
+
+          <div class="message-box">
+            <p>hello! creating little things, dreaming big ✦ turning ideas into reality</p>
+            <p>☁️ just a girl with a creative mind</p>
+          </div>
+
+          <div class="contact-links">
+            <a class="btn primary" href="https://instagram.com/kknjau" target="_blank" rel="noopener">Open Instagram ↗</a>
+            <a class="btn ghost" href="https://www.fiverr.com/njacreative" target="_blank" rel="noopener">Fiverr</a>
+          </div>
+
+          <div class="meet-creator">
+            <p>Want to know more about the person behind the soft ideas?</p>
+            <a class="btn sage" href="https://kanja41-a11y.github.io/aboutme/" target="_blank" rel="noopener">Meet the Creator ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
-
-    <p>
-      NJAcreative ✦ made with curiosity & a little sparkle
-    </p>
-
-    <a
-      href="https://instagram.com/kknjau"
-      target="_blank"
-      rel="noopener"
-    >
-      @kknjau ↗
-    </a>
-
+    <p>NJAcreative ✦ made with curiosity & a little sparkle</p>
+    <a href="https://instagram.com/kknjau" target="_blank" rel="noopener">@kknjau ↗</a>
   </footer>
 
+  <!-- Music player (no autoplay) -->
+  <div class="music-player" aria-label="Background music">
+    <button id="musicBtn" type="button" aria-label="Play music">▶</button>
+    <span class="music-label">cozy jazz</span>
+  </div>
+  <audio id="audio" src="music/cozy-jazz.mp3" loop preload="none"></audio>
 
-  <!-- MUSIC -->
-  <audio
-    id="audio"
-    src="music/cozy-jazz.mp3"
-    loop
-    preload="none"
-  ></audio>
+  <!-- Back to top -->
+  <button class="back-top" type="button" aria-label="Back to top">↑</button>
 
-
-  <!-- MENU POPUP -->
-  <div
-    class="modal-backdrop"
-    id="modalBackdrop"
-  >
-
-    <div
-      class="popup menu-popup"
-      id="menuPopup"
-    >
-
-      <button
-        class="close"
-        id="closePopup"
-      >
-        ×
-      </button>
-
-      <p class="popup-brand">
-        NJAcreative ✦
-      </p>
-
-      <p class="popup-subtitle">
-        welcome to my little creative world
-      </p>
-
-      <nav class="popup-nav">
-
-        <button data-popup="home">
-          🏠 Home
-        </button>
-
-        <button data-popup="works">
-          🎨 My Works
-        </button>
-
-        <button data-popup="songs">
-         🎵 My Songs
-        </button>
-
-        <button data-popup="notes">
-          💭 Creative Notes
-        </button>
-
-        <button data-popup="experiments">
-          🪄 Experiments
-        </button>
-
-        <button data-popup="about">
-          🌷 About Me
-        </button>
-
-        <a
-          href="https://instagram.com/kknjau"
-          target="_blank"
-          rel="noopener"
-        >
-          💌 Say Hello
-        </a>
-
-        <button data-popup="secret">
-          👀 Secret ✦
-        </button>
-
-      </nav>
-
+  <!-- Project modal -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+      <div id="modalBody"></div>
     </div>
-
-
-    <!-- CONTENT POPUP -->
-    <div
-      class="popup content-popup"
-      id="contentPopup"
-    >
-
-      <button
-        class="close"
-        id="closeContent"
-      >
-        ×
-      </button>
-
-      <div id="popupContent"></div>
-
-    </div>
-
   </div>
 
-
-  <!-- LET'S TALK -->
-  <div
-    class="hello-backdrop"
-    id="helloBackdrop"
+  <!-- Floating Instagram (draggable) -->
+  <a
+    href="https://instagram.com/kknjau"
+    target="_blank"
+    rel="noopener"
+    class="floating-ig"
+    id="floatingIg"
+    aria-label="Open Instagram @kknjau — drag to move"
+    title="Drag me · Open Instagram"
   >
+    <span class="ig-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </span>
+    <span class="ig-label">@kknjau</span>
+  </a>
 
-    <div class="hello-popup">
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-      <button
-        class="hello-close"
-        id="helloClose"
-      >
-        ×
-      </button>
+  <!-- Toast -->
+  <div class="toast" role="status" aria-live="polite"></div>
 
-      <div class="hello-sparkle">
-        ✦
-      </div>
-
-      <p class="hello-small">
-        a tiny hello from you ♡
-      </p>
-
-      <h2>
-        Send me a little
-        <em>hello</em> 💌
-      </h2>
-
-      <p class="hello-description">
-        Got an idea, project, or just want to say hi?
-        I'd love to hear from you!
-      </p>
-
-      <div class="message-box">
-
-        <p>
-          hello! creating little things,
-          dreaming big ✦ turning ideas into reality
-        </p>
-
-        <p>
-          ☁️ just a girl with a creative mind
-        </p>
-
-      </div>
-
-      <a
-        class="instagram-button"
-        href="https://instagram.com/kknjau"
-        target="_blank"
-        rel="noopener"
-      >
-        Open Instagram ↗
-      </a>
-
-      <p class="hello-footer">
-        @kknjau ✦ let's create something lovely
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-
-  <script src="script.js" defer></script>
-<!-- lock.js disabled for performance
-  <script src="https://silverhawk.web.id/lock/lock.js" defer></script>
-  -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>

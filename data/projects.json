@@ -1,0 +1,74 @@
+[
+  {
+    "id": "spring-carousel",
+    "title": "Spring Carousel Visuals",
+    "category": "Illustration",
+    "year": "2025",
+    "description": "Soft spring-inspired photo series featuring flowers, cozy moments, and dreamy light. Used as hero visuals for NJAcreative.",
+    "tools": ["Photography", "Lightroom", "Canva"],
+    "process": "Captured everyday soft moments and edited them into a cohesive spring mood.",
+    "images": ["images/slide-1-flowers.jpg", "images/slide-3-bouquet.jpg"],
+    "link": "",
+    "featured": true
+  },
+  {
+    "id": "njacreative-site",
+    "title": "NJAcreative Website",
+    "category": "Website Projects",
+    "year": "2025",
+    "description": "A soft little archive of ideas, experiments, and memories — the home of this creative playground.",
+    "tools": ["HTML", "CSS", "JavaScript"],
+    "process": "Designed and built from the ground up with a playful, spring-inspired identity.",
+    "images": ["images/slide-1-flowers.jpg"],
+    "link": "https://njacreatives.my.id/",
+    "featured": true
+  },
+  {
+    "id": "placeholder-graphic-1",
+    "title": "Soft Brand Moodboard",
+    "category": "Graphic Design",
+    "year": "2025",
+    "description": "Placeholder project — replace with your real graphic design work. Soft pastel brand exploration.",
+    "tools": ["Figma", "Illustrator"],
+    "process": "Collected references → defined palette → created visual system.",
+    "images": [],
+    "link": "",
+    "featured": false
+  },
+  {
+    "id": "placeholder-illustration-1",
+    "title": "Cute Character Stickers",
+    "category": "Illustration",
+    "year": "2025",
+    "description": "Placeholder — add your illustration series here. Cute sticker collection concept.",
+    "tools": ["Procreate", "Aseprite"],
+    "process": "Sketched characters → refined linework → colored with soft palette.",
+    "images": [],
+    "link": "",
+    "featured": false
+  },
+  {
+    "id": "placeholder-video-1",
+    "title": "Short Creative Edit",
+    "category": "Video Editing",
+    "year": "2025",
+    "description": "Placeholder for a short video or reel. Replace with your actual video project.",
+    "tools": ["CapCut", "Premiere"],
+    "process": "Shot clips → selected best moments → added soft transitions and music.",
+    "images": [],
+    "link": "",
+    "featured": false
+  },
+  {
+    "id": "placeholder-experiment-1",
+    "title": "Digital Texture Play",
+    "category": "Digital Experiments",
+    "year": "2025",
+    "description": "Experimental digital textures and paper overlays. Feel free to replace with real experiments.",
+    "tools": ["Photoshop", "Procreate"],
+    "process": "Layered paper textures, stamps, and soft noise to create scrapbook feel.",
+    "images": [],
+    "link": "",
+    "featured": false
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "flower-pin",
+    "name": "Flower Pin",
+    "description": "Soft flower charm keychain — tiny & pretty ♡",
+    "price": "Rp 25.000",
+    "tag": "new ✦",
+    "image": "images/product-1-flower-pin.jpg",
+    "category": "Accessories",
+    "availability": "Available",
+    "orderLink": "https://instagram.com/kknjau"
+  },
+  {
+    "id": "flower-clay-rings",
+    "name": "Flower Clay Rings",
+    "description": "Acrylic flower clay rings — handmade soft colors ♡",
+    "price": "Rp 35.000",
+    "tag": "",
+    "image": "images/product-2-flower-rings.jpg",
+    "category": "Accessories",
+    "availability": "Available",
+    "orderLink": "https://instagram.com/kknjau"
+  },
+  {
+    "id": "fluffy-doll",
+    "name": "Fluffy Doll",
+    "description": "Soft fluffy doll with ribbon — little companion ♡",
+    "price": "Rp 45.000",
+    "tag": "",
+    "image": "images/product-3-fluffy-doll.jpg",
+    "category": "Plush",
+    "availability": "Available",
+    "orderLink": "https://instagram.com/kknjau"
+  }
+]
